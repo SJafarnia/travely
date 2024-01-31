@@ -8,15 +8,17 @@ import 'leaflet/dist/leaflet.css'
 import 'leaflet-geosearch/dist/geosearch.css';
 import { useFormikContext } from "formik";
 import { useEffect } from "react";
+import { useMapMarkers } from "@/lib/zustand/store";
 
 
-function FormMap({ setMarkers, markers }: { setMarkers: React.Dispatch<React.SetStateAction<MarkerType[]>>, markers: MarkerType[] }) {
+function FormMap() {
     const { setFieldValue } = useFormikContext();
 
+    const marker: MarkerType = useMapMarkers((state: any) => state.markers)
 
     useEffect(() => {
-        setFieldValue('mapData', markers[0]);
-    }, [markers]);
+        setFieldValue('mapData', marker);
+    }, [marker]);
 
     return (
         <div className="mx-auto my-8 rounded-md w-full">
@@ -27,20 +29,19 @@ function FormMap({ setMarkers, markers }: { setMarkers: React.Dispatch<React.Set
                 style={{ height: '450px', width: '550px', borderRadius: "0.5rem" }}
             >
                 <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-                {<MapSearch setMarkers={setMarkers} />}
+                {<MapSearch />}
 
-                {markers && markers.map((marker, index) => (
-                    <Marker key={index} position={[marker.lat, marker.lng]}
-                        icon={
-                            icon({
-                                iconUrl: MarkerIcon.src,
-                                iconRetinaUrl: MarkerIcon.src,
-                                iconSize: [25, 41],
-                                iconAnchor: [12.5, 41],
-                                popupAnchor: [0, -41]
-                            })}
-                    />
-                ))}
+                {marker["lat"] && marker["lng"] && <Marker position={[marker.lat, marker.lng]}
+                    icon={
+                        icon({
+                            iconUrl: MarkerIcon.src,
+                            iconRetinaUrl: MarkerIcon.src,
+                            iconSize: [25, 41],
+                            iconAnchor: [12.5, 41],
+                            popupAnchor: [0, -41]
+                        })}
+                />
+                }
             </MapContainer>
         </div>
     )

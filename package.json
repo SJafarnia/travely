@@ -16,6 +16,7 @@
     "@react-three/fiber": "^8.15.12",
     "@types/react-vertical-timeline-component": "^3.3.6",
     "@types/three": "^0.160.0",
+    "animate.css": "^4.1.1",
     "cloudinary": "^2.0.0",
     "formik": "^2.4.5",
     "leaflet": "^1.9.4",

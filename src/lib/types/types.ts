@@ -17,7 +17,7 @@ export type logType = {
     title: string,
     location: string,
     description: string,
-    mapData: MarkerType | {},
+    mapData: MarkerType,
     tips: {},
     images: [publicId: string, link: string][]
 }

@@ -13,7 +13,7 @@ export const submitLogs = async (formValues: logType, imageFiles: FormData) => {
     }
 
     // data validation
-    if (!formValues.mapData || !formValues.title || !formValues.location || files.length < 1) return false;
+    if (!formValues.mapData["lat"] || !formValues.mapData["lng"] || !formValues.title || !formValues.location || files.length < 1) return false;
 
     // upload images
     const imagesData = await uploadPhotos(files)

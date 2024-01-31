@@ -3,9 +3,10 @@ import { useEffect } from "react";
 import { GeoSearchControlOptions, MarkerType } from "@/lib/types/types";
 import { useMap } from "react-leaflet"
 import { OpenStreetMapProvider, GeoSearchControl } from 'leaflet-geosearch';
+import { useMapMarkers } from "@/lib/zustand/store";
 
-const MapSearch = ({ setMarkers }: { setMarkers: React.Dispatch<React.SetStateAction<MarkerType[]>> }) => {
-
+// const MapSearch = ({ setMarkers }: { setMarkers: React.Dispatch<React.SetStateAction<MarkerType[]>> }) => {
+const MapSearch = () => {
     const provider = new OpenStreetMapProvider();
     const searchControlOptions: GeoSearchControlOptions = {
         provider: provider,
@@ -25,7 +26,7 @@ const MapSearch = ({ setMarkers }: { setMarkers: React.Dispatch<React.SetStateAc
         map.addControl(searchControl);
         map.addEventListener("dblclick", (event) => {
             const { lat, lng } = event.latlng;
-            setMarkers([{ lat, lng }]);
+            useMapMarkers.setState({ markers: { lat, lng } });
         })
 
         return () => {

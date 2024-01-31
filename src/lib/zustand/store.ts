@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { MarkerType } from '../types/types';
 
 export const useTipsStore = create((set) => ({
     tips: {},
@@ -12,4 +13,9 @@ export const useTipsStore = create((set) => ({
 export const useTravelImages = create((set) => ({
     images: [],
     addImage: (image: File,) => set((state: any) => ({ tips: [...state.images, image] })),
+}));
+
+export const useMapMarkers = create((set) => ({
+    markers: {},
+    addMarker: (markerObject: MarkerType) => set((state: any) => ({ markers: { markerObject } })),
 }));

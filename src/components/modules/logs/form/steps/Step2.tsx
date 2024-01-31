@@ -35,12 +35,13 @@ function Step2(
                 <span><BsBalloon className='inline mx-2 w-6 h-6' /></span>
             </p>
 
+            {/*  move to its own comp */}
             <p className='text-center my-2 text-xl '>
                 Show us exactly where you've been on a map
                 <span><TbWorldPin className='inline mx-2 w-6 h-6' /></span>
             </p>
             <FormMap setMarkers={setMarkers} markers={markers} />
-
+            {/*  */}
 
             <p className='my-5 cursor-pointer text-xl'>
                 Uplaod your amazing photos<span><IoCameraOutline className='inline mx-2 w-5 h-5' /></span>
@@ -53,7 +54,6 @@ function Step2(
             <textarea value={values.description} onBlur={handleBlur} onChange={handleChange} name='description' className='w-full rounded-md p-4 bg-red-900' placeholder='Share your experience' rows={3} cols={5}></textarea>
 
             <p className='my-4 cursor-pointer text-xl' data-tooltip-id="my-tooltip" data-tooltip-content="Requirements for the trip, fun facts, things to do">
-
                 Provide us with some tips
                 <span>
                     <MdOutlineTipsAndUpdates className='inline mx-2 w-5 h-5' />

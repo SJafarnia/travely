@@ -10,9 +10,8 @@ import 'leaflet-geosearch/dist/geosearch.css';
 
 
 function Map() {
-
+    //remove state and fetch from data
     const [markers, setMarkers] = useState<MarkerType[]>([]);
-
 
     return (
         <MapContainer style={{
@@ -23,7 +22,6 @@ function Map() {
 
         >
             <TileLayer url='//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' />
-            {<MapSearch setMarkers={setMarkers} />}
 
             {markers && markers.map((marker, index) => (
                 <Marker key={index} position={[marker.lat, marker.lng]}
