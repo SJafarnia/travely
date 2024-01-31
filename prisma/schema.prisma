@@ -1,0 +1,55 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String      @id @unique @default(uuid())
+  email       String?     @unique
+  accessLevel accessLevel @default(BASIC)
+  profileImg  String?     @default("")
+  posts       Travel[]
+}
+
+model Travel {
+  id        String       @id @unique @default(uuid())
+  title     String
+  location  String
+  author    User         @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId  String
+  published Boolean      @default(false)
+  public    Boolean      @default(true)
+  parts     TravelPart[]
+}
+
+model TravelPart {
+  id              String            @id @unique @default(uuid())
+  title           String
+  description     String?
+  mapData         Json
+  recommendations Json?
+  imageGallery    TravelPartImage[]
+  date            DateTime          @default(now())
+  travel          Travel            @relation(fields: [travelId], references: [id], onDelete: Cascade)
+  travelId        String
+}
+
+model TravelPartImage {
+  id       String      @id @default(uuid())
+  link     String
+  publicId String      @default("")
+  part     TravelPart? @relation(fields: [partId], references: [id], onDelete: Cascade)
+  partId   String?
+}
+
+enum accessLevel {
+  BASIC
+  ADMIN
+}

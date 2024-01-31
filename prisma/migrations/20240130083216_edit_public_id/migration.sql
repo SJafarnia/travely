@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "TravelPartImage" ALTER COLUMN "link" DROP NOT NULL,
+ALTER COLUMN "publicId" DROP NOT NULL;

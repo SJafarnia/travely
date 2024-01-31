@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+input {
+    outline: none;
+    border-radius: 0.375rem;
+    border: 0;
+}
+
+@layer components {
+
+    /* Using the scrollbar variant to style scrollbars */
+    /* Thin scrollbar with gray thumb and track */
+    .scrollbar-thin::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .scrollbar-thumb-gray-300::-webkit-scrollbar-thumb {
+        background-color: #12130F;
+        /* Replace with your desired color */
+        border-radius: 0.5rem;
+    }
+
+    .scrollbar-track-gray-100::-webkit-scrollbar-track {
+        background-color: #228B22;
+        /* Replace with your desired color */
+        border-radius: 0.5rem;
+    }
+}
+
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    gap: 1rem;
+}
+
+.hero-subgrid-1 {
+    grid-row-start: span 4;
+    /* grid-row-end: 9; */
+    grid-column-start: span 5;
+    /* grid-row-end: 3; */
+}
+
+.hero-subgrid-2 {
+    grid-row-start: 4;
+    grid-row-end: 9;
+    grid-column-start: 6;
+    grid-column-end: 9;
+}
+
+.hero-subgrid-3 {
+    grid-row-start: 1;
+    grid-row-end: 4;
+    grid-column-start: 6;
+    grid-column-end: 9;
+}
+
+.hero-subgrid-4 {
+    grid-row-start: 5;
+    grid-row-end: 9;
+    grid-column-start: 1;
+    grid-column-end: 6;
+}
+
+/* .swiper-slide { width: 80% } */
+.flexrpar {
+    display: flex;
+    justify-content: center;
+    width: 960px;
+    max-width: 100%;
+    margin: auto;
+}
+
+.flexr {
+    display: flex !important;
+    flex-direction: column;
+    flex: 1 1 100px !important;
+    /* 
+	In the order, equal to
+	flex-grow: 1;
+	flex-shrink: 1;
+	flex-basis: 300px;
+	*/
+    /* margin: 1em; */
+}
+
+.swiper-button-prev {
+    color: #FFFDD0 !important;
+}
+
+.swiper-button-next {
+    color: #FFFDD0 !important;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #228B22 !important;
+}

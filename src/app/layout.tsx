@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { montserrat, caveat } from './fonts'
 import './globals.css'
+import Layout from '@/components/layout/Layout'
 
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,7 +16,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`bg-gradient-to-b from-goldenRod/85 from-55% to-forestGreenShade1/85 bg-no-repeat h-auto ${montserrat.className} ${caveat.variable}`}>
+        <Layout>
+          {children}
+        </Layout>
+      </body>
     </html>
   )
 }
