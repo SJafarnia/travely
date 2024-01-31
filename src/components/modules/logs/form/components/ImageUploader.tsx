@@ -62,7 +62,6 @@ function ImageUploader() {
                 />
             </div>
         </div>
-
     )
 }
 

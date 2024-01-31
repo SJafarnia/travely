@@ -1,4 +1,4 @@
-import { link } from 'fs';
+
 export type MarkerType = {
     lat: number;
     lng: number;

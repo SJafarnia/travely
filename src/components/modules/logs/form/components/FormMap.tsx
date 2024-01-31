@@ -1,15 +1,14 @@
 'use client'
-import { icon } from "leaflet"
-import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
-import MarkerIcon from "@/nodemodules/leaflet/dist/images/marker-icon.png"
-import { MarkerType } from "@/lib/types/types";
+import { useEffect } from "react";
+import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 import MapSearch from '../../../travels/parts/map/MapSearch';
+import { icon } from "leaflet"
+import MarkerIcon from "@/nodemodules/leaflet/dist/images/marker-icon.png"
+import { useFormikContext } from "formik";
+import { useMapMarkers } from "@/lib/zustand/store";
+import { MarkerType } from "@/lib/types/types";
 import 'leaflet/dist/leaflet.css'
 import 'leaflet-geosearch/dist/geosearch.css';
-import { useFormikContext } from "formik";
-import { useEffect } from "react";
-import { useMapMarkers } from "@/lib/zustand/store";
-
 
 function FormMap() {
     const { setFieldValue } = useFormikContext();

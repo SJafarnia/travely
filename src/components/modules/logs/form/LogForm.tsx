@@ -17,7 +17,6 @@ export type errors = {
 function LogForm() {
     const router = useRouter()
     const [step, setStep] = useState(1);
-    const [markers, setMarkers] = useState<MarkerType[]>([]);
 
     const nextStep = () => {
         setStep(step + 1);
@@ -66,7 +65,7 @@ function LogForm() {
                     isSubmitting, }) => (
                     <form onSubmit={handleSubmit} className='flex flex-col my-8 items-center justify-center '>
                         {step === 1 && <Step1 values={values} isSubmitting={isSubmitting} nextStep={nextStep} />}
-                        {step === 2 && <Step2 values={values} isSubmitting={isSubmitting} prevStep={prevStep} markers={markers} setMarkers={setMarkers} />}
+                        {step === 2 && <Step2 values={values} isSubmitting={isSubmitting} prevStep={prevStep} />}
                         <Tooltip id="my-tooltip" className=' text-sm' style={{ fontSize: "0.875rem" }} />
                     </form>
                 )}
