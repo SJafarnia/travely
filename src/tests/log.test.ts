@@ -1,5 +1,5 @@
 import { uploadLog } from "@/lib/db/queries";
-import { submitLogs } from '@/components/modules/logs/form/components/submitLog';
+import { submitLogs } from '@/components/modules/logs/form/components/FormSubmit';
 import { uploadPhotos } from "@/lib/utils/cloudinaryUploader";
 
 describe("creates a log", () => {

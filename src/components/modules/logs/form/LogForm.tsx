@@ -1,12 +1,11 @@
 'use client'
 import { useState } from 'react';
 import { Formik } from 'formik';
-import { MarkerType } from '@/lib/types/types';
 import { Tooltip } from 'react-tooltip'
-import validationSchema from './components/validation';
+import validationSchema from './components/FormValidation';
 import Step1 from './steps/Step1';
 import Step2 from './steps/Step2';
-import { submitLogs } from './components/submitLog';
+import { submitLogs } from './components/FormSubmit';
 import { useRouter } from 'next/navigation';
 
 export type errors = {

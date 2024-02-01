@@ -8,7 +8,7 @@ const FormField = ({ name, title }: { name: string, title: string }) => {
 
     return (
         <div className='m-4 relative w-1/2 text-silver'>
-            <input id={`trvl${name}`} name={name} className={` border-forestGreen/40 focus:border-forestGreen/60 m-4 peer z-10 border-solid focus:border-2 transition-color duration-0 shadow-sm border-2 block min-h-[auto] w-full rounded bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none ease-linear`} type='text' value={
+            <input autoComplete="off" id={`trvl${name}`} name={name} className={` border-forestGreen/40 focus:border-forestGreen/60 m-4 peer z-10 border-solid focus:border-2 transition-color duration-0 shadow-sm border-2 block min-h-[auto] w-full rounded bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none ease-linear`} type='text' value={
                 //@ts-ignore
                 values[name]
             } onBlur={handleBlur} onChange={handleChange} />

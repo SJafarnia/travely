@@ -3,7 +3,7 @@ import { useTipsStore } from "@/lib/zustand/store";
 import { useFormikContext } from "formik";
 import { useEffect } from "react"
 
-function Tips() {
+function FormTips() {
     const { setFieldValue } = useFormikContext();
     // @ts-ignore
     const tips = useTipsStore((state) => state.tips)
@@ -69,4 +69,4 @@ function Tips() {
     )
 }
 
-export default Tips
+export default FormTips

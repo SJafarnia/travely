@@ -2,6 +2,8 @@ import { useFormikContext } from 'formik';
 import FormField from '../components/FormField';
 import { BsPassport } from "react-icons/bs";
 import { TbWorldQuestion } from "react-icons/tb";
+import NextStepIcon from '../components/icons/NextStepIcon';
+import FormButton from '../components/FormButton';
 
 function Step1({ values, isSubmitting, nextStep }: { values: any, isSubmitting: boolean, nextStep: () => void }) {
 
@@ -22,11 +24,13 @@ function Step1({ values, isSubmitting, nextStep }: { values: any, isSubmitting: 
 
             {values.title && values.location &&
                 <div className={`transition-opacity my-8 animate-fadeOut`}>
-                    <button type="button" onClick={nextStep} disabled={!values.title || !values.location || isSubmitting} className='disabled:blur-2xl text-forestGreen/70 hover:text-forestGreen/90 hover:scale-110 transition-transform duration-300 ease-in-out'>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-12 h-12">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                        </svg>
-                    </button>
+                    <FormButton
+                        type='button'
+                        className='disabled:blur-2xl text-forestGreen/70 hover:text-forestGreen/90 hover:scale-110 transition-transform duration-300 ease-in-out'
+                        onClick={nextStep}
+                        disabled={!values.title || !values.location || isSubmitting}
+                        icon={<NextStepIcon className='w-12 h-12' />}
+                    />
                 </div>
             }
         </>

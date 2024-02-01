@@ -4,11 +4,14 @@ import { BsBalloon } from "react-icons/bs";
 import { TbWorldPin } from "react-icons/tb";
 import { AiOutlineAudio } from "react-icons/ai";
 import { IoCameraOutline } from "react-icons/io5";
-import Tips from "../components/Tips";
-import { FormValues, MarkerType } from "@/lib/types/types";
+import Tips from "../components/FormTips";
+import { FormValues } from "@/lib/types/types";
 import { useFormikContext } from "formik";
 import ImageUploader from "../components/ImageUploader";
 import FormLabel from "../components/FormLabel";
+import FormButton from "../components/FormButton";
+import PrevStepIcon from "../components/icons/PrevStepIcon";
+import SubmitIcon from "../components/icons/SubmitIcon";
 
 function Step2(
     {
@@ -66,11 +69,12 @@ function Step2(
             />
             <Tips />
 
-            <button type="button" className='disabled:blur-2xl mt-8 mx-auto text-creamWhite/50 hover:scale-110 hover:text-creamWhite/80 transition-all duration-300 ease-in-out animate-fadeOut' onClick={prevStep}>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-12 h-12">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="m11.25 9-3 3m0 0 3 3m-3-3h7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                </svg>
-            </button>
+            <FormButton
+                type='button'
+                className='disabled:blur-2xl mt-8 mx-auto text-creamWhite/50 hover:scale-110 hover:text-creamWhite/80 transition-all duration-300 ease-in-out animate-fadeOut'
+                onClick={prevStep}
+                icon={<PrevStepIcon className='w-12 h-12' />}
+            />
 
             {isSubmitting ?
                 <div
@@ -78,11 +82,13 @@ function Step2(
                 </div>
                 :
                 values.location && values.title && values.mapData && values.images.length > 0 && (
-                    <button type="submit" className='disabled:blur-2xl my-8 text-forestGreen/70 mx-auto hover:scale-110 transition-transform duration-300 ease-in-out animate-fadeOut' disabled={!values.mapData || isSubmitting}>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-12 h-12">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                        </svg>
-                    </button>)
+                    <FormButton
+                        type="submit"
+                        className="disabled:blur-2xl my-8 text-forestGreen/70 mx-auto hover:scale-110 transition-transform duration-300 ease-in-out animate-fadeOut"
+                        icon={<SubmitIcon className="w-12 h-12" />}
+                        disabled={!values.mapData || isSubmitting}
+                    />
+                )
             }
         </div>
     )
