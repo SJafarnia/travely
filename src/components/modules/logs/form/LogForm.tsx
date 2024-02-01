@@ -7,6 +7,7 @@ import Step1 from './steps/Step1';
 import Step2 from './steps/Step2';
 import { submitLogs } from './components/FormSubmit';
 import { useRouter } from 'next/navigation';
+import { FormValues, FormValuesToSubmit } from '@/lib/types/types';
 
 export type errors = {
     title?: any,
@@ -32,7 +33,10 @@ function LogForm() {
                     title: '',
                     location: '',
                     description: '',
-                    mapData: {},
+                    mapData: {
+                        lat: undefined,
+                        lng: undefined,
+                    },
                     tips: {},
                     images: [],
                 }}

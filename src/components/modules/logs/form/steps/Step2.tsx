@@ -89,12 +89,18 @@ function Step2(
                     className="mx-auto p-3 my-8 inline-block h-12 w-12 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] text-forestGreen/70 motion-reduce:animate-[spin_1.5s_linear_infinite]">
                 </div>
                 :
-                values.location && values.title && values.mapData && values.images.length > 0 && (
+                values.location && values.title &&
+                //@ts-ignore
+                values.mapData["lng"] != undefined
+                && values.images.length > 0 && (
                     <FormButton
                         type="submit"
                         className="disabled:blur-2xl my-8 text-forestGreen/70 mx-auto hover:scale-110 transition-transform duration-300 ease-in-out animate-fadeOut"
                         icon={<SubmitIcon className="w-12 h-12" />}
-                        disabled={!values.mapData || isSubmitting}
+                        disabled={
+                            //@ts-ignore
+                            values.mapData["lng"] === undefined || values.mapData["lat"] === undefined || isSubmitting
+                        }
                     />
                 )
             }

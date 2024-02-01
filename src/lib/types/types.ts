@@ -13,13 +13,13 @@ export type FormValues = {
     images: never[];
 }
 
-export type logType = {
+export type FormValuesToSubmit = {
     title: string,
     location: string,
     description: string,
     mapData: MarkerType,
     tips: {},
-    images: [publicId: string, link: string][]
+    images?: [publicId: string, link: string][]
 }
 
 export interface GeoSearchControlOptions {
