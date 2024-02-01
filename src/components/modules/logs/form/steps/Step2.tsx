@@ -8,10 +8,10 @@ import Tips from "../components/FormTips";
 import { FormValues } from "@/lib/types/types";
 import { useFormikContext } from "formik";
 import ImageUploader from "../components/ImageUploader";
-import FormLabel from "../components/FormLabel";
 import FormButton from "../components/FormButton";
 import PrevStepIcon from "../components/icons/PrevStepIcon";
 import SubmitIcon from "../components/icons/SubmitIcon";
+import FormSegment from "../components/FormSegment";
 
 function Step2(
     {
@@ -31,7 +31,7 @@ function Step2(
     return (
         <div className='flex gap-4 flex-col text-center text-silver w-10/12 [&>p]:w-full'>
 
-            <FormLabel
+            <FormSegment
                 text="Now it's time to share the first part of your trip"
                 styles="text-center cursor-pointer my-3 text-white font-bold text-2xl mb-8"
                 icon={<BsBalloon className='inline mx-2 w-6 h-6' />}
@@ -39,35 +39,43 @@ function Step2(
                 tooltipContent="You can add more parts of your journey to this log from your profile"
             />
 
-            <FormLabel
+            <FormSegment
                 text="Show us exactly where you've been on a map"
                 styles="text-center cursor-pointer  my-2 text-xl"
                 icon={<TbWorldPin className='inline mx-2 w-6 h-6' />}
+                formField={
+                    <FormMap />
+                }
             />
-            <FormMap />
 
-            <FormLabel
+            <FormSegment
                 text="Uplaod your amazing photos"
                 styles="my-5 cursor-pointer text-xl"
                 icon={<IoCameraOutline className='inline mx-2 w-5 h-5' />}
+                formField={
+                    <ImageUploader />
+                }
             />
-            <ImageUploader />
 
-            <FormLabel
+            <FormSegment
                 text="Tell us how it went"
                 styles="my-4 cursor-pointer text-xl"
                 icon={<AiOutlineAudio className='inline mx-2 w-5 h-5' />}
+                formField={
+                    <textarea value={values.description} onBlur={handleBlur} onChange={handleChange} name='description' className='w-full rounded-md p-4 bg-red-900' placeholder='Share your experience' rows={3} cols={5}></textarea>
+                }
             />
-            <textarea value={values.description} onBlur={handleBlur} onChange={handleChange} name='description' className='w-full rounded-md p-4 bg-red-900' placeholder='Share your experience' rows={3} cols={5}></textarea>
 
-            <FormLabel
+            <FormSegment
                 text="Provide us with some tips"
                 styles="my-4 cursor-pointer text-xl"
                 icon={<MdOutlineTipsAndUpdates className='inline mx-2 w-5 h-5' />}
                 tooltipId="my-tooltip"
                 tooltipContent="Requirements for the trip, fun facts, things to do"
+                formField={
+                    <Tips />
+                }
             />
-            <Tips />
 
             <FormButton
                 type='button'
