@@ -1,4 +1,3 @@
-
 type SegmentProps = {
     text: string,
     icon: React.ReactNode,
