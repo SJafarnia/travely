@@ -13,15 +13,7 @@ export const submitLogs = async (formValues: FormValuesToSubmit, imageFiles: For
     }
 
     // data validation
-    if (
-        typeof formValues.mapData["lat"] != "number" ||
-        typeof formValues.mapData["lng"] != "number" ||
-        formValues.mapData["lat"] === undefined ||
-        formValues.mapData["lng"] === undefined ||
-        !formValues.title ||
-        !formValues.location ||
-        files.length < 1
-    ) return false;
+    if (!validateFields(formValues) || files.length < 1) return false;
 
     // upload images
     const imagesData = await uploadPhotos(files)
@@ -31,4 +23,14 @@ export const submitLogs = async (formValues: FormValuesToSubmit, imageFiles: For
 
     const res = await uploadLog(formValues)
     if (res.id) return true;
+}
+
+function validateFields(formData: FormValuesToSubmit): boolean {
+    const isMapdataTypeValid = typeof formData.mapData["lat"] == "number" || typeof formData.mapData["lng"] == "number";
+    const isMapdataValuesValid = formData.mapData["lat"] != undefined || formData.mapData["lng"] != undefined;
+
+    const validityCheck = isMapdataTypeValid && isMapdataValuesValid && formData.title != '' && formData.location != ''
+
+    // returns a true value if data is valid
+    return validityCheck
 }

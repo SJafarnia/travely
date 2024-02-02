@@ -24,8 +24,8 @@ describe("creates a log", () => {
         imagesForm.set("file2", mockPngFile)
 
         const res = await submitLogs({
-            title: "xxx",
-            location: "Tehran",
+            title: 'Tehran',
+            location: 'Iran',
             description: "Somewhere sunny",
             tips: { "tip0": "Avoid traffic hours" },
             mapData: { lat: 23.333, lng: -1.4232111 },
