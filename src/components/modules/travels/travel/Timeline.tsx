@@ -1,18 +1,15 @@
+'use client'
+
+import { travelDataType } from '@/lib/types/types';
 import Image from 'next/image';
 import Link from 'next/link';
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
-import { deslugify, slugify } from "@/utils/textModifiers"
-import { getTravelDataById } from '@/lib/db/queries';
-import { notFound } from 'next/navigation';
 
 const TravelIcon = ({ imgLink }: { imgLink: string }) => <Image src={imgLink} height={300} width={300} alt='profilePic' className='r rounded-full h-full w-full object-cover'></Image>;
 
-async function Timeline({ travelId }: { travelId: string }) {
-    const parsedTravelId = deslugify(travelId);
-    const travelData = await getTravelDataById(parsedTravelId);
+function Timeline({ travelId, travelData }: { travelId: string, travelData: travelDataType }) {
 
-    if (!travelData) return notFound()
-
+    if (!travelData) return
     return (
         <VerticalTimeline
             animate={false}>
@@ -29,7 +26,7 @@ async function Timeline({ travelId }: { travelId: string }) {
                     iconStyle={{}}
                     icon={<TravelIcon imgLink={part.imageGallery[0].link} />}
                 >
-                    <Link href={`/user/${travelData.author.email}/travels/${travelId}/parts/${index + 1}`} scroll={false} className=''>
+                    <Link href={`/user/${travelData.author.email}/travels/${travelId}/parts/${index + 1}`} scroll={false}>
                         <div className='p-6 shadow-md text-white '>
                             <div className='flex flex-col gap-2'>
                                 <h3 className="vertical-timeline-element-title font-semibold text-lg">{part.title}</h3>

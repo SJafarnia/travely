@@ -100,7 +100,12 @@ export const getTravelDataById = async (travelId: string) => {
                 location: true,
                 parts: {
                     include: {
-                        imageGallery: true
+                        imageGallery: {
+                            select: {
+                                publicId: true,
+                                link: true
+                            }
+                        }
                     }
                 },
 

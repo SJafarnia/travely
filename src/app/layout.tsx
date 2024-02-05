@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { montserrat, caveat } from './fonts'
+import { montserrat, caveat, poppins } from './fonts'
 import './globals.css'
 import Layout from '@/components/layout/Layout'
 
@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`bg-gradient-to-b from-goldenRod/85 from-55% to-forestGreenShade1/85 bg-no-repeat h-auto ${montserrat.className} ${caveat.variable}`}>
+      <body className={`bg-gradient-to-b from-goldenRod/85 from-55% to-forestGreenShade1/85 bg-no-repeat h-auto ${montserrat.className} ${caveat.variable} ${poppins.variable}`}>
         <Layout>
           {children}
         </Layout>

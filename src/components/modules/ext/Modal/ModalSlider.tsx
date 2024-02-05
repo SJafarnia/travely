@@ -8,7 +8,12 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 
-function ModalSlider() {
+function ModalSlider({ images }: {
+    images: {
+        link: string;
+        publicId: string;
+    }[]
+}) {
     return (
         <div className='mx-auto p-8 rounded-md cursor-pointer' >
             <Swiper
@@ -19,18 +24,14 @@ function ModalSlider() {
                     clickable: true,
                 }}
                 modules={[Navigation, Pagination, EffectFade]}
-                className="mySwiper2 max-h-[288px]"
+                className="mySwiper2 max-h-[288px] shadow-lg"
                 slidesPerView={1}
             >
-                <SwiperSlide className=' rounded-md'>
-                    <Image src={"/images/airport.jpg"} height={600} width={600} className="w-full max-h-[288px] h-80 mx-auto object-cover rounded-md" alt="main"></Image>
-                </SwiperSlide>
-                <SwiperSlide className=' rounded-md'>
-                    <Image src={"/images/camera.jpg"} height={600} width={600} className="w-full max-h-[288px] h-80 mx-auto object-cover rounded-md" alt="main"></Image>
-                </SwiperSlide>
-                <SwiperSlide className=' rounded-md'>
-                    <Image src={"/images/japan.jpg"} height={600} width={600} className="w-full max-h-[288px] h-80 mx-auto object-cover rounded-md" alt="main"></Image>
-                </SwiperSlide>
+                {images.map((image) => (
+                    <SwiperSlide key={image.publicId} className=' rounded-md'>
+                        <Image src={image.link} height={600} width={600} className="w-full max-h-[288px] h-80 mx-auto object-cover rounded-md" alt="xxx"></Image>
+                    </SwiperSlide>
+                ))}
             </Swiper>
         </div >
     )

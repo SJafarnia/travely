@@ -10,8 +10,10 @@ function useCloseModalHook(setMounted: React.Dispatch<React.SetStateAction<boole
         useEffect(() => {
             const handleClickOutside: any = (event: React.MouseEvent<HTMLElement>) => {
                 const targetElement = event.target as HTMLElement;
-                targetElement.classList.contains("travelModal") && router.back();
-                setMounted(false);
+                if (targetElement.classList.contains("travelModal")) {
+                    router.back();
+                    setMounted(false);
+                }
             }
             document.addEventListener('click', handleClickOutside);
 

@@ -654,14 +654,6 @@ video {
   z-index: 50;
 }
 
-.z-\[100\] {
-  z-index: 100;
-}
-
-.z-\[1000\] {
-  z-index: 1000;
-}
-
 .z-\[9999\] {
   z-index: 9999;
 }
@@ -1248,12 +1240,12 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
-.bg-zinc-900\/20 {
-  background-color: rgb(24 24 27 / 0.2);
-}
-
 .bg-zinc-900\/40 {
   background-color: rgb(24 24 27 / 0.4);
+}
+
+.bg-zinc-900\/60 {
+  background-color: rgb(24 24 27 / 0.6);
 }
 
 .bg-gradient-to-b {
@@ -1396,6 +1388,10 @@ video {
 
 .font-montserrat {
   font-family: var(--font-montserrat);
+}
+
+.font-poppins {
+  font-family: var(--font-poppins);
 }
 
 .\!text-sm {

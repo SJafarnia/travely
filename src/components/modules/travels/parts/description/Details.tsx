@@ -1,6 +1,6 @@
-function Details({ description }: { description: string | null | undefined, }) {
+function Details({ description, styles }: { styles: string, description: string | null | undefined, }) {
     return (
-        <p className="text-jet font-medium mt-20">
+        <p className={styles}>
             {description}
         </p>
     )

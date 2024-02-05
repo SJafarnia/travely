@@ -1,12 +1,13 @@
-"use client"
+'use client';
 import 'react-vertical-timeline-component/style.min.css';
 import Timeline from '../modules/travels/travel/Timeline';
+import { travelDataType } from '@/lib/types/types';
 
-function TravelPageTemplate({ travelId }: { travelId: string }) {
+function TravelPageTemplate({ travelId, travelData }: { travelId: string, travelData: travelDataType }) {
 
     return (
         <div className="App my-20 mx-4">
-            <Timeline travelId={travelId} />
+            <Timeline travelId={travelId} travelData={travelData} />
         </div >
     )
 }

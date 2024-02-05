@@ -1,3 +1,5 @@
+import { JsonValue } from "@prisma/client/runtime/library";
+
 export type MarkerType = {
     lat: number;
     lng: number;
@@ -29,3 +31,26 @@ export interface GeoSearchControlOptions {
     autoClose?: boolean;
 }
 
+export type travelDataType = {
+    title: string;
+    location: string;
+    author: {
+        email: string;
+    };
+    parts: ({
+        imageGallery: {
+            id: string;
+            link: string;
+            publicId: string;
+            partId: string | null;
+        }[];
+    } & {
+        id: string;
+        title: string;
+        description: string | null;
+        mapData: JsonValue;
+        recommendations: JsonValue;
+        date: Date;
+        travelId: string;
+    })[];
+} | null

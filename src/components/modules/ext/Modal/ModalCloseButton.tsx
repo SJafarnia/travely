@@ -1,8 +1,8 @@
 "use client"
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import closeModalHook from './hooks/useCloseModalHook';
-import lockModalScrollHook from './hooks/useLockModalScrollHook';
+import useCloseModalHook from './hooks/useCloseModalHook';
+import useLockModalScrollHook from './hooks/useLockModalScrollHook';
 
 function ModalCloseButton() {
     const router = useRouter()
@@ -15,8 +15,8 @@ function ModalCloseButton() {
         router.back();
     }
 
-    lockModalScrollHook(mounted);
-    closeModalHook(setMounted);
+    useLockModalScrollHook(mounted);
+    useCloseModalHook(setMounted);
 
     return (
         // returns to travels list

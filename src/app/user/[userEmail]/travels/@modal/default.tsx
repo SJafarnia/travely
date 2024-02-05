@@ -1,5 +1,5 @@
 function Default() {
-    return <div>xczxczxczxczxczx</div>;
+    return null;
 }
 
 export default Default

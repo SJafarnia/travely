@@ -42,6 +42,7 @@ const config: Config = {
       fontFamily: {
         caveat: ['var(--font-caveat)'],
         montserrat: ['var(--font-montserrat)'],
+        poppins: ['var(--font-poppins)'],
       }
     },
   },

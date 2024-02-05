@@ -11,7 +11,7 @@ function DescriptionSection({ description, tips }: props) {
 
     return (
         <div className="mt-16 w-4/6 mx-auto text-center">
-            <Details description={description} />
+            <Details styles="text-jet font-medium font-poppins p-4" description={description} />
             <Tips tips={tips} />
         </div>
     )
