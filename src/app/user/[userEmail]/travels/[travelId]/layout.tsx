@@ -14,11 +14,11 @@ export default async function Layout({
     children: React.ReactNode,
     params: { travelId: string },
 }) {
-    const travel = await getTravelDataById(deslugify(travelId))
+    // const travel = await getTravelDataById(deslugify(travelId))
 
-    if (!travel) {
-        return notFound();
-    }
+    // if (!travel) {
+    //     return notFound();
+    // }
 
     return (
         <>

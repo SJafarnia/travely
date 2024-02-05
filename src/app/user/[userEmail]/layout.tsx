@@ -17,7 +17,7 @@ export default async function Layout({
     const user = await getUserByEmail(userEmail)
 
     if (!user) {
-        return notFound()
+        return notFound();
     }
 
     return (

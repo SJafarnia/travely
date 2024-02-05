@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-    title: 'Travels',
-    description: 'Travels Page',
+    title: 'Travel Part',
+    description: 'Travel Part Page',
 }
 
 export default function RootLayout({

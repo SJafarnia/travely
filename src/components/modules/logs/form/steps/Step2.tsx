@@ -1,4 +1,3 @@
-import FormMap from "../components/FormMap"
 import { MdOutlineTipsAndUpdates } from "react-icons/md";
 import { BsBalloon } from "react-icons/bs";
 import { TbWorldPin } from "react-icons/tb";
@@ -12,6 +11,11 @@ import FormButton from "../components/FormButton";
 import PrevStepIcon from "../components/icons/PrevStepIcon";
 import SubmitIcon from "../components/icons/SubmitIcon";
 import FormSegment from "../components/FormSegment";
+import dynamic from 'next/dynamic'
+
+const DynamicMap = dynamic(() => import('../components/FormMap'), {
+    ssr: false,
+})
 
 function Step2(
     {
@@ -44,7 +48,7 @@ function Step2(
                 styles="text-center cursor-pointer  my-2 text-xl"
                 icon={<TbWorldPin className='inline mx-2 w-6 h-6' />}
                 formField={
-                    <FormMap />
+                    <DynamicMap />
                 }
             />
 

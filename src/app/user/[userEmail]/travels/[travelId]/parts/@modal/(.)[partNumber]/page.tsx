@@ -7,7 +7,7 @@ export default function page() {
 
     return (
         // Travel part Modal
-        <div className="fixed inset-0 bg-zinc-900/20 z-10 travelModal">
+        <div className="fixed inset-0 bg-zinc-900/20 z-[9999] travelModal">
             <div className="flex items-center h-full max-w-3xl mx-auto">
                 <div className="relative bg-zinc-900/40 w-full px-2 rounded-lg py-20 h-lvh overflow-y-auto overflow-x-clip scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
                     <ModalCloseButton />
