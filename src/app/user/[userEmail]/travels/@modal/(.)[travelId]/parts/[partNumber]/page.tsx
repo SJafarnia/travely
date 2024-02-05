@@ -14,9 +14,9 @@ export default function page() {
                     {/* <Image src={"/images/japan.jpg"} className='h-80 mx-auto object-cover rounded-md' height={600} width={600} alt='imageName'></Image> */}
                     <ModalSlider />
                     <div className=" text-center w-4/5 mx-auto my-10 bg-Night/95 text-white rounded-md p-4">
+                        {/* <Details />
                         <Details />
-                        <Details />
-                        <Details />
+                        <Details /> */}
                     </div>
                     <ViewLog />
                 </div>

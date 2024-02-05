@@ -1,9 +1,8 @@
-
-function Details() {
+function Details({ description }: { description: string | null | undefined, }) {
     return (
-        <span className="text-creamWhite/85">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea assumenda, ab molestias veniam, beatae officia corrupti fugiat incidunt ipsum dignissimos animi? Magni blanditiis sed fugiat, repudiandae est officia itaque placeat!
-        </span>
+        <p className="text-jet font-medium mt-20">
+            {description}
+        </p>
     )
 }
 

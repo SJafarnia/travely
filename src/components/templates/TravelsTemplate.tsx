@@ -1,8 +1,8 @@
 import TravelsMain from "../modules/travels/TravelsMain"
 
-function TravelsTemplate() {
+function TravelsTemplate({ user }: { user: string }) {
     return (
-        <TravelsMain />
+        <TravelsMain user={user} />
     )
 }
 export default TravelsTemplate

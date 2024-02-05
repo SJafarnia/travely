@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-function lockModalScrollHook(mounted: boolean) {
+function useLockModalScrollHook(mounted: boolean) {
     // makes the body unscrollable while modal is on top
     return (
         useEffect(() => {
@@ -13,4 +13,4 @@ function lockModalScrollHook(mounted: boolean) {
     )
 }
 
-export default lockModalScrollHook
+export default useLockModalScrollHook

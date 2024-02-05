@@ -30,7 +30,7 @@ function FormTips() {
     useEffect(() => {
         // add tips to formik state
         setFieldValue('tips', tips);
-    }, [tips]);
+    }, [tips, setFieldValue]);
 
     return (
         <div className="flex w-full">

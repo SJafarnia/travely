@@ -1,17 +1,7 @@
-import { formattedDate } from "@/components/utils/getDate"
-
-function StatusBar() {
-    // const today: Date = new Date()
-
-    // const year = today.getFullYear().toString();
-    // let month = (today.getMonth() + 1).toString(); // Month is 0-based, so add 1
-    // month = month.length === 1 ? `0${month}` : month; // Ensure two-digit representation
-    // let day = today.getDate().toString();
-    // day = day.length === 1 ? `0${day}` : day; // Ensure two-digit representation
-
-    // const formattedDate = `${year}-${month}-${day}`;
-
+function StatusBar({ date }: { date: string }) {
+    // TODO: add likes to DB and show them here
     const liked: boolean = true
+
     return (
         <section className="flex w-full sm:w-1/3 justify-around my-16">
             <div className="flex gap-2">
@@ -32,7 +22,9 @@ function StatusBar() {
                 <div className="">15</div>
             </div>
             <div>
-                {formattedDate}
+                <span>
+                    {date}
+                </span>
             </div>
             <div className="cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">

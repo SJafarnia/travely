@@ -6,8 +6,16 @@ import { useState } from 'react';
 import 'swiper/css';
 
 
-function GallerySlider() {
+function GallerySlider({ images }: {
+    images: {
+        link: string;
+        publicId: string;
+    }[] | undefined
+}) {
+
     const [thumbsSwiper, setThumbsSwiper]: any = useState(null);
+
+    if (!images) return
 
     return (
         <div className='w-[16rem] sm:w-[32rem]'>
@@ -19,16 +27,13 @@ function GallerySlider() {
                 className="mySwiper2 max-h-[288px]"
                 slidesPerView={1}
             >
-                <SwiperSlide className=' rounded-md'>
-                    <Image src={"/images/airport.jpg"} height={1200} width={1200} className="w-full object-fill max-h-[288px] rounded-md " alt="main"></Image>
-                </SwiperSlide>
-                <SwiperSlide className=' rounded-md'>
-                    <Image src={"/images/camera.jpg"} height={1200} width={1200} className="w-full object-fill max-h-[288px] rounded-md" alt="main"></Image>
-                </SwiperSlide>
-                <SwiperSlide className=' rounded-md'>
-                    <Image src={"/images/japan.jpg"} height={1200} width={1200} className="w-full object-fill max-h-[288px] rounded-md" alt="main"></Image>
-                </SwiperSlide>
-
+                {images &&
+                    images.map((image) => (
+                        <SwiperSlide key={image.publicId} className='rounded-md'>
+                            <Image src={image.link} height={1200} width={1200} className="w-full object-fill max-h-[288px] rounded-md h-full" alt="main"></Image>
+                        </SwiperSlide>
+                    ))
+                }
             </Swiper>
             <Swiper
                 onSwiper={(e) => setThumbsSwiper(e)}
@@ -40,31 +45,14 @@ function GallerySlider() {
                 className="mySwiper h-[52.31px]  sm:h-[88.31px] rounded-md mt-4"
                 wrapperClass='flexrpar'
             >
-                <SwiperSlide className='h-full !shrink flexr gap-2 ml-[10px]'>
-                    <Image src={"/images/airport.jpg"} height={1200} width={1200} className="w-full object-fill h-full rounded-md" alt="main"></Image>
-                </SwiperSlide>
-                <SwiperSlide className='h-full !shrink flexr'>
-                    <Image src={"/images/camera.jpg"} height={1200} width={1200} className="w-full object-fill h-full rounded-md" alt="main"></Image>
-                </SwiperSlide>
-                <SwiperSlide className='h-full !shrink flexr'>
-                    <Image src={"/images/japan.jpg"} height={1200} width={1200} className="w-full object-fill h-full rounded-md" alt="main"></Image>
-                </SwiperSlide>
-
+                {images &&
+                    images.map((image) => (
+                        <SwiperSlide key={image.publicId} className='rounded-md'>
+                            <Image src={image.link} height={1200} width={1200} className="w-full object-fill max-h-[288px] rounded-md h-full" alt="main"></Image>
+                        </SwiperSlide>
+                    ))
+                }
             </Swiper>
-            {/* <div className='flexrpar'>
-                <div className='flexr'>
-                    <Image src={"/images/japan.jpg"} height={1200} width={1200} className="w-full h-full rounded-md m-2" alt="main"></Image>
-
-                </div>
-                <div className='flexr'>
-                    <Image src={"/images/camera.jpg"} height={1200} width={1200} className="w-full h-full rounded-md m-2" alt="main"></Image>
-
-                </div>
-                <div className='flexr'>
-                    <Image src={"/images/airport.jpg"} height={1200} width={1200} className="w-full h-full rounded-md m-2" alt="main"></Image>
-
-                </div>
-            </div> */}
         </div>
     )
 }

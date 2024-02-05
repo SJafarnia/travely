@@ -1,41 +1,54 @@
 'use client'
-import { useState } from "react"
-import { MapContainer, Marker, TileLayer } from "react-leaflet"
-import { icon } from "leaflet"
-import MarkerIcon from "@nodemodules/leaflet/dist/images/marker-icon.png"
-import MapSearch from "./MapSearch";
-import { MarkerType } from "@/lib/types/types";
+import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet"
+import { Icon } from "leaflet"
 import 'leaflet/dist/leaflet.css'
 import 'leaflet-geosearch/dist/geosearch.css';
+import { JsonValue } from "@prisma/client/runtime/library"
+import { MarkerType } from "@/lib/types/types"
+import { useLayoutEffect } from "react"
 
 
-function Map() {
-    //remove state and fetch from data
-    const [markers, setMarkers] = useState<MarkerType[]>([]);
+function Map({ mapData, popUp }: { mapData: JsonValue, popUp: string }) {
+
+    const markers = mapData as MarkerType
 
     return (
         <MapContainer style={{
             height: '240px',
             width: '420px',
         }}
-            center={[51.505, -0.09]} zoom={15} doubleClickZoom={false}
-
+            className=" rounded-md"
+            center={[markers.lat, markers.lng]} zoom={13} doubleClickZoom={false}
         >
-            <TileLayer url='//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' />
+            <TileLayer
+                url='https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}.jpeg'
+            // attribution="Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"
+            />
+            <SetMapTo lat={markers.lat} lng={markers.lng} />
+            <Marker position={[markers.lat, markers.lng]}
+                icon={
+                    new Icon({
+                        iconUrl: "https://cdn-icons-png.flaticon.com/512/149/149059.png",
+                        iconSize: [38, 38],
+                        iconAnchor: [12.5, 41],
+                        popupAnchor: [0, -41]
+                    })} >
+                <Popup ><h2>{popUp}</h2></Popup>
+            </Marker>
 
-            {markers && markers.map((marker, index) => (
-                <Marker key={index} position={[marker.lat, marker.lng]}
-                    icon={
-                        icon({
-                            iconUrl: MarkerIcon.src,
-                            iconRetinaUrl: MarkerIcon.src,
-                            iconSize: [25, 41],
-                            iconAnchor: [12.5, 41],
-                            popupAnchor: [0, -41]
-                        })} />
-            ))}
         </MapContainer>
     )
+}
+
+function SetMapTo({ lat, lng }: { lat: number, lng: number }) {
+
+    const map = useMap()
+
+    useLayoutEffect(() => {
+        map.setView({ lat: lat, lng: lng })
+    }, [lat, lng])
+
+    return null
 }
 
 export default Map

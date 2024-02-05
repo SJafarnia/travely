@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useRouter } from 'next/navigation';
 
 
-function closeModalHook(setMounted: React.Dispatch<React.SetStateAction<boolean>>) {
+function useCloseModalHook(setMounted: React.Dispatch<React.SetStateAction<boolean>>) {
     // closes the modal with any click outside of it
     const router = useRouter()
 
@@ -22,5 +22,5 @@ function closeModalHook(setMounted: React.Dispatch<React.SetStateAction<boolean>
     )
 }
 
-export default closeModalHook
+export default useCloseModalHook
 

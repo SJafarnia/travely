@@ -17,7 +17,7 @@ function FormMap() {
 
     useEffect(() => {
         setFieldValue('mapData', marker);
-    }, [marker]);
+    }, [marker, setFieldValue]);
 
     return (
         <div className="mx-auto my-8 rounded-md w-full">

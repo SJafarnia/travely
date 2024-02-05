@@ -1,11 +1,18 @@
+import { JsonValue } from "@prisma/client/runtime/library"
 import Details from "./Details"
 import Tips from "./Tips"
 
-function DescriptionSection() {
+type props = {
+    description: string | null | undefined,
+    tips: JsonValue | undefined
+}
+
+function DescriptionSection({ description, tips }: props) {
+
     return (
-        <div className="my-16 w-4/6 mx-auto text-center">
-            <Details />
-            <Tips />
+        <div className="mt-16 w-4/6 mx-auto text-center">
+            <Details description={description} />
+            <Tips tips={tips} />
         </div>
     )
 }

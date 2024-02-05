@@ -3,7 +3,6 @@ import { uploadLog } from "@/lib/db/queries";
 import { FormValuesToSubmit } from "@/types/types";
 import { uploadPhotos } from '@/lib/utils/cloudinaryUploader';
 
-
 export const submitLogs = async (formValues: FormValuesToSubmit, imageFiles: FormData) => {
 
     const files: File[] = [];
@@ -22,7 +21,9 @@ export const submitLogs = async (formValues: FormValuesToSubmit, imageFiles: For
     formValues.images = imagesData
 
     const res = await uploadLog(formValues)
-    if (res.id) return true;
+    if (res?.id) return true;
+
+    return false
 }
 
 function validateFields(formData: FormValuesToSubmit): boolean {

@@ -30,7 +30,7 @@
         "./src/components/*"
       ],
       "@/utils/*": [
-        "./src/utils/*"
+        "./src/lib/utils/*"
       ],
       "@/types/*": [
         "./src/lib/types/*"
