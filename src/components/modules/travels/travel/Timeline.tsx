@@ -1,11 +1,11 @@
 'use client'
-
 import { travelDataType } from '@/lib/types/types';
 import Image from 'next/image';
 import Link from 'next/link';
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
+import { CldImage } from 'next-cloudinary';
 
-const TravelIcon = ({ imgLink }: { imgLink: string }) => <Image src={imgLink} height={300} width={300} alt='profilePic' className='r rounded-full h-full w-full object-cover'></Image>;
+const TravelIcon = ({ imgLink }: { imgLink: string }) => <CldImage src={imgLink} height={300} width={300} alt='profilePic' className='rounded-full h-full w-full object-cover'></CldImage>;
 
 function Timeline({ travelId, travelData }: { travelId: string, travelData: travelDataType }) {
 
@@ -24,7 +24,7 @@ function Timeline({ travelId, travelData }: { travelId: string, travelData: trav
                     dateClassName='text-Night !opacity-100'
                     iconClassName='!shadow-2xl border-red !border-2 border-solid border-creamWhite'
                     iconStyle={{}}
-                    icon={<TravelIcon imgLink={part.imageGallery[0].link} />}
+                    icon={<TravelIcon imgLink={part.imageGallery[1].publicId} />}
                 >
                     <Link href={`/user/${travelData.author.email}/travels/${travelId}/parts/${index + 1}`} scroll={false}>
                         <div className='p-6 shadow-md text-white '>
@@ -36,7 +36,8 @@ function Timeline({ travelId, travelData }: { travelId: string, travelData: trav
                                 {part.description}
                             </p>
                         </div>
-                        <Image src={part.imageGallery[0].link} className='rounded-b-md shadow-2xl max-h-[289.13px] object-center' height={1000} width={1000} alt='imageName'></Image>
+                        <CldImage width="600" height="600" src={part.imageGallery[0].publicId} alt="" className='rounded-b-md shadow-2xl max-h-[289.13px] object-center' />
+                        {/* <Image src={part.imageGallery[0].link} className='rounded-b-md shadow-2xl max-h-[289.13px] object-center' height={1000} width={1000} alt='imageName'></Image> */}
                     </Link>
                 </VerticalTimelineElement>
             ))}

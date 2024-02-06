@@ -1,10 +1,8 @@
+import TravelsTemplate from "@/components/templates/TravelsTemplate"
 
-export default async function page({ params: { userEmail } }: { params: { userEmail: string } }) {
+export default function page({ params: { userEmail } }: { params: { userEmail: string } }) {
 
     return (
-        <div>
-            user page
-        </div>
+        <TravelsTemplate user={userEmail} />
     )
 }
-
