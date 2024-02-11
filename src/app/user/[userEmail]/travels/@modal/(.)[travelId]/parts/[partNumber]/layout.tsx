@@ -1,7 +1,7 @@
-import { getTravelDataById } from '@/lib/db/queries'
-import type { Metadata } from 'next'
-import { notFound } from 'next/navigation'
-import { deslugify } from "@/utils/textModifiers"
+import { getTravelDataById } from '@/lib/db/queries';
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import { deslugify } from '@/utils/textModifiers';
 
 // export const metadata: Metadata = {
 //     title: 'Travels',
@@ -10,10 +10,10 @@ import { deslugify } from "@/utils/textModifiers"
 
 export default async function Layout({
     children,
-    params: { travelId, partNumber }
+    params: { travelId, partNumber },
 }: {
-    children: React.ReactNode,
-    params: { travelId: string, partNumber: number },
+    children: React.ReactNode;
+    params: { travelId: string; partNumber: number };
 }) {
     // const travel = await getTravelDataById(deslugify(travelId))
 
@@ -21,9 +21,5 @@ export default async function Layout({
     //     return notFound();
     // }
 
-    return (
-        <>
-            {children}
-        </>
-    )
+    return <>{children}</>;
 }

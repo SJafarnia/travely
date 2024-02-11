@@ -1,6 +1,6 @@
-import { getUserByEmail } from '@/lib/db/queries'
-import type { Metadata } from 'next'
-import { notFound } from 'next/navigation'
+import { getUserByEmail } from '@/lib/db/queries';
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 
 // export const metadata: Metadata = {
 //     title: 'Travels',
@@ -9,20 +9,16 @@ import { notFound } from 'next/navigation'
 
 export default async function Layout({
     children,
-    params: { userEmail }
+    params: { userEmail },
 }: {
-    children: React.ReactNode,
-    params: { userEmail: string },
+    children: React.ReactNode;
+    params: { userEmail: string };
 }) {
-    const user = await getUserByEmail(userEmail)
+    const user = await getUserByEmail(userEmail);
 
     if (!user) {
         return notFound();
     }
 
-    return (
-        <>
-            {children}
-        </>
-    )
+    return <>{children}</>;
 }

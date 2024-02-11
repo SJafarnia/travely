@@ -8,8 +8,8 @@ const validationSchema = Yup.object({
     mapData: Yup.object().shape({
         lat: Yup.string().required('Map data is required'),
         lng: Yup.string().required('Map data is required'),
-    })
+    }),
     // ...
 });
 
-export default validationSchema
+export default validationSchema;

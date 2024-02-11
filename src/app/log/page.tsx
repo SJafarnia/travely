@@ -1,9 +1,5 @@
-import TravelLogTemplate from "@/components/templates/TravelLogTemplate";
+import TravelLogTemplate from '@/components/templates/TravelLogTemplate';
 
 export default function LogPage() {
-  
-  return (
-    <TravelLogTemplate />
-  )
+    return <TravelLogTemplate />;
 }
-

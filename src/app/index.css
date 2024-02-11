@@ -9,7 +9,6 @@ input {
 }
 
 @layer components {
-
     /* Using the scrollbar variant to style scrollbars */
     /* Thin scrollbar with gray thumb and track */
     .scrollbar-thin::-webkit-scrollbar {
@@ -17,18 +16,17 @@ input {
     }
 
     .scrollbar-thumb-gray-300::-webkit-scrollbar-thumb {
-        background-color: #12130F;
+        background-color: #12130f;
         /* Replace with your desired color */
         border-radius: 0.5rem;
     }
 
     .scrollbar-track-gray-100::-webkit-scrollbar-track {
-        background-color: #228B22;
+        background-color: #228b22;
         /* Replace with your desired color */
         border-radius: 0.5rem;
     }
 }
-
 
 .hero-grid {
     display: grid;
@@ -88,13 +86,13 @@ input {
 }
 
 .swiper-button-prev {
-    color: #FFFDD0 !important;
+    color: #fffdd0 !important;
 }
 
 .swiper-button-next {
-    color: #FFFDD0 !important;
+    color: #fffdd0 !important;
 }
 
 .swiper-pagination-bullet-active {
-    background-color: #228B22 !important;
+    background-color: #228b22 !important;
 }

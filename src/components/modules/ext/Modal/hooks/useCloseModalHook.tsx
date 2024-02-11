@@ -1,28 +1,28 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
-
-function useCloseModalHook(setMounted: React.Dispatch<React.SetStateAction<boolean>>) {
+function useCloseModalHook(
+    setMounted: React.Dispatch<React.SetStateAction<boolean>>
+) {
     // closes the modal with any click outside of it
-    const router = useRouter()
+    const router = useRouter();
 
-    return (
-        useEffect(() => {
-            const handleClickOutside: any = (event: React.MouseEvent<HTMLElement>) => {
-                const targetElement = event.target as HTMLElement;
-                if (targetElement.classList.contains("travelModal")) {
-                    router.back();
-                    setMounted(false);
-                }
+    return useEffect(() => {
+        const handleClickOutside: any = (
+            event: React.MouseEvent<HTMLElement>
+        ) => {
+            const targetElement = event.target as HTMLElement;
+            if (targetElement.classList.contains('travelModal')) {
+                router.back();
+                setMounted(false);
             }
-            document.addEventListener('click', handleClickOutside);
+        };
+        document.addEventListener('click', handleClickOutside);
 
-            return () => {
-                document.removeEventListener('click', handleClickOutside);
-            };
-        }, [])
-    )
+        return () => {
+            document.removeEventListener('click', handleClickOutside);
+        };
+    }, []);
 }
 
-export default useCloseModalHook
-
+export default useCloseModalHook;

@@ -1,27 +1,36 @@
-import { JsonValue } from "@prisma/client/runtime/library";
+import { JsonValue } from '@prisma/client/runtime/library';
 
 export type MarkerType = {
-    lat: number;
-    lng: number;
+    lat: undefined | number;
+    lng: undefined | number;
+};
+
+export type ProfileFormType = {
+    username: string;
+    location: string;
+    image: File;
 };
 
 export type FormValues = {
     title: string;
     location: string;
     description: string;
-    mapData: {};
+    mapData: {
+        lat: undefined | number;
+        lng: undefined | number;
+    };
     tips: {};
     images: never[];
-}
+};
 
 export type FormValuesToSubmit = {
-    title: string,
-    location: string,
-    description: string,
-    mapData: MarkerType,
-    tips: {},
-    images?: [publicId: string, link: string][]
-}
+    title: string;
+    location: string;
+    description: string;
+    mapData: MarkerType;
+    tips: {};
+    images?: [publicId: string, link: string][];
+};
 
 export interface GeoSearchControlOptions {
     provider: any; // Replace 'any' with the specific provider type if available
@@ -53,4 +62,4 @@ export type travelDataType = {
         date: Date;
         travelId: string;
     })[];
-} | null
+} | null;

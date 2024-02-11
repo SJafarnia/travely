@@ -1,9 +1,7 @@
-import LogsMain from "../modules/logs/LogsMain";
+import LogsMain from '../modules/logs/LogsMain';
 
 function TravelLogTemplate() {
-    return (
-        <LogsMain />
-    )
+    return <LogsMain />;
 }
 
-export default TravelLogTemplate
+export default TravelLogTemplate;

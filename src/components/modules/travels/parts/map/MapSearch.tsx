@@ -1,9 +1,9 @@
-'use client'
-import { useEffect } from "react";
-import { GeoSearchControlOptions, MarkerType } from "@/lib/types/types";
-import { useMap } from "react-leaflet"
+'use client';
+import { useEffect } from 'react';
+import { GeoSearchControlOptions, MarkerType } from '@/lib/types/types';
+import { useMap } from 'react-leaflet';
 import { OpenStreetMapProvider, GeoSearchControl } from 'leaflet-geosearch';
-import { useMapMarkers } from "@/lib/zustand/store";
+import { useMapMarkers } from '@/lib/zustand/store';
 
 // const MapSearch = ({ setMarkers }: { setMarkers: React.Dispatch<React.SetStateAction<MarkerType[]>> }) => {
 const MapSearch = () => {
@@ -24,19 +24,18 @@ const MapSearch = () => {
     // @ts-ignore
     useEffect(() => {
         map.addControl(searchControl);
-        map.addEventListener("dblclick", (event) => {
+        map.addEventListener('dblclick', (event) => {
             const { lat, lng } = event.latlng;
             useMapMarkers.setState({ markers: { lat, lng } });
-        })
+        });
 
         return () => {
             map.removeControl(searchControl);
-            map.removeEventListener("dblclick");
-        }
+            map.removeEventListener('dblclick');
+        };
     }, []);
 
     return null;
 };
 
-
-export default MapSearch
+export default MapSearch;

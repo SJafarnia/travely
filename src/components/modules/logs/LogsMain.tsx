@@ -1,11 +1,11 @@
-import LogForm from "./form/LogForm";
+import LogForm from './form/LogForm';
 
 function LogsMain() {
     return (
-        <div className="my-16 flex mx-auto w-3/5 shadow-forestGreen/50 shadow-2xl flex-col bg-Night/95 text-creamWhite rounded-md p-8">
+        <div className='mx-auto my-16 flex w-3/5 flex-col rounded-md bg-Night/95 p-8 text-creamWhite shadow-2xl shadow-forestGreen/50'>
             <LogForm />
         </div>
-    )
+    );
 }
 
-export default LogsMain
+export default LogsMain;

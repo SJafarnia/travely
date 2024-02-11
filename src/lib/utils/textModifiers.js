@@ -5,7 +5,7 @@ export function slugify(text) {
         .trim() // remove leading/trailing white spaces
         .replace(/\s+/g, '-') // replace spaces with dashes
         .replace(/[^\w-]+/g, '') // remove non-alphanumeric characters except dashes
-        .replace(/-+/g, '') // replace dashes 
+        .replace(/-+/g, '') // replace dashes
         .replace(/^-+|-+$/g, ''); // remove dashes from the start and end of the string
 }
 
@@ -15,14 +15,13 @@ export function slugify(text) {
 //         .replace(/(^|\s)\S/g, (match) => match.toUpperCase());
 // }
 
-
 export function deslugify(str) {
     const uuidWithDashes = [
         str.slice(0, 8),
         str.slice(8, 12),
         str.slice(12, 16),
         str.slice(16, 20),
-        str.slice(20)
+        str.slice(20),
     ].join('-');
 
     return uuidWithDashes;
