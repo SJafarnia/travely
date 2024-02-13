@@ -163,13 +163,37 @@ export const createUser = async (
     image?: string | '',
     accessLevel?: accessEnum
 ) => {
-    const res = await prisma.user.create({
-        data: {
-            email: email,
-            accessLevel: accessLevel,
-            profileImg: image,
-        },
-    });
+    try {
+        const res = await prisma.user.create({
+            data: {
+                email: email,
+                accessLevel: accessLevel,
+                profileImg: image,
+            },
+        });
+    } catch (err) {
+        return;
+    }
+};
 
-    console.log(res);
+export const updateUser = async (
+    email: string,
+    username: string,
+    image: string
+) => {
+    try {
+        const res = await prisma.user.update({
+            where: {
+                email: email,
+            },
+            data: {
+                username: username,
+                profileImg: image,
+            },
+        });
+
+        return res;
+    } catch (err) {
+        return null;
+    }
 };

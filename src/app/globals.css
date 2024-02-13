@@ -991,6 +991,10 @@ video {
   width: 2.25rem;
 }
 
+.w-9\/12 {
+  width: 75%;
+}
+
 .w-\[145px\] {
   width: 145px;
 }
@@ -1622,6 +1626,10 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.text-red-600\/90 {
+  color: rgb(220 38 38 / 0.9);
+}
+
 .\!opacity-100 {
   opacity: 1 !important;
 }
@@ -1855,6 +1863,16 @@ input {
 
 .hover\:animate-bounce:hover {
   animation: bounce 1s infinite;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: .5;
+  }
+}
+
+.hover\:animate-pulse:hover {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 .hover\:border-creamWhite\/80:hover {

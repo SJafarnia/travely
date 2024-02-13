@@ -42,10 +42,10 @@ function ImageHandler({ ...props }: divProps) {
                 </svg>
 
                 {/* TODO: replace with user image */}
-                {values.image ? (
+                {typeof values.image == "string" ? (
                     <Image
                         loading='lazy'
-                        src={values.image as unknown as string}
+                        src={values.image}
                         width={1000}
                         height={1000}
                         className='h-[145px] w-[145px] animate-fadeOut rounded-full transition-opacity duration-300 group-hover:opacity-45'

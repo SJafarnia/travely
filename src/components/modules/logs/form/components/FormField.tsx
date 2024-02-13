@@ -28,14 +28,14 @@ const FormField = ({ name, title }: { name: string; title: string }) => {
                         values[name]
                             ? '-translate-x-[.45rem] -translate-y-[1.45rem] scale-[0.7] bg-Night'
                             : 'bg-transparent'
-                    }
+                        }
                      pointer-events-none absolute bottom-[0.6rem] left-4 mb-0 max-w-[90%] truncate rounded-md px-2 pt-0 leading-[1.4] transition-all duration-200 ease-out peer-focus:-translate-x-[.45rem] peer-focus:-translate-y-[1.45rem] peer-focus:scale-[0.7] peer-focus:bg-Night peer-focus:text-silver`}
                 >
                     {title}
                 </label>
             </div>
             {errors[name] && touched[name] && (
-                <p className='relative m-2 mx-auto w-1/2 cursor-alias text-sm text-red-600'>
+                <p className='relative m-2 mx-auto w-9/12 cursor-alias text-sm text-red-600'>
                     {
                         //@ts-ignore
                         errors[name]

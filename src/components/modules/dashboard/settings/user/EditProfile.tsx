@@ -1,11 +1,12 @@
 'use client';
 import { Formik } from 'formik';
 import validationSchema from './FormValidation';
-import FormField from '../logs/form/components/FormField';
+import FormField from '../../../logs/form/components/FormField';
 import ImageHandler from './ImageHandler';
-import SubmitIcon from '../logs/form/components/icons/SubmitIcon';
+import SubmitIcon from '../../../logs/form/components/icons/SubmitIcon';
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
+import { submitUpdateUser } from './FormSubmit';
 
 function EditProfile() {
     const router = useRouter();
@@ -18,19 +19,17 @@ function EditProfile() {
                 initialValues={{
                     userName: session?.user?.email || '',
                     location: '',
-                    image: session?.user?.image || undefined,
+                    image: session?.user?.image,
                 }}
                 validationSchema={validationSchema}
-                onSubmit={async (values, { setSubmitting }) => {
+                onSubmit={async (values: any, { setSubmitting }) => {
                     setSubmitting(true);
-                    const x = await new Promise((resolves, error) =>
-                        setTimeout(resolves, 2000)
-                    );
-                    // router.back()
+                    const res = await submitUpdateUser(session.user.email, values.userName, values.image)
+
+                    if (res) router.back()
                 }}
             >
                 {({ handleSubmit, isSubmitting }) => {
-                    console.log(isSubmitting);
                     return (
                         <form
                             onSubmit={handleSubmit}
@@ -39,7 +38,7 @@ function EditProfile() {
                             <ImageHandler className='my-4 flex flex-grow justify-center md:items-center' />
                             <FormField
                                 name='userName'
-                                title={`${session?.user?.email || 'Username'}`}
+                                title={`${session?.user?.email}`}
                             />
                             <FormField name='location' title='Location' />
 

@@ -1,8 +1,9 @@
 'use client';
-import { useState } from 'react';
+import { signOut, useSession } from 'next-auth/react';
 
 function ActionBar() {
-    const [isLoggenIn, setIsLoggedIn] = useState<boolean>(false);
+    const { data: session } = useSession()
+    const isLoggenIn = session?.user?.email ? true : false
 
     return (
         <ul className='flex gap-8 justify-self-end uppercase'>
@@ -11,6 +12,11 @@ function ActionBar() {
                     <li className='mx-auto self-center text-sm font-semibold'>
                         <span className='cursor-pointer px-5 py-3'>
                             My Logs
+                        </span>
+                    </li>
+                    <li className='mx-auto self-center text-sm font-semibold text-red-600/90 hover:animate-pulse'>
+                        <span onClick={() => signOut()} className='cursor-pointer px-5 py-3'>
+                            Log Out
                         </span>
                     </li>
                     <li className='mx-auto flex cursor-pointer self-center rounded-full border border-creamWhite bg-creamWhite text-sm font-semibold text-goldenRod transition-colors duration-300 ease-in-out hover:border-goldenRod hover:bg-goldenRod hover:text-creamWhite'>

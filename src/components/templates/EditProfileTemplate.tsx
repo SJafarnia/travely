@@ -1,4 +1,4 @@
-import EditProfile from '../modules/user/EditProfile';
+import EditProfile from '../modules/dashboard/settings/user/EditProfile';
 
 function EditProfileTemplate() {
     return <EditProfile />;

@@ -8,7 +8,7 @@ export type MarkerType = {
 export type ProfileFormType = {
     username: string;
     location: string;
-    image: File;
+    image: File | string;
 };
 
 export type FormValues = {
