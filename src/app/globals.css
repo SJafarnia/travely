@@ -626,8 +626,12 @@ video {
   bottom: 0px;
 }
 
-.left-5 {
-  left: 1.25rem;
+.bottom-\[0\.6rem\] {
+  bottom: 0.6rem;
+}
+
+.left-4 {
+  left: 1rem;
 }
 
 .right-0 {
@@ -648,10 +652,6 @@ video {
 
 .top-8 {
   top: 2rem;
-}
-
-.top-\[1\.4rem\] {
-  top: 1.4rem;
 }
 
 .z-10 {
@@ -773,10 +773,6 @@ video {
 
 .ml-1 {
   margin-left: 0.25rem;
-}
-
-.ml-5 {
-  margin-left: 1.25rem;
 }
 
 .ml-8 {
@@ -1036,8 +1032,13 @@ video {
   flex-grow: 1;
 }
 
-.-translate-y-\[1\.15rem\] {
-  --tw-translate-y: -1.15rem;
+.-translate-x-\[\.45rem\] {
+  --tw-translate-x: -.45rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.-translate-y-\[1\.45rem\] {
+  --tw-translate-y: -1.45rem;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -1087,6 +1088,10 @@ video {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.cursor-wait {
+  cursor: wait;
 }
 
 .list-inside {
@@ -1400,6 +1405,11 @@ video {
   padding-right: 0.75rem;
 }
 
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
 .px-5 {
   padding-left: 1.25rem;
   padding-right: 1.25rem;
@@ -1408,6 +1418,11 @@ video {
 .px-6 {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+}
+
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .py-20 {
@@ -1423,11 +1438,6 @@ video {
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
-}
-
-.py-\[0\.32rem\] {
-  padding-top: 0.32rem;
-  padding-bottom: 0.32rem;
 }
 
 .py-\[0\.5rem\] {
@@ -1954,8 +1964,13 @@ input {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-.peer:focus ~ .peer-focus\:-translate-y-\[1\.15rem\] {
-  --tw-translate-y: -1.15rem;
+.peer:focus ~ .peer-focus\:-translate-x-\[\.45rem\] {
+  --tw-translate-x: -.45rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.peer:focus ~ .peer-focus\:-translate-y-\[1\.45rem\] {
+  --tw-translate-y: -1.45rem;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -2049,9 +2064,18 @@ input {
   margin-bottom: 1.5rem;
 }
 
+.\[\&\>div\]\:m-0>div {
+  margin: 0px;
+}
+
 .\[\&\>div\]\:mx-2>div {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
+}
+
+.\[\&\>div\]\:mx-auto>div {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .\[\&\>div\]\:ml-4>div {
@@ -2060,6 +2084,10 @@ input {
 
 .\[\&\>div\]\:h-4\/5>div {
   height: 80%;
+}
+
+.\[\&\>div\]\:w-10\/12>div {
+  width: 83.333333%;
 }
 
 .\[\&\>div\]\:rounded-md>div {

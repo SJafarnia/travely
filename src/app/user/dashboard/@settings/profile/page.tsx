@@ -1,10 +1,10 @@
-import ProfileEditTemplate from '@/components/templates/ProfileEditTemplate';
+import EditProfileTemplate from '@/components/templates/EditProfileTemplate';
 
 async function page() {
     const x = await new Promise((resolves, error) =>
         setTimeout(resolves, 2000)
     );
-    return <ProfileEditTemplate />;
+    return <EditProfileTemplate />;
 }
 
 export default page;

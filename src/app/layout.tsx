@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { montserrat, caveat, poppins } from './fonts';
 import './globals.css';
 import Layout from '@/components/layout/Layout';
+import AuthProvider from '@/components/layout/AuthProvider';
 
 export const metadata: Metadata = {
     title: 'Create Next App',
@@ -18,7 +19,9 @@ export default function RootLayout({
             <body
                 className={`h-auto bg-gradient-to-b from-goldenRod/85 from-55% to-forestGreenShade1/85 bg-no-repeat ${montserrat.className} ${caveat.variable} ${poppins.variable}`}
             >
-                <Layout>{children}</Layout>
+                <AuthProvider>
+                    <Layout>{children}</Layout>
+                </AuthProvider>
             </body>
         </html>
     );

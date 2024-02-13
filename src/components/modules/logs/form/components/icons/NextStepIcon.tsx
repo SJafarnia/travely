@@ -1,4 +1,5 @@
 interface SGVprops extends React.HtmlHTMLAttributes<HTMLOrSVGElement> {}
+
 function NextStepIcon({ className, ...props }: SGVprops) {
     return (
         <svg

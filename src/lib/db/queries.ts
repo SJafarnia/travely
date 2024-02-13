@@ -157,13 +157,19 @@ export const getUserByEmail = async (email: string) => {
     }
 };
 
-// export const makeUser = async () => {
-//     const res = await prisma.user.create({
-//         data: {
-//             email: "s.jafarnia",
-//             accessLevel: "ADMIN"
-//         }
-//     })
+type accessEnum = 'BASIC' | 'ADMIN';
+export const createUser = async (
+    email: string,
+    image?: string | '',
+    accessLevel?: accessEnum
+) => {
+    const res = await prisma.user.create({
+        data: {
+            email: email,
+            accessLevel: accessLevel,
+            profileImg: image,
+        },
+    });
 
-//         console.log(res)
-// }
+    console.log(res);
+};

@@ -12,7 +12,7 @@ export default function page() {
                 }
             />
             <div className='flex justify-end'>
-                <div className='flex justify-around w-2/3'>
+                <div className='flex w-2/3 justify-around'>
                     <button className='mt-2 rounded-md border border-creamWhite/30 bg-jet/40 p-1 text-white transition-all duration-150 ease-in-out hover:border-creamWhite/80 hover:bg-jet/70'>
                         Followings
                     </button>

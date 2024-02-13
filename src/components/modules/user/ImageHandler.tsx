@@ -3,7 +3,9 @@ import { ProfileFormType } from '@/lib/types/types';
 import { useFormikContext } from 'formik';
 import Image from 'next/image';
 
-function ImageHandler() {
+interface divProps extends React.HtmlHTMLAttributes<HTMLDivElement> { }
+
+function ImageHandler({ ...props }: divProps) {
     const { values, setFieldValue } = useFormikContext<ProfileFormType>();
 
     const fileSetter = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,7 +21,7 @@ function ImageHandler() {
     };
 
     return (
-        <div className='my-4 flex flex-grow justify-center md:items-center'>
+        <div {...props}>
             <label
                 htmlFor='ff'
                 className='group relative cursor-pointer self-end rounded-full p-1'
@@ -30,7 +32,7 @@ function ImageHandler() {
                     viewBox='0 0 24 24'
                     strokeWidth={1.5}
                     stroke='currentColor'
-                    className='absolute bottom-0  right-0 m-auto h-12 w-12 transition-transform duration-300 ease-in-out group-hover:-translate-x-12 group-hover:-translate-y-12 group-hover:scale-110'
+                    className='absolute bottom-0 z-50 right-0 m-auto h-12 w-12 transition-transform duration-300 ease-in-out group-hover:-translate-x-12 group-hover:-translate-y-12 group-hover:scale-110'
                 >
                     <path
                         strokeLinecap='round'
@@ -43,16 +45,16 @@ function ImageHandler() {
                 {values.image ? (
                     <Image
                         loading='lazy'
-                        src={URL.createObjectURL(values.image)}
+                        src={values.image as unknown as string}
                         width={1000}
                         height={1000}
-                        className='h-[145px] w-[145px] animate-fadeOut rounded-full group-hover:opacity-45'
+                        className='h-[145px] w-[145px] animate-fadeOut rounded-full transition-opacity duration-300 group-hover:opacity-45'
                         alt='blur'
                         blurDataURL=''
                     />
                 ) : (
                     <Image
-                        src={'/images/camera.jpg'}
+                        src={URL.createObjectURL(values.image)}
                         width={150}
                         height={150}
                         className='h-[145px] w-[145px] animate-fadeOut rounded-full group-hover:opacity-45'

@@ -1,7 +1,7 @@
 import EditProfile from '../modules/user/EditProfile';
 
-function ProfileEditTemplate() {
+function EditProfileTemplate() {
     return <EditProfile />;
 }
 
-export default ProfileEditTemplate;
+export default EditProfileTemplate;

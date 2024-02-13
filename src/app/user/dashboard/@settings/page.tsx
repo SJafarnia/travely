@@ -2,10 +2,10 @@ import Link from 'next/link';
 
 async function settingsSection() {
     const x = await new Promise((resolves, error) =>
-        setTimeout(resolves, 2000)
+        setTimeout(resolves, 1000)
     );
     return (
-        <div className='w-full bg-PayneGray text-white'>
+        <div className='w-full bg-PayneGray text-white animate-fadeOut'>
             <Link
                 // replace with user id
                 href={`/user/${'s.jafarnia'}`}
