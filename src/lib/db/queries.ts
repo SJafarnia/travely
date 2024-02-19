@@ -1,5 +1,6 @@
 import { FormValuesToSubmit } from '@/types/types';
 import prisma from './client';
+import { Prisma } from '@prisma/client';
 
 export const uploadLog = async (values: FormValuesToSubmit) => {
     //@ts-ignore
@@ -41,11 +42,17 @@ export const uploadLog = async (values: FormValuesToSubmit) => {
         return null;
     }
 };
-export const getUserPageDataByEmail = async (userEmail: string) => {
+
+export const getUserPageDataByEmailOrUsername = async (emailOrUsername: string) => {
     try {
-        const res = await prisma.user.findUnique({
+        const res = await prisma.user.findFirst({
             where: {
-                email: userEmail,
+                OR: [
+                    { email: emailOrUsername },
+                    {
+                        username: emailOrUsername,
+                    },
+                ],
             },
             select: {
                 posts: {
@@ -143,16 +150,24 @@ export const getTravelPartById = async (partId: string) => {
     }
 };
 
-export const getUserByEmail = async (email: string) => {
+export const getUserByEmailOrUsername = async (emailOrUsername: string) => {
     try {
-        const res = await prisma.user.findUnique({
+        const res = await prisma.user.findFirst({
             where: {
-                email: email,
+                OR: [
+                    {
+                        email: emailOrUsername,
+                    },
+                    {
+                        username: emailOrUsername,
+                    },
+                ],
             },
         });
 
         return res;
     } catch (err) {
+        console.log({ 'DB error': err });
         return null;
     }
 };

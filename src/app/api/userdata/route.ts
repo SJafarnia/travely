@@ -1,4 +1,4 @@
-import { getUserByEmail } from '@/lib/db/queries';
+import { getUserByEmailOrUsername } from '@/lib/db/queries';
 import { NextRequest, NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic';
@@ -7,7 +7,7 @@ export const POST = async (req: NextRequest) => {
     const res = await req.json();
 
     if (res?.email) {
-        const userData = await getUserByEmail(res.email);
+        const userData = await getUserByEmailOrUsername(res.email);
         return NextResponse.json({ userData });
     }
 

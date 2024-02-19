@@ -5,12 +5,12 @@ const validationSchema = Yup.object({
         .min(3, {
             message: 'Username must be at least 3 characters',
         })
-        .max(20, 'Username cannot exceed 20 characters')
+        .max(30, 'Username cannot exceed 20 characters')
         .test(
             'no-symbols-or-dashes',
             'Symbols and dashes are not allowed in Username',
             (value) => {
-                return /^[a-zA-Z0-9_.]*$/.test(value);
+                return /^[a-zA-Z0-9_@.]*$/.test(value);
             }
         )
         .test(

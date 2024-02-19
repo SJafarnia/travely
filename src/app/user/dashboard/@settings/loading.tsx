@@ -1,5 +1,3 @@
-import React from 'react';
-
 function Loading() {
     return (
         <div className='flex h-full w-full animate-pulse items-center  justify-center bg-Night/90'>

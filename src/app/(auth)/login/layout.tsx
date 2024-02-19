@@ -1,4 +1,4 @@
-import { createUser, getUserByEmail } from '@/lib/db/queries';
+import { createUser, getUserByEmailOrUsername } from '@/lib/db/queries';
 import type { Metadata } from 'next';
 import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
@@ -17,10 +17,10 @@ export default async function Layout({
 }) {
     const session = await getServerSession();
 
-    if (session.user.email) {
+    if (session?.user?.email) {
         const { user: { email, image, name } } = session
 
-        const currentUser = await getUserByEmail(email);
+        const currentUser = await getUserByEmailOrUsername(email);
 
         if (!currentUser) {
             console.log("user not found")

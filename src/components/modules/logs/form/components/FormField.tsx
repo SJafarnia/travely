@@ -12,7 +12,7 @@ const FormField = ({ name, title }: { name: string; title: string }) => {
                     autoComplete='off'
                     id={`trvl${name}`}
                     name={name}
-                    className={`transition-color peer z-10 block min-h-[auto] w-full rounded border-2 border-solid border-forestGreen/40 bg-transparent px-4 py-2 leading-[1.4] shadow-sm outline-none duration-0 ease-linear focus:border-2 focus:border-forestGreen/60`}
+                    className={`transition-color peer z-10 block min-h-[auto] w-full rounded border-2 border-solid border-forestGreen/40 bg-transparent px-3 py-2 leading-[1.4] shadow-sm outline-none duration-0 ease-linear focus:border-2 focus:border-forestGreen/60`}
                     type='text'
                     value={
                         //@ts-ignore

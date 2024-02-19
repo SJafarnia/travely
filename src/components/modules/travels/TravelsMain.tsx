@@ -1,4 +1,4 @@
-import { getUserPageDataByEmail } from '@/lib/db/queries';
+import { getUserPageDataByEmailOrUsername } from '@/lib/db/queries';
 import Image from 'next/image';
 import Link from 'next/link';
 import { slugify } from '@/utils/textModifiers';
@@ -7,7 +7,8 @@ import ProfileDetails from './ProfileDetails';
 import { notFound } from 'next/navigation';
 
 async function TravelsMain({ user }: { user: string }) {
-    const userData = await getUserPageDataByEmail(user);
+    const userData = await getUserPageDataByEmailOrUsername(user);
+    // console.log(userData)
     if (!userData) return notFound();
 
     return (

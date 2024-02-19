@@ -42,25 +42,16 @@ function ImageHandler({ ...props }: divProps) {
                 </svg>
 
                 {/* TODO: replace with user image */}
+
                 {typeof values.image == "string" ? (
                     <Image
-                        loading='lazy'
                         src={values.image}
                         width={1000}
                         height={1000}
                         className='h-[145px] w-[145px] animate-fadeOut rounded-full transition-opacity duration-300 group-hover:opacity-45'
                         alt='blur'
-                        blurDataURL=''
                     />
-                ) : (
-                    <Image
-                        src={URL.createObjectURL(values.image)}
-                        width={150}
-                        height={150}
-                        className='h-[145px] w-[145px] animate-fadeOut rounded-full group-hover:opacity-45'
-                        alt='profile'
-                    ></Image>
-                )}
+                ) : null}
             </label>
             <input
                 hidden

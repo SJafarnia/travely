@@ -1,13 +1,18 @@
 import Link from "next/link"
 import LogOut from "./LogOut";
+import { getServerSession } from "next-auth";
+import { getUserByEmailOrUsername } from "@/lib/db/queries";
 
-function MainSettings() {
+async function MainSettings() {
+    const session = await getServerSession();
+
+    const user = await getUserByEmailOrUsername(session?.user?.email)
 
     return (
         <div className='w-full bg-PayneGray text-white animate-fadeOut'>
             <Link
                 // replace with user id
-                href={`/user/${'s.jafarnia'}`}
+                href={`/user/${user?.username}`}
                 className='m-4 my-6 flex gap-2'
             >
                 <svg

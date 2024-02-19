@@ -6,7 +6,7 @@ export const submitUpdateUser = async (
     username: string,
     image: string
 ) => {
-    const usernamePattern = /^[a-zA-Z0-9_.]{3,20}$/;
+    const usernamePattern = /^[a-zA-Z0-9_@.]{3,20}$/;
 
     const isValid = usernamePattern.test(username);
 

@@ -1,4 +1,4 @@
-'use client';
+'use client'
 import { Formik } from 'formik';
 import validationSchema from './FormValidation';
 import FormField from '../../../logs/form/components/FormField';
@@ -7,23 +7,23 @@ import SubmitIcon from '../../../logs/form/components/icons/SubmitIcon';
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { submitUpdateUser } from './FormSubmit';
+import { FetchFormData } from './FetchFormData';
 
 function EditProfile() {
     const router = useRouter();
-    const { data: session, status } = useSession();
+    const { data: session } = useSession();
 
     return (
         <div className='w-full bg-Night/95 text-white'>
             <Formik
                 // TODO: replace initial values with user data
                 initialValues={{
-                    userName: session?.user?.email || '',
+                    userName: '',
                     location: '',
-                    image: session?.user?.image,
+                    image: null,
                 }}
                 validationSchema={validationSchema}
                 onSubmit={async (values: any, { setSubmitting }) => {
-                    setSubmitting(true);
                     const res = await submitUpdateUser(session.user.email, values.userName, values.image)
 
                     if (res) router.back()
@@ -35,15 +35,17 @@ function EditProfile() {
                             onSubmit={handleSubmit}
                             className='my-8 flex flex-col items-center justify-center gap-8 [&>div]:m-0 [&>div]:mx-auto [&>div]:w-10/12'
                         >
+                            <FetchFormData session={session} />
+
                             <ImageHandler className='my-4 flex flex-grow justify-center md:items-center' />
                             <FormField
                                 name='userName'
-                                title={`${session?.user?.email}`}
+                                title={`Username`}
                             />
                             <FormField name='location' title='Location' />
 
                             {isSubmitting ? (
-                                <p className='mx-auto my-8 p-4 inline-block h-10 w-10 animate-spin cursor-wait rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] text-forestGreen/70 motion-reduce:animate-[spin_1.5s_linear_infinite]'></p>
+                                <p className='mx-auto my-8 p-4 inline-block w-10 h-10 animate-spin cursor-wait rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] text-forestGreen/70 motion-reduce:animate-[spin_1.5s_linear_infinite]'></p>
                             ) : (
                                 <button
                                     disabled={isSubmitting}

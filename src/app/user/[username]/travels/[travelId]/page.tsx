@@ -5,12 +5,12 @@ import { notFound } from 'next/navigation';
 import { travelDataType } from '@/lib/types/types';
 
 export default async function page({
-    params: { userEmail, travelId },
+    params: { username, travelId },
 }: {
-    params: { userEmail: string; travelId: string };
+    params: { username: string; travelId: string };
 }) {
     const parsedTravelId = deslugify(travelId);
-    const travelData: travelDataType = await getTravelDataById(parsedTravelId);
+    const travelData: any = await getTravelDataById(parsedTravelId);
 
     if (!travelData) return notFound();
 
