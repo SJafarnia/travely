@@ -1,7 +1,7 @@
 "use client"
-import { useSession } from 'next-auth/react';
+import useFetchUserData from '@/components/globalHooks/useFetchUserData';
+import { useUserData } from '@/lib/zustand/store';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
 
 function ProfileDetails({
     styles,
@@ -10,29 +10,9 @@ function ProfileDetails({
     styles?: string | null;
     button: React.ReactNode;
 }) {
-    const [userData, setUserData] = useState({
-        username: "",
-        profileImg: "",
-    })
-
-    const { data: session } = useSession();
-
-    useEffect(() => {
-        const fetchData = async () => {
-            if (session?.user?.email) {
-                const res = await fetch("/api/userdata", {
-                    method: "POST",
-                    body: JSON.stringify({ email: session.user.email })
-                }).then((res) => res.json())
-
-                if (res.userData) {
-                    setUserData(res.userData)
-                }
-            }
-            return
-        }
-        fetchData()
-    }, [session, userData])
+    useFetchUserData()
+    // @ts-ignore
+    const userData = useUserData((state => state.userData))
 
     return (
         <div className={`${styles} flex w-full flex-row justify-start`}>
@@ -40,21 +20,22 @@ function ProfileDetails({
                 {
                     userData.profileImg ?
                         <Image
+                            loading='lazy'
                             src={userData.profileImg}
                             height={600}
                             width={600}
-                            className='h-32 w-32 rounded-full'
+                            className='h-32 w-32 rounded-full animate-fadeOut'
                             alt='profileDetailPhoto'
                         />
                         :
-                        <div className='h-32 w-32 rounded-full bg-creamWhite animate-pulse'></div>
+                        <div className='h-32 w-32 rounded-full bg-white animate-pulse'></div>
                 }
             </div>
             <div className='flex w-full flex-grow flex-col justify-around gap-1'>
-                {userData.username ?
-                    <span className=''>{userData.username}</span>
+                {userData?.username ?
+                    <span className=''>{userData?.username}</span>
                     :
-                    <span className='p-3 w-1/3 rounded-md bg-creamWhite animate-pulse'></span>
+                    <span className='p-3 w-1/3 rounded-md bg-white animate-pulse'></span>
                 }
                 <div className='flex items-center'>
                     <svg
@@ -77,12 +58,12 @@ function ProfileDetails({
                         />
                     </svg>
                     <div className='ml-1 text-sm w-full'>
-                        {userData.username ?
+                        {userData?.username ?
                             <>
                                 <span>California,</span> <span>LA</span>
                             </>
                             :
-                            <div className='p-2 w-1/3 m-1 rounded-md bg-creamWhite animate-pulse'></div>
+                            <div className='p-2 w-1/3 m-1 rounded-md bg-white animate-pulse'></div>
                         }
                     </div>
                 </div>

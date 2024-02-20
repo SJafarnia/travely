@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export default function page() {
     return (
-        <div className='mx-auto my-16 w-11/12 bg-Night/90 p-8 text-white'>
+        <div className='mx-auto my-16 w-11/12 bg-Night/90 p-8 text-white animate-fadeOut'>
             <ProfileDetails
                 styles='flex-row flex [&>div]:mx-2'
                 button={
@@ -20,11 +20,8 @@ export default function page() {
                             </button>
                         </div>
                     </div>
-
                 }
             />
-
-
         </div>
     );
 }

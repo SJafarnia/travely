@@ -41,9 +41,7 @@ function ImageHandler({ ...props }: divProps) {
                     />
                 </svg>
 
-                {/* TODO: replace with user image */}
-
-                {typeof values.image == "string" ? (
+                {typeof values.image == "string" ?
                     <Image
                         src={values.image}
                         width={1000}
@@ -51,7 +49,15 @@ function ImageHandler({ ...props }: divProps) {
                         className='h-[145px] w-[145px] animate-fadeOut rounded-full transition-opacity duration-300 group-hover:opacity-45'
                         alt='blur'
                     />
-                ) : null}
+                    :
+                    <Image
+                        src={URL.createObjectURL(new Blob([values.image]))}
+                        width={1000}
+                        height={1000}
+                        className='h-[145px] w-[145px] animate-fadeOut rounded-full transition-opacity duration-300 group-hover:opacity-45'
+                        alt='blur'
+                    />
+                }
             </label>
             <input
                 hidden

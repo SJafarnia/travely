@@ -1,23 +1,24 @@
-'use client';
-import { signOut, useSession } from 'next-auth/react';
+import { getServerSession } from 'next-auth';
+import LogoutButton from './LogoutButton';
+import Link from 'next/link';
 
-function ActionBar() {
-    const { data: session } = useSession()
-    const isLoggenIn = session?.user?.email ? true : false
+async function ActionBar() {
+    const session = await getServerSession()
+    const isLoggedIn = session?.user?.email ? true : false
 
     return (
-        <ul className='flex gap-8 justify-self-end uppercase'>
-            {isLoggenIn ? (
+        <ul className='flex gap-8 justify-self-end uppercase animate-fadeOut'>
+            {isLoggedIn ?
                 <>
                     <li className='mx-auto self-center text-sm font-semibold'>
-                        <span className='cursor-pointer px-5 py-3'>
-                            My Logs
-                        </span>
+                        <Link href={"/user/dashboard"}>
+                            <span className='cursor-pointer px-5 py-3'>
+                                Dashboard
+                            </span>
+                        </Link>
                     </li>
                     <li className='mx-auto self-center text-sm font-semibold text-red-600/90 hover:animate-pulse'>
-                        <span onClick={() => signOut()} className='cursor-pointer px-5 py-3'>
-                            Log Out
-                        </span>
+                        <LogoutButton />
                     </li>
                     <li className='mx-auto flex cursor-pointer self-center rounded-full border border-creamWhite bg-creamWhite text-sm font-semibold text-goldenRod transition-colors duration-300 ease-in-out hover:border-goldenRod hover:bg-goldenRod hover:text-creamWhite'>
                         <div className='peer rounded-full bg-forestGreen text-creamWhite opacity-85'>
@@ -41,14 +42,14 @@ function ActionBar() {
                         </span>
                     </li>
                 </>
-            ) : (
+                :
                 <li className='mx-auto self-center text-sm font-semibold'>
                     <p className=' cursor-pointer rounded-full bg-creamWhite px-5 py-4 text-forestGreen shadow-md transition-all duration-300 ease-in-out hover:scale-125 hover:border-goldenRod hover:bg-goldenRod hover:text-creamWhite hover:shadow-none'>
                         Become a traveler
                     </p>
                 </li>
-            )}
-        </ul>
+            }
+        </ul >
     );
 }
 

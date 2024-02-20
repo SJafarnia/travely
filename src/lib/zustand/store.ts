@@ -22,3 +22,10 @@ export const useMapMarkers = create((set) => ({
     addMarker: (markerObject: MarkerType) =>
         set((state: any) => ({ markers: { markerObject } })),
 }));
+
+export const useUserData = create((set) => ({
+    userData: {
+        username: '',
+        profileImg: '',
+    },
+}));

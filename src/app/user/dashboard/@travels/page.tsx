@@ -2,11 +2,8 @@ import Link from 'next/link';
 import React from 'react';
 
 async function page() {
-    const x = await new Promise((resolves, error) =>
-        setTimeout(resolves, 2000)
-    );
     return (
-        <div className='h-[100vh] w-full bg-honoluluBlue text-white [&>a]:my-6 '>
+        <div className='h-[100vh] w-full bg-honoluluBlue text-white [&>a]:my-6 animate-fadeOut'>
             <Link href={``} className='m-4 flex gap-2'>
                 <svg
                     xmlns='http://www.w3.org/2000/svg'

@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { submitUpdateUser } from './FormSubmit';
 import { FetchFormData } from './FetchFormData';
+import { useUserData } from '@/lib/zustand/store';
 
 function EditProfile() {
     const router = useRouter();
@@ -16,17 +17,29 @@ function EditProfile() {
     return (
         <div className='w-full bg-Night/95 text-white'>
             <Formik
-                // TODO: replace initial values with user data
                 initialValues={{
                     userName: '',
                     location: '',
                     image: null,
                 }}
                 validationSchema={validationSchema}
-                onSubmit={async (values: any, { setSubmitting }) => {
-                    const res = await submitUpdateUser(session.user.email, values.userName, values.image)
+                onSubmit={async (values, { setSubmitting }) => {
+                    const formData = new FormData();
+                    formData.append("image", values.image);
 
-                    if (res) router.back()
+                    const res = await submitUpdateUser(session.user.email, values.userName, formData);
+
+                    if (res) {
+                        // update userData state after submitting changes
+                        useUserData.setState({
+                            userData: {
+                                username: res.username,
+                                profileImg: res.profileImg,
+                            },
+                        });
+
+                        return router.back()
+                    }
                 }}
             >
                 {({ handleSubmit, isSubmitting }) => {
@@ -59,7 +72,7 @@ function EditProfile() {
                     );
                 }}
             </Formik>
-        </div>
+        </div >
     );
 }
 
