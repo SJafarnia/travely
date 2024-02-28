@@ -1,9 +1,7 @@
-import MainSettings from "../modules/dashboard/settings/MainSettings";
+import MainSettings from '../modules/dashboard/settings/MainSettings';
 
 function DashboardSettingsTemplate() {
-    return (
-        <MainSettings />
-    )
+    return <MainSettings />;
 }
 
-export default DashboardSettingsTemplate
+export default DashboardSettingsTemplate;

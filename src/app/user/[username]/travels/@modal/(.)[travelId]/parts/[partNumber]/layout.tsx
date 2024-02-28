@@ -15,7 +15,7 @@ export default async function Layout({
     children: React.ReactNode;
     params: { travelId: string; partNumber: number };
 }) {
-    const travel = await getTravelDataById(deslugify(travelId))
+    const travel = await getTravelDataById(deslugify(travelId));
 
     if (!travel?.parts[partNumber - 1]) {
         return notFound();

@@ -18,10 +18,9 @@ export default async function Layout({
     settings: React.ReactNode;
     travels: React.ReactNode;
 }) {
-
     const session = await getServerSession();
 
-    if (!session?.user?.email) return redirect("/login");
+    if (!session?.user?.email) return redirect('/login');
 
     return (
         <div className='mx-auto my-10 grid max-w-4xl grid-cols-1 items-center justify-center align-middle [&>div]:rounded-md [&>div]:p-8'>

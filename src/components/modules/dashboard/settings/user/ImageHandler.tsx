@@ -3,7 +3,7 @@ import { ProfileFormType } from '@/lib/types/types';
 import { useFormikContext } from 'formik';
 import Image from 'next/image';
 
-interface divProps extends React.HtmlHTMLAttributes<HTMLDivElement> { }
+interface divProps extends React.HtmlHTMLAttributes<HTMLDivElement> {}
 
 function ImageHandler({ ...props }: divProps) {
     const { values, setFieldValue } = useFormikContext<ProfileFormType>();
@@ -32,7 +32,7 @@ function ImageHandler({ ...props }: divProps) {
                     viewBox='0 0 24 24'
                     strokeWidth={1.5}
                     stroke='currentColor'
-                    className='absolute bottom-0 z-50 right-0 m-auto h-12 w-12 transition-transform duration-300 ease-in-out group-hover:-translate-x-12 group-hover:-translate-y-12 group-hover:scale-110'
+                    className='absolute bottom-0 right-0 z-50 m-auto h-12 w-12 transition-transform duration-300 ease-in-out group-hover:-translate-x-12 group-hover:-translate-y-12 group-hover:scale-110'
                 >
                     <path
                         strokeLinecap='round'
@@ -41,7 +41,7 @@ function ImageHandler({ ...props }: divProps) {
                     />
                 </svg>
 
-                {typeof values.image == "string" ?
+                {typeof values.image == 'string' ? (
                     <Image
                         src={values.image}
                         width={1000}
@@ -49,7 +49,7 @@ function ImageHandler({ ...props }: divProps) {
                         className='h-[145px] w-[145px] animate-fadeOut rounded-full transition-opacity duration-300 group-hover:opacity-45'
                         alt='blur'
                     />
-                    :
+                ) : (
                     <Image
                         src={URL.createObjectURL(new Blob([values.image]))}
                         width={1000}
@@ -57,7 +57,7 @@ function ImageHandler({ ...props }: divProps) {
                         className='h-[145px] w-[145px] animate-fadeOut rounded-full transition-opacity duration-300 group-hover:opacity-45'
                         alt='blur'
                     />
-                }
+                )}
             </label>
             <input
                 hidden

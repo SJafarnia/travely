@@ -10,29 +10,25 @@ export const metadata: Metadata = {
 
 export default async function Layout({
     children,
-
 }: {
     children: React.ReactNode;
-
 }) {
     const session = await getServerSession();
 
     if (session?.user?.email) {
-        const { user: { email, image, name } } = session
+        const {
+            user: { email, image, name },
+        } = session;
 
         const currentUser = await getUserByEmailOrUsername(email);
 
         if (!currentUser) {
-            console.log("user not found")
+            console.log('user not found');
             // TODO: change accessLevel yo BASIC in production
-            const newUser = await createUser(email, image, "ADMIN")
+            const newUser = await createUser(email, image, 'ADMIN');
         }
-        redirect("/")
+        redirect('/');
     }
 
-    return (
-        <div >
-            {children}
-        </div>
-    );
+    return <div>{children}</div>;
 }

@@ -17,7 +17,6 @@ export const FetchFormData = ({ session }: { session: any }) => {
                 if (res.userData) {
                     setFieldValue('userName', res.userData.username);
                     setFieldValue('image', res.userData.profileImg);
-
                 }
             }
             return;
@@ -25,5 +24,5 @@ export const FetchFormData = ({ session }: { session: any }) => {
         fetchData();
     }, [session]);
 
-    return null
+    return null;
 };

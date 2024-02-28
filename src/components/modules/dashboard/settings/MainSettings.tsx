@@ -1,13 +1,12 @@
-import Link from "next/link"
-import LogOut from "./LogOut";
-import { getServerSession } from "next-auth";
-import { getUserByEmailOrUsername } from "@/lib/db/queries";
-import ProfileButton from "./user/ProfileButton";
+import Link from 'next/link';
+import LogOut from './LogOut';
+import { getServerSession } from 'next-auth';
+import { getUserByEmailOrUsername } from '@/lib/db/queries';
+import ProfileButton from './user/ProfileButton';
 
 async function MainSettings() {
-
     return (
-        <div className='w-full bg-PayneGray text-white animate-fadeOut'>
+        <div className='w-full animate-fadeOut bg-PayneGray text-white'>
             <ProfileButton />
             <Link
                 href={'/user/dashboard/profile'}
@@ -31,7 +30,7 @@ async function MainSettings() {
             </Link>
             <LogOut />
         </div>
-    )
+    );
 }
 
-export default MainSettings
+export default MainSettings;

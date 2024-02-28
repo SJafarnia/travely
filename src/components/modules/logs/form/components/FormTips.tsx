@@ -17,6 +17,7 @@ function FormTips() {
         } = event;
         // @ts-ignore
         useTipsStore.setState({ tips: { ...tips, [name]: value } });
+        useTipsStore.setState({ numTips: numTips + 1 });
     };
 
     const removeHandler = (index: number) => {
@@ -32,7 +33,7 @@ function FormTips() {
     useEffect(() => {
         // add tips to formik state
         setFieldValue('tips', tips);
-    }, [tips, setFieldValue]);
+    }, [tips]);
 
     return (
         <div className='flex w-full'>
@@ -46,7 +47,7 @@ function FormTips() {
                                     className='m-2 w-full rounded-md bg-red-900 px-3 py-[0.5rem] leading-[1.6]'
                                     onChange={changeHandler}
                                     name={`tip${index}`}
-                                    value={tips[`tip${index}`]}
+                                    value={tips[`tip${index}`] || ''}
                                     placeholder='Your Advice'
                                 />
 

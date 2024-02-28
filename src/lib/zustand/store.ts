@@ -29,3 +29,16 @@ export const useUserData = create((set) => ({
         profileImg: '',
     },
 }));
+
+export const useTravelPartData = create((set) => ({
+    travelPartData: {
+        title: '',
+        description: '',
+        mapData: {
+            lat: null,
+            lng: null,
+        },
+        tips: {},
+        images: [],
+    },
+}));

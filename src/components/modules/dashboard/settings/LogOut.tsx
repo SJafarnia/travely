@@ -1,10 +1,10 @@
-"use client"
+'use client';
 import { signOut } from 'next-auth/react';
 
 function LogOut() {
     const logOutHandler = () => {
-        signOut()
-    }
+        signOut();
+    };
 
     return (
         <button className='m-4 my-6 flex gap-2' onClick={logOutHandler}>
@@ -24,7 +24,7 @@ function LogOut() {
             </svg>
             <span>Logout</span>
         </button>
-    )
+    );
 }
 
-export default LogOut
+export default LogOut;

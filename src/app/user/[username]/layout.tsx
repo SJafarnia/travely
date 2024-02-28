@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation';
 export const metadata: Metadata = {
     title: 'Travels',
     description: 'Travels Page',
-}
+};
 
 export default async function Layout({
     children,

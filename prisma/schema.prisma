@@ -17,6 +17,8 @@ model User {
   accessLevel accessLevel @default(BASIC)
   profileImg  String?     @default("")
   posts       Travel[]
+
+  @@unique([id, email])
 }
 
 model Travel {

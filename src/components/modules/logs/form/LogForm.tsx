@@ -4,10 +4,10 @@ import { Formik } from 'formik';
 import { Tooltip } from 'react-tooltip';
 import validationSchema from './components/FormValidation';
 import Step1 from './steps/Step1';
-import Step2 from './steps/Step2';
 import { submitLogs } from './components/FormSubmit';
 import { useRouter } from 'next/navigation';
 import { FormValues, FormValuesToSubmit } from '@/lib/types/types';
+import TravelPartForm from './steps/TravelPartForm';
 
 export type errors = {
     title?: any;
@@ -77,7 +77,7 @@ function LogForm() {
                             />
                         )}
                         {step === 2 && (
-                            <Step2
+                            <TravelPartForm
                                 values={values}
                                 isSubmitting={isSubmitting}
                                 prevStep={prevStep}

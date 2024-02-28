@@ -1,6 +1,6 @@
 'use client';
-import { useEffect } from 'react';
-import { MapContainer, TileLayer, Marker } from 'react-leaflet';
+import { useEffect, useLayoutEffect } from 'react';
+import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
 import MapSearch from '../../../travels/parts/map/MapSearch';
 import { icon } from 'leaflet';
 import MarkerIcon from '@/nodemodules/leaflet/dist/images/marker-icon.png';
@@ -22,7 +22,7 @@ function FormMap() {
     return (
         <div className='mx-auto my-8 w-full rounded-md'>
             <MapContainer
-                center={[51.505, -0.09]}
+                center={[51.505, -0.09] || marker}
                 zoom={13}
                 className='mx-auto'
                 style={{
@@ -34,6 +34,7 @@ function FormMap() {
                 <TileLayer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' />
                 {<MapSearch />}
 
+                <SetMapTo lat={marker.lat} lng={marker.lng} />
                 {marker['lat'] && marker['lng'] && (
                     <Marker
                         position={[marker.lat, marker.lng]}
@@ -49,6 +50,18 @@ function FormMap() {
             </MapContainer>
         </div>
     );
+}
+
+function SetMapTo({ lat, lng }: { lat: number; lng: number }) {
+    const map = useMap();
+
+    useLayoutEffect(() => {
+        if (lat && lng) {
+            map.setView({ lat: lat, lng: lng });
+        }
+    }, [lat, lng]);
+
+    return null;
 }
 
 export default FormMap;

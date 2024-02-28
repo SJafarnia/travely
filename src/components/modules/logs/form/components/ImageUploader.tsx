@@ -34,7 +34,7 @@ function ImageUploader() {
     useLayoutEffect(() => {
         // add images to formik state
         setFieldValue('images', [...images]);
-    }, [images, setFieldValue]);
+    }, [images]);
 
     return (
         <div className='my-5 flex w-full flex-col gap-4 self-center'>

@@ -1,9 +1,7 @@
 import DashboardSettingsTemplate from '@/components/templates/DashboardSettingsTemplate';
 
 function settingsSection() {
-    return (
-        <DashboardSettingsTemplate />
-    );
+    return <DashboardSettingsTemplate />;
 }
 
 export default settingsSection;

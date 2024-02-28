@@ -1,10 +1,10 @@
-"use client"
-import { useUserData } from "@/lib/zustand/store";
-import Link from "next/link"
+'use client';
+import { useUserData } from '@/lib/zustand/store';
+import Link from 'next/link';
 
 function ProfileButton() {
     // @ts-ignore
-    const userData = useUserData((state => state.userData))
+    const userData = useUserData((state) => state.userData);
 
     return (
         <Link
@@ -27,7 +27,7 @@ function ProfileButton() {
             </svg>
             <span className=''>Profile</span>
         </Link>
-    )
+    );
 }
 
-export default ProfileButton
+export default ProfileButton;

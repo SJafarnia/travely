@@ -20,8 +20,10 @@ export type FormValues = {
         lng: undefined | number;
     };
     tips: {};
-    images: never[];
+    images: any[];
 };
+
+export type addPartValueType = Omit<FormValues, 'location'>;
 
 export type FormValuesToSubmit = {
     title: string;
@@ -63,3 +65,5 @@ export type travelDataType = {
         travelId: string;
     })[];
 } | null;
+
+export type FieldToReomve = 'travel' | 'travelPart';

@@ -20,7 +20,7 @@ function GallerySlider({
     if (!images) return;
 
     return (
-        <div className='w-[16rem] sm:w-[32rem]'>
+        <div className='w-[16rem] sm:w-[24rem] lg:w-[32rem]'>
             <Swiper
                 spaceBetween={10}
                 navigation={true}

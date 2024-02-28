@@ -1,8 +1,10 @@
-import { FormValuesToSubmit } from '@/types/types';
+import { FormValuesToSubmit, addPartValueType } from '@/types/types';
 import prisma from './client';
-import { Prisma } from '@prisma/client';
 
-export const uploadLog = async (values: FormValuesToSubmit) => {
+export const uploadLog = async (
+    values: FormValuesToSubmit,
+    emailOrUsername: string
+) => {
     //@ts-ignore
     const imageObjects = values.images.map((image) => {
         const [publicId, link] = image;
@@ -15,12 +17,27 @@ export const uploadLog = async (values: FormValuesToSubmit) => {
     });
 
     try {
+        const user = await prisma.user.findFirst({
+            where: {
+                OR: [
+                    {
+                        email: emailOrUsername,
+                    },
+                    {
+                        username: emailOrUsername,
+                    },
+                ],
+            },
+            select: {
+                id: true,
+            },
+        });
+
         const res = await prisma.travel.create({
             data: {
                 title: values.title,
                 location: values.location,
-                // replace with current user id
-                authorId: '917f3dd6-b538-4d24-b6b8-c203ca284e1e',
+                authorId: user.id,
                 parts: {
                     create: {
                         mapData: values.mapData,
@@ -43,7 +60,97 @@ export const uploadLog = async (values: FormValuesToSubmit) => {
     }
 };
 
-export const getUserPageDataByEmailOrUsername = async (emailOrUsername: string) => {
+export const uploadPart = async (
+    values: addPartValueType,
+    travelId: string
+) => {
+    //@ts-ignore
+    const imageObjects = values.images.map((image) => {
+        const [publicId, link] = image;
+
+        // map returns an array for travelPartsImage model's required fields(link, publicId)
+        return {
+            link: link,
+            publicId: publicId,
+        };
+    });
+
+    try {
+        const res = await prisma.travelPart.create({
+            data: {
+                title: values.title,
+                description: values.description,
+                mapData: values.mapData,
+                recommendations: values.tips,
+                imageGallery: {
+                    createMany: {
+                        data: imageObjects,
+                    },
+                },
+                travelId,
+            },
+        });
+
+        return res;
+    } catch (err) {
+        return null;
+    }
+};
+
+export const updatePart = async (
+    values: Omit<addPartValueType, 'images'>,
+    travelPartId: string
+) => {
+    try {
+        const res = await prisma.travelPart.update({
+            where: {
+                id: travelPartId,
+            },
+            data: {
+                title: values.title,
+                description: values.description,
+                recommendations: values.tips,
+                mapData: values.mapData,
+            },
+        });
+
+        return res;
+    } catch (err) {
+        return null;
+    }
+};
+
+export const deleteTravel = async (travelId: string) => {
+    try {
+        const res = await prisma.travel.delete({
+            where: {
+                id: travelId,
+            },
+        });
+
+        return res;
+    } catch (error) {
+        return null;
+    }
+};
+
+export const deleteTravelPart = async (id: string) => {
+    try {
+        const res = await prisma.travelPart.delete({
+            where: {
+                id,
+            },
+        });
+
+        return res;
+    } catch (error) {
+        return null;
+    }
+};
+
+export const getUserPageDataByEmailOrUsername = async (
+    emailOrUsername: string
+) => {
     try {
         const res = await prisma.user.findFirst({
             where: {
@@ -76,6 +183,41 @@ export const getUserPageDataByEmailOrUsername = async (emailOrUsername: string) 
                                         partId: true,
                                     },
                                 },
+                            },
+                        },
+                    },
+                },
+            },
+        });
+
+        return res;
+    } catch (err) {
+        return null;
+    }
+};
+
+export const getUserPostsByEmailOrUsername = async (
+    emailOrUsername: string
+) => {
+    try {
+        const res = await prisma.travel.findMany({
+            where: {
+                OR: [
+                    { author: { username: emailOrUsername } },
+                    { author: { email: emailOrUsername } },
+                ],
+            },
+            select: {
+                id: true,
+                title: true,
+                location: true,
+                published: true,
+                public: true,
+                parts: {
+                    select: {
+                        imageGallery: {
+                            select: {
+                                link: true,
                             },
                         },
                     },
@@ -123,9 +265,34 @@ export const getTravelDataById = async (travelId: string) => {
     }
 };
 
+export const getTravelPartsByTravelId = async (travelId: string) => {
+    try {
+        const res = await prisma.travelPart.findMany({
+            where: {
+                travelId,
+            },
+            select: {
+                id: true,
+                title: true,
+                description: true,
+                mapData: true,
+                imageGallery: {
+                    select: {
+                        link: true,
+                    },
+                },
+            },
+        });
+
+        return res;
+    } catch (error) {
+        return null;
+    }
+};
+
 export const getTravelPartById = async (partId: string) => {
     try {
-        const res = prisma.travelPart.findFirst({
+        const res = prisma.travelPart.findUnique({
             where: {
                 id: partId,
             },
@@ -134,6 +301,32 @@ export const getTravelPartById = async (partId: string) => {
                 title: true,
                 description: true,
                 date: true,
+                recommendations: true,
+                imageGallery: {
+                    select: {
+                        link: true,
+                        publicId: true,
+                    },
+                },
+            },
+        });
+
+        return res;
+    } catch (err) {
+        return null;
+    }
+};
+
+export const getTravelPartByIdToEdit = async (partId: string) => {
+    try {
+        const res = prisma.travelPart.findUnique({
+            where: {
+                id: partId,
+            },
+            select: {
+                mapData: true,
+                title: true,
+                description: true,
                 recommendations: true,
                 imageGallery: {
                     select: {

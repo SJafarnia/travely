@@ -1,7 +1,5 @@
 function loading() {
-    return (
-        <div className=" w-full h-[900px] bg-gray-400 animate-ping" ></div>
-    )
+    return <div className=' h-[900px] w-full animate-ping bg-gray-400'></div>;
 }
 
-export default loading
+export default loading;

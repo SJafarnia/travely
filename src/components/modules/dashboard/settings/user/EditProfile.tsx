@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { Formik } from 'formik';
 import validationSchema from './FormValidation';
 import FormField from '../../../logs/form/components/FormField';
@@ -25,9 +25,13 @@ function EditProfile() {
                 validationSchema={validationSchema}
                 onSubmit={async (values, { setSubmitting }) => {
                     const formData = new FormData();
-                    formData.append("image", values.image);
+                    formData.append('image', values.image);
 
-                    const res = await submitUpdateUser(session.user.email, values.userName, formData);
+                    const res = await submitUpdateUser(
+                        session.user.email,
+                        values.userName,
+                        formData
+                    );
 
                     if (res) {
                         // update userData state after submitting changes
@@ -38,7 +42,7 @@ function EditProfile() {
                             },
                         });
 
-                        return router.back()
+                        return router.back();
                     }
                 }}
             >
@@ -51,14 +55,11 @@ function EditProfile() {
                             <FetchFormData session={session} />
 
                             <ImageHandler className='my-4 flex flex-grow justify-center md:items-center' />
-                            <FormField
-                                name='userName'
-                                title={`Username`}
-                            />
+                            <FormField name='userName' title={`Username`} />
                             <FormField name='location' title='Location' />
 
                             {isSubmitting ? (
-                                <p className='mx-auto my-8 p-4 inline-block w-10 h-10 animate-spin cursor-wait rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] text-forestGreen/70 motion-reduce:animate-[spin_1.5s_linear_infinite]'></p>
+                                <p className='mx-auto my-8 inline-block h-10 w-10 animate-spin cursor-wait rounded-full border-4 border-solid border-current border-r-transparent p-4 align-[-0.125em] text-forestGreen/70 motion-reduce:animate-[spin_1.5s_linear_infinite]'></p>
                             ) : (
                                 <button
                                     disabled={isSubmitting}
@@ -72,7 +73,7 @@ function EditProfile() {
                     );
                 }}
             </Formik>
-        </div >
+        </div>
     );
 }
 

@@ -8,6 +8,7 @@ const config: Config = {
     ],
     theme: {
         extend: {
+            containers: {},
             backgroundImage: {
                 'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
                 'gradient-conic':
@@ -18,16 +19,20 @@ const config: Config = {
                     'linear-gradient(rgba(34,139,34,1) 0%, rgba(253,187,45,1) 100%);',
             },
             colors: {
-                forestGreen: '#228B22',
-                forestGreenShade1: '#228b22',
-                richBlack: '#010203',
-                silver: '#C0C0C0',
                 goldenRod: '#DAA520',
                 creamWhite: '#FFFDD0',
+                forestGreen: '#228B22',
+                forestGreenShade1: '#228b22',
+                teaGreen: '#028090',
+                richBlack: '#010203',
                 Night: '#12130F',
-                honoluluBlue: '#2176AE',
-                PayneGray: '#3B7080',
                 jet: '#333333',
+                silver: '#C0C0C0',
+                ylmnBLue: '#1D4E89',
+                honoluluBlue: '#2176AE',
+                teal: '#028090',
+                moonstone: '#00B2CA',
+                PayneGray: '#3B7080',
                 navyBlue: '#001F3F',
             },
             animation: {
@@ -46,6 +51,6 @@ const config: Config = {
             },
         },
     },
-    plugins: [],
+    plugins: [require('@tailwindcss/container-queries')],
 };
 export default config;

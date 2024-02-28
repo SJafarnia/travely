@@ -48,7 +48,7 @@ function Timeline({
                     iconClassName='!shadow-2xl border-red !border-2 border-solid border-creamWhite'
                     iconStyle={{}}
                     icon={
-                        <TravelIcon imgLink={part.imageGallery[1].publicId} />
+                        <TravelIcon imgLink={part.imageGallery[0].publicId} />
                     }
                 >
                     <Link
