@@ -4,6 +4,13 @@ import { useTravelImages } from '@/lib/zustand/store';
 import { useFormikContext } from 'formik';
 import Image from 'next/image';
 import { ImCross } from 'react-icons/im';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Navigation } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import 'swiper/css/effect-fade';
+
 
 function ImageUploader() {
     const { setFieldValue } = useFormikContext();
@@ -36,36 +43,50 @@ function ImageUploader() {
         setFieldValue('images', [...images]);
     }, [images]);
 
+    // <div className='flex w-full flex-grow flex-col gap-4 self-center'>
+
     return (
         <div className='my-5 flex w-full flex-col gap-4 self-center'>
-            {images.length > 0 && (
-                <div className='flex w-full flex-grow flex-col gap-4 self-center'>
-                    {images.map((img: File) => {
-                        return (
-                            <div
-                                key={img.name}
-                                className='relative mx-auto my-5 w-full animate-fadeOut text-right'
-                            >
-                                <span
-                                    onClick={() => removeHandler(img)}
-                                    className='absolute right-8 top-8 z-50 w-max cursor-pointer rounded-md bg-white p-3 text-red-700 shadow-lg transition-transform duration-300 ease-in-out hover:scale-110 hover:shadow-2xl'
+            <div className='w-full'>
+                <Swiper
+                    spaceBetween={30}
+                    effect={'fade'}
+                    navigation={true}
+                    pagination={{
+                        clickable: true,
+                    }}
+                    modules={[Pagination, Navigation]}
+                    className='mySwiper2'
+                    slidesPerView={1}
+                >
+                    {
+                        images.map((img: File, indx) => (
+                            <SwiperSlide key={indx} className='rounded-md'>
+                                <div
+                                    key={img.name}
+                                    className='relative mx-auto my-5 w-full animate-fadeOut text-right'
                                 >
-                                    <ImCross />
-                                </span>
-                                <Image
-                                    loading='lazy'
-                                    src={URL.createObjectURL(img)}
-                                    width={1000}
-                                    height={1000}
-                                    className='h-[566px] max-w-full animate-fadeOut rounded-md'
-                                    alt='blur'
-                                    blurDataURL=''
-                                />
-                            </div>
-                        );
-                    })}
-                </div>
-            )}
+                                    <span
+                                        onClick={() => removeHandler(img)}
+                                        className='absolute right-16 top-2 z-50 w-max cursor-pointer rounded-md bg-white p-3 text-red-700 shadow-lg transition-transform duration-300 ease-in-out hover:scale-110 hover:shadow-2xl'
+                                    >
+                                        <ImCross />
+                                    </span>
+                                    <Image
+                                        loading='lazy'
+                                        src={URL.createObjectURL(img)}
+                                        width={1000}
+                                        height={1000}
+                                        className=' max-h-[283px] max-w-full animate-fadeOut rounded-md object-contain'
+                                        alt='blur'
+                                        blurDataURL=''
+                                    />
+                                </div>
+                            </SwiperSlide>
+                        ))
+                    }
+                </Swiper>
+            </div>
             <div className='my-4 flex flex-grow justify-center md:items-center'>
                 <label
                     htmlFor='ff'
@@ -95,7 +116,7 @@ function ImageUploader() {
                     onChange={fileSetter}
                 />
             </div>
-        </div>
+        </div >
     );
 }
 
