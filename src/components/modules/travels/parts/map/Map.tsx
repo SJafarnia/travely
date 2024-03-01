@@ -12,11 +12,7 @@ function Map({ mapData, popUp }: { mapData: JsonValue; popUp: string }) {
 
     return (
         <MapContainer
-            style={{
-                height: '240px',
-                width: '420px',
-            }}
-            className=' rounded-md'
+            className='rounded-md w-full h-[12rem] md:h-[18rem]'
             center={[markers.lat, markers.lng]}
             zoom={13}
             doubleClickZoom={false}
