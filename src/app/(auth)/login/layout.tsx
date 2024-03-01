@@ -23,6 +23,7 @@ export default async function Layout({
         const currentUser = await getUserByEmailOrUsername(email);
 
         if (!currentUser) {
+
             console.log('user not found');
             // TODO: change accessLevel yo BASIC in production
             const newUser = await createUser(email, image, 'ADMIN');
