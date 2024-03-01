@@ -10,44 +10,46 @@ import { useEffect } from 'react';
 function useFetchTravelPartData(travelPartId: string) {
     const { data: session } = useSession();
 
+    if (!session?.user?.email) return
+
     useEffect(() => {
         const fetchData = async () => {
-            if (session?.user?.email) {
-                const res = await fetch('/api/travels/partdata/', {
-                    method: 'POST',
-                    body: JSON.stringify({ travelPartId }),
-                    headers: {
-                        'Content-Type': 'application/json',
+
+            const res = await fetch('/api/travels/partdata/', {
+                method: 'POST',
+                body: JSON.stringify({ travelPartId }),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            }).then((res) => res.json());
+
+            if (res?.travelPartData) {
+                useTravelPartData.setState({
+                    travelPartData: {
+                        title: res?.travelPartData.title,
+                        description: res?.travelPartData.description,
+                        mapData: res?.travelPartData.mapData,
+                        tips: res?.travelPartData.recommendations,
+                        images: res?.travelPartData.imageGallery,
                     },
-                }).then((res) => res.json());
+                });
+                // TODO : remove the following 2 states from the store above if possible
+                const numerofTips = Object.keys(res?.travelPartData?.recommendations)
 
-                if (res?.travelPartData) {
-                    useTravelPartData.setState({
-                        travelPartData: {
-                            title: res?.travelPartData.title,
-                            description: res?.travelPartData.description,
-                            mapData: res?.travelPartData.mapData,
-                            tips: res?.travelPartData.recommendations,
-                            images: res?.travelPartData.imageGallery,
-                        },
-                    });
-                    // TODO : remove the following 2 states from the store above if possible
-                    const numerofTips = Object.keys(res?.travelPartData?.recommendations)
-
-                    useTipsStore.setState({
-                        tips: res?.travelPartData?.recommendations,
-                    });
-                    useTipsStore.setState({ numTips: numerofTips.length });
-                    useMapMarkers.setState({
-                        markers: res?.travelPartData?.mapData,
-                    });
-                }
+                useTipsStore.setState({
+                    tips: res?.travelPartData?.recommendations,
+                });
+                useTipsStore.setState({ numTips: numerofTips.length });
+                useMapMarkers.setState({
+                    markers: res?.travelPartData?.mapData,
+                });
             }
-            return;
+
+            return
         };
         fetchData();
     }, [travelPartId]);
-
+    
     // return userData
 }
 

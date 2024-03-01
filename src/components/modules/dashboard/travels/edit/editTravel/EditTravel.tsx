@@ -1,19 +1,20 @@
-import { getTravelPartsByTravelId } from '@/lib/db/queries';
+'use client'
 import Image from 'next/image';
 import Link from 'next/link';
 import RemoveButton from '../RemoveButton';
+import useFetchTravelData from '@/components/hooks/useFetchTravelData';
 
 async function EditTravels({ travelId }: { travelId: string }) {
-    const parts = await getTravelPartsByTravelId(travelId);
+    const parts = useFetchTravelData(travelId);
 
     return (
         <div className='scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 w-full overflow-auto bg-Night/95 text-white @container'>
             <ul className='@md:m-8 [&>li]:m-4 [&>li]:my-6'>
-                {parts.length > 0 &&
-                    parts.map((part) => (
+                {parts?.length > 0 &&
+                    parts?.map((part) => (
                         <li
                             key={part.title}
-                            className='flex h-[150px] items-center justify-center gap-4'
+                            className='flex h-[150px] items-center justify-center gap-4 '
                         >
                             <Link
                                 href={`/log/edit/part/${part.id}`}
