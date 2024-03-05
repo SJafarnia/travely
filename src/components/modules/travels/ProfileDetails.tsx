@@ -2,6 +2,7 @@
 import useFetchUserData from '@/components/hooks/useFetchUserData';
 import { useUserData } from '@/lib/zustand/store';
 import Image from 'next/image';
+import { useEffect } from 'react';
 
 function ProfileDetails({
     styles,

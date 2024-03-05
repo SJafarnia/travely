@@ -405,3 +405,18 @@ export const updateUser = async (
         return null;
     }
 };
+
+export const followUser = async (follower_id: string, user_id: string) => {
+    try {
+        const res = await prisma.follower.create({
+            data: {
+                followed_user_id: user_id,
+                follower_id: follower_id,
+            },
+        });
+
+        return res;
+    } catch (err) {
+        return null;
+    }
+};

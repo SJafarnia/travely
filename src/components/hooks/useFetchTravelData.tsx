@@ -22,7 +22,7 @@ function useFetchTravelData(travelId: string) {
         }
 
         fetcher()
-    }, [travelId])
+    }, [travelId]);
 
     return travelParts
 }

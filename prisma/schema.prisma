@@ -17,8 +17,19 @@ model User {
   accessLevel accessLevel @default(BASIC)
   profileImg  String?     @default("")
   posts       Travel[]
+  followers   Follower[]  @relation("followed_user")
+  followings  Follower[]  @relation("follower")
 
   @@unique([id, email])
+}
+
+model Follower {
+  followed_user    User   @relation(fields: [followed_user_id], references: [id], name: "followed_user")
+  follower         User   @relation(fields: [follower_id], references: [id], name: "follower")
+  followed_user_id String
+  follower_id      String
+
+  @@unique([followed_user_id, follower_id])
 }
 
 model Travel {

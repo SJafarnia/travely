@@ -59,27 +59,29 @@ async function EditTravels({ travelId }: { travelId: string }) {
                     ))}
             </ul>
             <div className='relative'>
-                <p className='mx-5 ml-auto mt-12 @md:mx-12 @md:mt-16'>
-                    <Link
-                        href={`/log/add/${travelId}`}
-                        className='ml-auto block h-10 w-10 cursor-pointer'
-                    >
-                        <svg
-                            xmlns='http://www.w3.org/2000/svg'
-                            fill='none'
-                            viewBox='0 0 24 24'
-                            strokeWidth={1.5}
-                            stroke='currentColor'
-                            className='h-10 w-10 transition-colors ease-in-out hover:text-green-500 @md:h-12 @md:w-12'
+                {parts?.length > 0 &&
+                    <p className='mx-5 ml-auto mt-12 @md:mx-12 @md:mt-16'>
+                        <Link
+                            href={`/log/add/${travelId}`}
+                            className='ml-auto block h-10 w-10 cursor-pointer'
                         >
-                            <path
-                                strokeLinecap='round'
-                                strokeLinejoin='round'
-                                d='M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z'
-                            />
-                        </svg>
-                    </Link>
-                </p>
+                            <svg
+                                xmlns='http://www.w3.org/2000/svg'
+                                fill='none'
+                                viewBox='0 0 24 24'
+                                strokeWidth={1.5}
+                                stroke='currentColor'
+                                className='h-10 w-10 transition-colors ease-in-out hover:text-green-500 @md:h-12 @md:w-12'
+                            >
+                                <path
+                                    strokeLinecap='round'
+                                    strokeLinejoin='round'
+                                    d='M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z'
+                                />
+                            </svg>
+                        </Link>
+                    </p>
+                }
             </div>
         </div>
     );
