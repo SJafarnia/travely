@@ -13,7 +13,7 @@ datasource db {
 model User {
   id          String      @id @unique @default(uuid())
   email       String      @unique
-  username    String      @unique @default("")
+  username    String?     @unique 
   accessLevel accessLevel @default(BASIC)
   profileImg  String?     @default("")
   posts       Travel[]
@@ -24,6 +24,7 @@ model User {
 }
 
 model Follower {
+  id               String @unique @default(uuid())
   followed_user    User   @relation(fields: [followed_user_id], references: [id], name: "followed_user")
   follower         User   @relation(fields: [follower_id], references: [id], name: "follower")
   followed_user_id String

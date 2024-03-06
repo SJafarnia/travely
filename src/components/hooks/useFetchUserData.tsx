@@ -3,7 +3,7 @@ import { useUserData } from '@/lib/zustand/store';
 import { useSession } from 'next-auth/react';
 import { useEffect } from 'react';
 
-function useFetchUserData() {
+function useFetchUserData(username: string | null, isDashboard: boolean) {
     const { data: session } = useSession();
 
     useEffect(() => {
@@ -11,7 +11,7 @@ function useFetchUserData() {
             if (session?.user?.email) {
                 const res = await fetch('/api/userdata', {
                     method: 'POST',
-                    body: JSON.stringify({ email: session.user.email }),
+                    body: JSON.stringify({ email: `${isDashboard ? session?.user?.email : username}` }),
                     headers: {
                         'Content-Type': 'application/json',
                     },

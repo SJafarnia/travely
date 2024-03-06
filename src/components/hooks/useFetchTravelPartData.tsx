@@ -10,11 +10,8 @@ import { useEffect } from 'react';
 function useFetchTravelPartData(travelPartId: string) {
     const { data: session } = useSession();
 
-    if (!session?.user?.email) return
-
     useEffect(() => {
         const fetchData = async () => {
-
             const res = await fetch('/api/travels/partdata/', {
                 method: 'POST',
                 body: JSON.stringify({ travelPartId }),
@@ -26,11 +23,11 @@ function useFetchTravelPartData(travelPartId: string) {
             if (res?.travelPartData) {
                 useTravelPartData.setState({
                     travelPartData: {
-                        title: res?.travelPartData.title,
-                        description: res?.travelPartData.description,
-                        mapData: res?.travelPartData.mapData,
-                        tips: res?.travelPartData.recommendations,
-                        images: res?.travelPartData.imageGallery,
+                        title: res?.travelPartData?.title,
+                        description: res?.travelPartData?.description,
+                        mapData: res?.travelPartData?.mapData,
+                        tips: res?.travelPartData?.recommendations,
+                        images: res?.travelPartData?.imageGallery,
                     },
                 });
                 // TODO : remove the following 2 states from the store above if possible
@@ -39,18 +36,15 @@ function useFetchTravelPartData(travelPartId: string) {
                 useTipsStore.setState({
                     tips: res?.travelPartData?.recommendations,
                 });
-                useTipsStore.setState({ numTips: numerofTips.length });
+                useTipsStore.setState({ numTips: numerofTips?.length });
                 useMapMarkers.setState({
                     markers: res?.travelPartData?.mapData,
                 });
             }
-
-            return
         };
-        fetchData();
+        if (session?.user?.email) fetchData();
     }, [travelPartId]);
-    
-    // return userData
+
 }
 
 export default useFetchTravelPartData;

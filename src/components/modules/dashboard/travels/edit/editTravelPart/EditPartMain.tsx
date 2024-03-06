@@ -12,13 +12,13 @@ import useFetchTravelPartData from '@/components/hooks/useFetchTravelPartData';
 function EditPart({ travelPartId }: { travelPartId: string }) {
     const router = useRouter();
     useFetchTravelPartData(travelPartId);
-
+console.log(travelPartId)
     const data: addPartValueType = useTravelPartData(
         (state: any) => state.travelPartData
     );
 
     return (
-        <div className='mx-auto my-16 flex w-4/5 flex-col rounded-md bg-Night/95 p-4 text-creamWhite shadow-2xl shadow-forestGreen/50 md:w-4/6'>
+        <div className='mx-auto my-16 flex w-4/5 flex-col rounded-md bg-Night/95 p-4 text-creamWhite shadow-2xl shadow-forestGreen/50'>
             <Formik
                 initialValues={{
                     title: '',

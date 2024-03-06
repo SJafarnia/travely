@@ -18,7 +18,7 @@ function useFetchTravelData(travelId: string) {
                 },
             }).then((res) => res.json());
 
-            if (res.parts.length > 0) setTravelParts(res.parts);
+            if (res?.parts?.length > 0) setTravelParts(res.parts);
         }
 
         fetcher()

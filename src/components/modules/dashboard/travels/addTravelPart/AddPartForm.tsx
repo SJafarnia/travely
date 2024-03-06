@@ -28,10 +28,10 @@ function AddPartForm({
     const { handleChange, handleBlur } = useFormikContext();
 
     return (
-        <div className='first flex w-10/12 flex-col gap-4 text-center text-silver [&>p]:w-full'>
+        <div className='first flex w-10/12 flex-col gap-4 text-xl text-center text-silver [&>p]:w-full'>
             <FormSegment
                 text='Choose a Title For This Part'
-                styles='text-center cursor-pointer my-4 text-white font-bold text-2xl mb-6'
+                variant='title'
                 icon={<></>}
                 tooltipId='my-tooltip'
                 formField={
@@ -48,21 +48,22 @@ function AddPartForm({
 
             <FormSegment
                 text="Show us exactly where you've been on a map"
-                styles='text-center cursor-pointer mt-4 text-xl'
+                variant='default'
                 icon={<TbWorldPin className='mx-2 inline h-6 w-6' />}
                 formField={<DynamicMap />}
             />
 
             <FormSegment
                 text='Upload your amazing photos'
-                styles='my-5 cursor-pointer text-xl'
+                styles='my-5'
+                variant='default'
                 icon={<IoCameraOutline className='mx-2 inline h-5 w-5' />}
                 formField={<ImageUploader />}
             />
 
             <FormSegment
                 text='Tell us how it went'
-                styles='my-4 cursor-pointer text-xl'
+                variant='default'
                 icon={<AiOutlineAudio className='mx-2 inline h-5 w-5' />}
                 formField={
                     <textarea
@@ -80,7 +81,7 @@ function AddPartForm({
 
             <FormSegment
                 text='Provide us with some tips'
-                styles='my-4 cursor-pointer text-xl'
+                variant='default'
                 icon={
                     <MdOutlineTipsAndUpdates className='mx-2 inline h-5 w-5' />
                 }

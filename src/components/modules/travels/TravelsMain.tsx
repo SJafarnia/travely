@@ -8,18 +8,15 @@ import { notFound } from 'next/navigation';
 
 async function TravelsMain({ user }: { user: string }) {
     const userData = await getUserPageDataByEmailOrUsername(user);
-    // console.log(userData)
+
     if (!userData) return notFound();
 
     return (
         <div className='mx-auto my-20 h-auto w-full text-white md:max-w-5xl'>
             <div className='profile info my-16 flex justify-between rounded-md bg-Night/95 p-4 [&>div]:p-5'>
                 <ProfileDetails
-                    button={
-                        <button className='mt-2 rounded-md border border-creamWhite/30 bg-jet/40 p-1 text-white transition-all duration-150 ease-in-out hover:border-creamWhite/80 hover:bg-jet/70'>
-                            Follow
-                        </button>
-                    }
+                    username={user}
+                    isDashboard={false}
                 />
                 <Socials />
             </div>

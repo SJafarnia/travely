@@ -56,6 +56,7 @@ export const uploadLog = async (
 
         return res;
     } catch (err) {
+        console.log(err);
         return null;
     }
 };
@@ -93,6 +94,7 @@ export const uploadPart = async (
 
         return res;
     } catch (err) {
+        console.log(err);
         return null;
     }
 };
@@ -116,6 +118,7 @@ export const updatePart = async (
 
         return res;
     } catch (err) {
+        console.log(err);
         return null;
     }
 };
@@ -129,7 +132,8 @@ export const deleteTravel = async (travelId: string) => {
         });
 
         return res;
-    } catch (error) {
+    } catch (err) {
+        console.log(err);
         return null;
     }
 };
@@ -143,7 +147,8 @@ export const deleteTravelPart = async (id: string) => {
         });
 
         return res;
-    } catch (error) {
+    } catch (err) {
+        console.log(err);
         return null;
     }
 };
@@ -192,6 +197,7 @@ export const getUserPageDataByEmailOrUsername = async (
 
         return res;
     } catch (err) {
+        console.log(err);
         return null;
     }
 };
@@ -227,6 +233,7 @@ export const getUserPostsByEmailOrUsername = async (
 
         return res;
     } catch (err) {
+        console.log(err);
         return null;
     }
 };
@@ -285,7 +292,8 @@ export const getTravelPartsByTravelId = async (travelId: string) => {
         });
 
         return res;
-    } catch (error) {
+    } catch (err) {
+        console.log(err);
         return null;
     }
 };
@@ -339,6 +347,7 @@ export const getTravelPartByIdToEdit = async (partId: string) => {
 
         return res;
     } catch (err) {
+        console.log(err);
         return null;
     }
 };
@@ -357,10 +366,34 @@ export const getUserByEmailOrUsername = async (emailOrUsername: string) => {
                 ],
             },
         });
+        return res;
+    } catch (err) {
+        console.log(err);
+        return null;
+    }
+};
+
+export const getUserIdByEmailOrUsername = async (emailOrUsername: string) => {
+    try {
+        const res = await prisma.user.findFirst({
+            where: {
+                OR: [
+                    {
+                        email: emailOrUsername,
+                    },
+                    {
+                        username: emailOrUsername,
+                    },
+                ],
+            },
+            select: {
+                id: true,
+            },
+        });
 
         return res;
     } catch (err) {
-        console.log({ 'DB error': err });
+        console.log(err);
         return null;
     }
 };
@@ -380,6 +413,7 @@ export const createUser = async (
             },
         });
     } catch (err) {
+        console.log(err);
         return;
     }
 };
@@ -402,6 +436,7 @@ export const updateUser = async (
 
         return res;
     } catch (err) {
+        console.log(err);
         return null;
     }
 };
@@ -410,13 +445,14 @@ export const followUser = async (follower_id: string, user_id: string) => {
     try {
         const res = await prisma.follower.create({
             data: {
-                followed_user_id: user_id,
                 follower_id: follower_id,
+                followed_user_id: user_id,
             },
         });
 
         return res;
     } catch (err) {
+        console.log(err);
         return null;
     }
 };

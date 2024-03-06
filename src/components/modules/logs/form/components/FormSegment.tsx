@@ -1,16 +1,33 @@
-type SegmentProps = {
+import { cn } from "@/lib/utils/utils";
+import { VariantProps, cva } from "class-variance-authority"
+
+type SegmentProps = VariantProps<typeof SegmentVariants> & {
     text: string;
     icon: React.ReactNode;
-    styles: string;
+    styles?: string;
     tooltipId?: string;
     tooltipContent?: string;
     formField?: React.ReactNode;
 };
 
+const SegmentVariants = cva(
+    "cursor-pointer my-4", {
+    variants: {
+        variant: {
+            default: "",
+            title: "text-white font-bold text-2xl mb-6",
+        }
+    },
+    defaultVariants: {
+        variant: 'default'
+    }
+})
+
 export default function FormSegment({
     text,
     icon,
     styles,
+    variant,
     tooltipId,
     tooltipContent,
     formField,
@@ -18,7 +35,7 @@ export default function FormSegment({
     return (
         <>
             <p
-                className={styles}
+                className={cn(SegmentVariants({ variant, className: styles }))}
                 data-tooltip-id={`${tooltipId}`}
                 data-tooltip-content={`${tooltipContent}`}
             >

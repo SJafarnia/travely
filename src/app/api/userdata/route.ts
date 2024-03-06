@@ -1,13 +1,21 @@
 import { getUserByEmailOrUsername } from '@/lib/db/queries';
+import { getServerSession } from 'next-auth';
 import { NextRequest, NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic';
 
 export const POST = async (req: NextRequest) => {
-    const res = await req.json();
+    const body = await req.json();
+    const session = await getServerSession();
 
-    if (res?.email) {
-        const userData = await getUserByEmailOrUsername(res.email);
+    if (!session?.user?.email) {
+        return NextResponse.json('unauthorized', {
+            status: 401,
+        });
+    }
+
+    if (body?.email) {
+        const userData = await getUserByEmailOrUsername(body.email);
         return NextResponse.json({ userData });
     }
 

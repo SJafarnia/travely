@@ -2,18 +2,27 @@
 import useFetchUserData from '@/components/hooks/useFetchUserData';
 import { useUserData } from '@/lib/zustand/store';
 import Image from 'next/image';
-import { useEffect } from 'react';
+import { followAction } from './followAction';
 
 function ProfileDetails({
     styles,
+    isDashboard,
     button,
+    username
 }: {
     styles?: string | null;
-    button: React.ReactNode;
+    isDashboard: boolean,
+    username?: string,
+    button?: React.ReactNode;
 }) {
-    useFetchUserData();
+    useFetchUserData(username, isDashboard);
     // @ts-ignore
     const userData = useUserData((state) => state.userData);
+
+    const followHandler = async () => {
+        const followRes = await followAction(username)
+        console.log({ followRes })
+    }
 
     return (
         <div className={`${styles} flex w-full flex-row justify-start`}>
@@ -32,8 +41,8 @@ function ProfileDetails({
                 )}
             </div>
             <div className='flex w-full flex-grow flex-col justify-around gap-1'>
-                {userData?.username ? (
-                    <span className=''>{userData?.username}</span>
+                {userData?.username || userData.email ? (
+                    <span className=''>{userData?.username || userData.email}</span>
                 ) : (
                     <span className='w-1/3 animate-pulse rounded-md bg-white p-3'></span>
                 )}
@@ -58,7 +67,7 @@ function ProfileDetails({
                         />
                     </svg>
                     <div className='ml-1 w-full text-sm'>
-                        {userData?.username ? (
+                        {userData?.username || userData.email ? (
                             <>
                                 <span>California,</span> <span>LA</span>
                             </>
@@ -67,7 +76,11 @@ function ProfileDetails({
                         )}
                     </div>
                 </div>
-                {button}
+
+                <button onClick={followHandler} className='mt-2 rounded-md border border-creamWhite/30 bg-jet/40 p-1 text-white transition-all duration-150 ease-in-out hover:border-creamWhite/80 hover:bg-jet/70'>
+                    Follow
+                </button>
+
             </div>
         </div>
     );
