@@ -1,6 +1,6 @@
-import ModalCloseButton from '@/components/modules/ext/Modal/ModalCloseButton';
-import ModalSlider from '@/components/modules/ext/Modal/ModalSlider';
-import ViewLog from '@/components/modules/ext/Modal/ViewLog';
+import ModalCloseButton from '@/components/modules/Modals/travelPartModal/ModalCloseButton';
+import ModalSlider from '@/components/modules/Modals/travelPartModal/ModalSlider';
+import ViewLog from '@/components/modules/Modals/travelPartModal/ViewLog';
 import Details from '@/components/modules/travels/parts/description/Details';
 import { getTravelDataById } from '@/lib/db/queries';
 import { notFound } from 'next/navigation';
