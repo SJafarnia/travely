@@ -1,36 +1,16 @@
 'use client'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { unfollowAction } from './_actions/unfollowAction';
-import { useSession } from 'next-auth/react';
 import { followAction } from './_actions/followAction';
-import Swal from 'sweetalert2';
-import { useRouter } from 'next/navigation';
+import useFetchFollowingData from '@/components/hooks/useFetchFollowingData';
 
 function FollowButton({ username }: { username: string }) {
-    const { data: session } = useSession();
     const [followingData, setFollowingData] = useState({
         isFollowing: null,
         id: null
     });
-    console.log(followingData.isFollowing)
 
-    const router = useRouter()
-
-    useEffect(() => {
-        const fetchData = async () => {
-            if (session?.user?.email) {
-                const res = await fetch('/api/userdata/following', {
-                    method: 'POST',
-                    body: JSON.stringify({ username }),
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                }).then((res) => res.json());
-                setFollowingData({ ...res })
-            }
-        }
-        fetchData()
-    }, [session, username])
+    useFetchFollowingData(username, setFollowingData);
 
     const followHandler = async () => {
         const res = await followAction(username)
