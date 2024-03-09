@@ -1,16 +1,18 @@
+'use client';
+import useFetchUserData from '@/components/hooks/useFetchUserData';
+import { useUserData } from '@/lib/zustand/store';
 import Image from 'next/image';
-import { getUserByEmailOrUsernameForProfile } from '@/lib/db/queries';
-import FollowButton from './FollowButton';
 
-async function ProfileDetails({
+function DashboardProfileDetails({
     styles,
-    username
+    button,
 }: {
     styles?: string | null;
-    username?: string,
+    button?: React.ReactNode;
 }) {
-    // useFetchUserData(username);
-    const userData = await getUserByEmailOrUsernameForProfile(username);
+    useFetchUserData();
+    // @ts-ignore
+    const userData = useUserData((state) => state.userData);
 
     return (
         <div className={`${styles} flex w-full flex-row justify-start`}>
@@ -32,7 +34,7 @@ async function ProfileDetails({
                 {userData?.username || userData.email ? (
                     <span className=''>{userData?.username || userData.email}</span>
                 ) : (
-                    <span className='w-1/4 animate-pulse rounded-md bg-white p-3'></span>
+                    <span className='w-1/3 animate-pulse rounded-md bg-white p-3'></span>
                 )}
                 <div className='flex items-center'>
                     <svg
@@ -55,14 +57,20 @@ async function ProfileDetails({
                         />
                     </svg>
                     <div className='ml-1 w-full text-sm'>
-                        {/* TODO: replace with user location, add that field to user data */}
-                        <span>California,</span> <span>LA</span>
+                        {userData?.username || userData.email ? (
+                            <>
+                                <span>California,</span> <span>LA</span>
+                            </>
+                        ) : (
+                            <div className='m-1 w-1/3 animate-pulse rounded-md bg-white p-2'></div>
+                        )}
                     </div>
                 </div>
-                <FollowButton username={username} />
+                {button}
+
             </div>
         </div>
     );
 }
 
-export default ProfileDetails;
+export default DashboardProfileDetails;

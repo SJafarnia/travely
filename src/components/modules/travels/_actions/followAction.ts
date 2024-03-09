@@ -3,7 +3,7 @@ import { getServerSession } from 'next-auth';
 import {
     followUser,
     getUserIdByEmailOrUsername,
-} from './../../../lib/db/queries';
+} from '../../../../lib/db/queries';
 
 export const followAction = async (targetUsername: string) => {
     const {
@@ -13,5 +13,5 @@ export const followAction = async (targetUsername: string) => {
     const currentUser = await getUserIdByEmailOrUsername(email);
     const targetUser = await getUserIdByEmailOrUsername(targetUsername);
     const res = await followUser(currentUser.id, targetUser.id);
-    console.log(res);
+    if (res) return res;
 };

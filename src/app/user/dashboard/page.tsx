@@ -1,4 +1,4 @@
-import ProfileDetails from '@/components/modules/travels/ProfileDetails';
+import DashboardProfileDetails from '@/components/modules/dashboard/DashboardProfileDetails';
 import Link from 'next/link';
 
 const Button = ({ as, children, filled, secondary, ...rest }: { as?: any, children?: any, filled?: any, secondary?: any }) => {
@@ -27,8 +27,7 @@ Button.defaultProps = {
 export default async function page() {
     return (
         <div className='mx-auto my-16 w-11/12 animate-fadeOut bg-Night/90 p-8 text-white'>
-            <ProfileDetails
-                isDashboard={true}
+            <DashboardProfileDetails
                 styles='flex-row flex [&>div]:mx-2'
                 button={
                     <div className='mt-4 flex flex-col justify-end gap-4'>

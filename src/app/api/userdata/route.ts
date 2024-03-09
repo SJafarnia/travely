@@ -1,4 +1,4 @@
-import { getUserByEmailOrUsername } from '@/lib/db/queries';
+import { getUserByEmailOrUsernameForProfile } from '@/lib/db/queries';
 import { getServerSession } from 'next-auth';
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -15,7 +15,7 @@ export const POST = async (req: NextRequest) => {
     }
 
     if (body?.email) {
-        const userData = await getUserByEmailOrUsername(body.email);
+        const userData = await getUserByEmailOrUsernameForProfile(body.email);
         return NextResponse.json({ userData });
     }
 

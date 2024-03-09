@@ -16,9 +16,8 @@ async function TravelsMain({ user }: { user: string }) {
             <div className='profile info my-16 flex justify-between rounded-md bg-Night/95 p-4 [&>div]:p-5'>
                 <ProfileDetails
                     username={user}
-                    isDashboard={false}
                 />
-                <Socials />
+                {/* <Socials /> */}
             </div>
             <div className='grid grid-cols-1 gap-8 md:grid-cols-3'>
                 {userData.posts.map((post) => (

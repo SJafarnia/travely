@@ -373,6 +373,58 @@ export const getUserByEmailOrUsername = async (emailOrUsername: string) => {
     }
 };
 
+export const getUserByEmailOrUsernameForProfile = async (
+    emailOrUsername: string
+) => {
+    try {
+        const res = await prisma.user.findFirst({
+            where: {
+                OR: [
+                    {
+                        email: emailOrUsername,
+                    },
+                    {
+                        username: emailOrUsername,
+                    },
+                ],
+            },
+            select: {
+                email: true,
+                username: true,
+                profileImg: true,
+            },
+        });
+        return res;
+    } catch (err) {
+        console.log(err);
+        return null;
+    }
+};
+
+export const getUserFollowings = async (emailOrUsername: string) => {
+    try {
+        const res = await prisma.user.findFirst({
+            where: {
+                OR: [
+                    {
+                        email: emailOrUsername,
+                    },
+                    {
+                        username: emailOrUsername,
+                    },
+                ],
+            },
+            select: {
+                followings: true,
+            },
+        });
+        return res;
+    } catch (err) {
+        console.log(err);
+        return null;
+    }
+};
+
 export const getUserIdByEmailOrUsername = async (emailOrUsername: string) => {
     try {
         const res = await prisma.user.findFirst({
@@ -447,6 +499,21 @@ export const followUser = async (follower_id: string, user_id: string) => {
             data: {
                 follower_id: follower_id,
                 followed_user_id: user_id,
+            },
+        });
+
+        return res;
+    } catch (err) {
+        console.log(err);
+        return null;
+    }
+};
+
+export const unfollowUser = async (id: string) => {
+    try {
+        const res = await prisma.follower.delete({
+            where: {
+                id,
             },
         });
 

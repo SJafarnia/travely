@@ -27,6 +27,7 @@ export const useUserData = create((set) => ({
     userData: {
         username: '',
         profileImg: '',
+        email: '',
     },
 }));
 
