@@ -1,3 +1,4 @@
+import FollowingsMain from '@/components/modules/Modals/followingsModal/FollowingsMain';
 import DashboardProfileDetails from '@/components/modules/dashboard/DashboardProfileDetails';
 import Link from 'next/link';
 
@@ -37,14 +38,7 @@ export default async function page() {
                         >
                             <Button >Edit</Button>
                         </Link>
-                        <div className='flex w-full justify-around gap-8'>
-                            <button className='mt-2 w-full rounded-md border border-creamWhite/30 bg-jet/40 p-2 py-2 text-sm text-white transition-all duration-150 ease-in-out hover:border-creamWhite/80 hover:bg-jet/70'>
-                                Followings
-                            </button>
-                            <button className='mt-2 w-full rounded-md border border-creamWhite/30 bg-jet/40 p-2 text-sm text-white transition-all duration-150 ease-in-out hover:border-creamWhite/80 hover:bg-jet/70'>
-                                Followers
-                            </button>
-                        </div>
+                        <FollowingsMain />
                     </div>
                 }
             />
