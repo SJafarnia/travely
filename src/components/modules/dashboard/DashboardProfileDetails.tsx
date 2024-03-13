@@ -67,7 +67,6 @@ function DashboardProfileDetails({
                     </div>
                 </div>
                 {button}
-
             </div>
         </div>
     );

@@ -19,7 +19,7 @@ export default async function page({
 
     return (
         // Travel part Modal
-        <div className='travelModal fixed inset-0 z-[9999] bg-zinc-900/60'>
+        <div className='ModalCloser fixed inset-0 z-[9999] bg-zinc-900/60'>
             <div className='mx-auto flex h-full max-w-3xl items-center'>
                 <div className='scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 relative h-lvh w-full overflow-y-auto overflow-x-clip rounded-lg bg-zinc-900/40 px-2 py-20'>
                     <ModalCloseButton />

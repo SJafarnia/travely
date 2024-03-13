@@ -6,7 +6,6 @@ import validationSchema from './components/FormValidation';
 import Step1 from './steps/Step1';
 import { submitLogs } from './components/FormSubmit';
 import { useRouter } from 'next/navigation';
-import { FormValues, FormValuesToSubmit } from '@/lib/types/types';
 import TravelPartForm from './steps/TravelPartForm';
 
 export type errors = {

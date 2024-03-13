@@ -416,6 +416,119 @@ export const getUserFollowings = async (emailOrUsername: string) => {
             },
             select: {
                 followings: true,
+                _count: {
+                    select: {
+                        followings: true,
+                    },
+                },
+            },
+        });
+        return res;
+    } catch (err) {
+        console.log(err);
+        return null;
+    }
+};
+
+export const getUserFollowers = async (emailOrUsername: string) => {
+    try {
+        const res = await prisma.user.findFirst({
+            where: {
+                OR: [
+                    {
+                        email: emailOrUsername,
+                    },
+                    {
+                        username: emailOrUsername,
+                    },
+                ],
+            },
+            select: {
+                followers: true,
+                _count: {
+                    select: {
+                        followers: true,
+                    },
+                },
+            },
+        });
+        return res;
+    } catch (err) {
+        console.log(err);
+        return null;
+    }
+};
+
+export const getFollowingData = async (emailOrUsername: string) => {
+    try {
+        const res = await prisma.user.findFirst({
+            where: {
+                OR: [
+                    {
+                        email: emailOrUsername,
+                    },
+                    {
+                        username: emailOrUsername,
+                    },
+                ],
+            },
+            select: {
+                _count: {
+                    select: {
+                        followers: true,
+                        followings: true,
+                    },
+                },
+            },
+        });
+        return res;
+    } catch (err) {
+        console.log(err);
+        return null;
+    }
+};
+
+export const getFollowerUsers = async (username: string) => {
+    const user = await getUserIdByEmailOrUsername(username);
+
+    try {
+        const res = await prisma.follower.findMany({
+            where: {
+                followed_user_id: user.id,
+            },
+            select: {
+                follower: {
+                    select: {
+                        profileImg: true,
+                        username: true,
+                        email: true,
+                    },
+                },
+            },
+        });
+        return res;
+    } catch (err) {
+        console.log(err);
+        return null;
+    }
+};
+
+export const getFollowingUsers = async (username: string) => {
+    const user = await getUserIdByEmailOrUsername(username);
+
+    try {
+        const res = await prisma.follower.findMany({
+            where: {
+                follower_id: user.id,
+            },
+            select: {
+                followed_user: {
+                    select: {
+                        profileImg: true,
+                        username: true,
+                        email: true,
+                    },
+                },
             },
         });
         return res;

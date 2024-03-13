@@ -1,20 +1,17 @@
+'use client'
 import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 
-function useCloseModalHook(
-    setMounted: React.Dispatch<React.SetStateAction<boolean>>
+function useCloseModal(
+    modalSetter: React.Dispatch<React.SetStateAction<"followings" | "followers" | ''>>
 ) {
     // closes the modal with any click outside of it
-    const router = useRouter();
-
     return useEffect(() => {
         const handleClickOutside: any = (
             event: React.MouseEvent<HTMLElement>
         ) => {
             const targetElement = event.target as HTMLElement;
             if (targetElement.classList.contains('ModalCloser')) {
-                router.back();
-                setMounted(false);
+                modalSetter('');
             }
         };
         document.addEventListener('click', handleClickOutside);
@@ -25,4 +22,4 @@ function useCloseModalHook(
     }, []);
 }
 
-export default useCloseModalHook;
+export default useCloseModal;
