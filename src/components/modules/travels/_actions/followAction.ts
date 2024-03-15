@@ -1,9 +1,7 @@
 'use server';
 import { getServerSession } from 'next-auth';
-import {
-    followUser,
-    getUserIdByEmailOrUsername,
-} from '../../../../lib/db/queries';
+import { getUserIdByEmailOrUsername } from '@/lib/db/queries/getQueries';
+import { followUser } from '@/lib/db/queries/createQueries';
 
 export const followAction = async (targetUsername: string) => {
     const {

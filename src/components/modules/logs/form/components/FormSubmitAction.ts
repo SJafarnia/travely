@@ -1,6 +1,6 @@
 'use server';
 import { getServerSession } from 'next-auth';
-import { uploadLog } from '@/lib/db/queries';
+import { createLog } from '@/lib/db/queries/createQueries';
 import { FormValuesToSubmit } from '@/types/types';
 import { uploadPhotos } from '@/lib/utils/cloudinaryUploader';
 
@@ -25,7 +25,7 @@ export const submitLogs = async (
 
     const session = await getServerSession();
 
-    const res = await uploadLog(formValues, session.user.email);
+    const res = await createLog(formValues, session.user.email);
 
     if (res?.id) {
         return true;

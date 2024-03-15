@@ -1,8 +1,7 @@
 'use server';
-import { getServerSession } from 'next-auth';
 import { addPartValueType } from '@/types/types';
 import { uploadPhotos } from '@/lib/utils/cloudinaryUploader';
-import { uploadPart } from '@/lib/db/queries';
+import { createPart } from '@/lib/db/queries/createQueries';
 
 export const submitPart = async (
     formValues: addPartValueType,
@@ -24,7 +23,7 @@ export const submitPart = async (
     // rejoins imagesData([link,publicId]) with form values
     formValues.images = imagesData;
 
-    const res = await uploadPart(formValues, travelId);
+    const res = await createPart(formValues, travelId);
 
     if (res?.id) {
         return true;

@@ -1,4 +1,4 @@
-import { getUserByEmailOrUsernameForProfile } from '@/lib/db/queries';
+import { getUserByEmailOrUsernameForProfile } from '@/lib/db/queries/getQueries';
 import { getServerSession } from 'next-auth';
 import { NextRequest, NextResponse } from 'next/server';
 

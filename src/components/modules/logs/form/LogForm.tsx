@@ -4,7 +4,7 @@ import { Formik } from 'formik';
 import { Tooltip } from 'react-tooltip';
 import validationSchema from './components/FormValidation';
 import Step1 from './steps/Step1';
-import { submitLogs } from './components/FormSubmit';
+import { submitLogs } from './components/FormSubmitAction';
 import { useRouter } from 'next/navigation';
 import TravelPartForm from './steps/TravelPartForm';
 

@@ -1,7 +1,7 @@
 import {
     getUserFollowings,
     getUserIdByEmailOrUsername,
-} from '@/lib/db/queries';
+} from '@/lib/db/queries/getQueries';
 import { getServerSession } from 'next-auth';
 import { NextRequest, NextResponse } from 'next/server';
 

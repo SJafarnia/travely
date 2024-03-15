@@ -1,4 +1,4 @@
-import { getTravelPartByIdToEdit } from '@/lib/db/queries';
+import { getTravelPartByIdToEdit } from '@/lib/db/queries/getQueries';
 import { getServerSession } from 'next-auth';
 import { NextRequest, NextResponse } from 'next/server';
 

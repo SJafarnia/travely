@@ -1,4 +1,4 @@
-import { submitLogs } from '@/components/modules/logs/form/components/FormSubmit';
+import { submitLogs } from '@/components/modules/logs/form/components/FormSubmitAction';
 import prisma from '@/lib/db/client';
 
 describe('creates a log', () => {
