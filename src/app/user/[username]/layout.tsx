@@ -1,4 +1,4 @@
-import { getUserByEmailOrUsername } from '@/lib/db/queries';
+import { getUserByEmailOrUsername } from '@/lib/db/queries/getQueries';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 

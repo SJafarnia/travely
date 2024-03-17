@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-function useFetchFollowings(username: string, followings: [], setFollowings: ({ }) => void, showModal: "followings" | "followers" | '') {
+function useFetchFollowings(username: string, setFollowings: ({ }) => void, showModal: "followings" | "followers" | '') {
     useEffect(() => {
         const fetchData = async () => {
             const res: { followings: {}[] } = await fetch('/api/userdata/getfollowings', {
@@ -10,7 +10,7 @@ function useFetchFollowings(username: string, followings: [], setFollowings: ({ 
                     'Content-Type': 'application/json',
                 },
             }).then((res) => res.json());
-
+            // console.log({ res })
             setFollowings(res.followings);
         }
         if (showModal) {

@@ -1,10 +1,10 @@
-import { getUserPageDataByEmailOrUsername } from '@/lib/db/queries';
 import Image from 'next/image';
 import Link from 'next/link';
 import { slugify } from '@/utils/textModifiers';
 import Socials from './Socials';
 import ProfileDetails from './ProfileDetails';
 import { notFound } from 'next/navigation';
+import { getUserPageDataByEmailOrUsername } from '@/lib/db/queries/getQueries';
 
 async function TravelsMain({ user }: { user: string }) {
     const userData = await getUserPageDataByEmailOrUsername(user);

@@ -1,5 +1,3 @@
-import { getUserByEmailOrUsername } from '@/lib/db/queries';
-import { useUserData } from '@/lib/zustand/store';
 import type { Metadata } from 'next';
 import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';

@@ -3,13 +3,14 @@ import { useState } from 'react';
 import { unfollowAction } from './_actions/unfollowAction';
 import { followAction } from './_actions/followAction';
 import useFetchFollowingData from '@/components/hooks/useFetchFollowingData';
+import FollowingsMain from '../Modals/followingsModal/FollowingsMain';
 
 function FollowButton({ username }: { username: string }) {
     const [followingData, setFollowingData] = useState({
         isFollowing: null,
         id: null
     });
-
+    // console.log(followingData)
     useFetchFollowingData(username, setFollowingData);
 
     const followHandler = async () => {
@@ -40,7 +41,7 @@ function FollowButton({ username }: { username: string }) {
                     ></div>
                 </div>
             }
-
+            <FollowingsMain username={username} followingData={null} />
         </>
     )
 }

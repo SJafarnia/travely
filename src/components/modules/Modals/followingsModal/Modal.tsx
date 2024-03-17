@@ -45,7 +45,7 @@ function Modal({ followingData, followings, followers, status, showModal, modalS
                                             <div className="min-h-[60px] spacerForHeader">
                                             </div>
                                             {status == "followers" &&
-                                                followers?.map((follower: any) => {
+                                                followers?.map((follower: { follower: { email: string, username: string, profileImg: string } }) => {
                                                     return (
                                                         <div className="pt-4 flex cursor-pointer pl-4 pointer-events-auto" >
                                                             <div className="imgContainer h-fit pt-1 pb-[2px] pr-3 relative cursor-pointer">
@@ -88,12 +88,12 @@ function Modal({ followingData, followings, followers, status, showModal, modalS
                                             }
 
                                             {status == "followings" &&
-                                                followings?.map((follower: any) => {
+                                                followings?.map((followed_user: { followed_user: { email: string, username: string, profileImg: string } }) => {
                                                     return (
                                                         <div className="pt-4 flex cursor-pointer pl-4 pointer-events-auto" >
                                                             <div className="imgContainer h-fit pt-1 pb-[2px] pr-3 relative cursor-pointer">
                                                                 <div className="size-9 rounded-full">
-                                                                    <Image src={follower.follower.profileImg}
+                                                                    <Image src={followed_user?.followed_user?.profileImg}
                                                                         alt="profileImage"
                                                                         width={36}
                                                                         height={36}
@@ -108,12 +108,12 @@ function Modal({ followingData, followings, followers, status, showModal, modalS
                                                                             <span className="flex items-center p-0 m-0 text-white">
                                                                                 <a href="" className="">
                                                                                     <span className="whitespace-pre-line text-base font-semibold text-left overflow-y-visible overflow-x-visible max-w-full">
-                                                                                        {follower.follower.email}
+                                                                                        {followed_user?.followed_user?.email}
                                                                                     </span>
                                                                                 </a>
                                                                             </span>
                                                                         </div>
-                                                                        {follower.follower?.username &&
+                                                                        {followed_user.followed_user?.username &&
                                                                             <div className="flex items-center">
                                                                                 <span className="overflow-y-visible text-sm overflow-x-visible min-w-0 max-w-full">follower.follower?.username</span>
                                                                             </div>

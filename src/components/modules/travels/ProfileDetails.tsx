@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import { getUserByEmailOrUsernameForProfile } from '@/lib/db/queries';
 import FollowButton from './FollowButton';
+import { getUserByEmailOrUsernameForProfile } from '@/lib/db/queries/getQueries';
 
 async function ProfileDetails({
     styles,
@@ -9,7 +9,6 @@ async function ProfileDetails({
     styles?: string | null;
     username?: string,
 }) {
-    // useFetchUserData(username);
     const userData = await getUserByEmailOrUsernameForProfile(username);
 
     return (

@@ -1,4 +1,5 @@
-import { createUser, getUserByEmailOrUsername } from '@/lib/db/queries';
+import { createUser } from '@/lib/db/queries/createQueries';
+import { getUserByEmailOrUsername } from '@/lib/db/queries/getQueries';
 import type { Metadata } from 'next';
 import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
@@ -17,7 +18,7 @@ export default async function Layout({
 
     if (session?.user?.email) {
         const {
-            user: { email, image, name },
+            user: { email, image },
         } = session;
 
         const currentUser = await getUserByEmailOrUsername(email);

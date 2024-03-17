@@ -1,7 +1,7 @@
-import { getTravelDataById } from '@/lib/db/queries';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { deslugify } from '@/utils/textModifiers';
+import { getTravelDataById } from '@/lib/db/queries/getQueries';
 
 // export const metadata: Metadata = {
 //     title: 'Travels',

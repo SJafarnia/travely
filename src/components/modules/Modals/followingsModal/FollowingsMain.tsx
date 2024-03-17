@@ -5,21 +5,21 @@ import { useSession } from "next-auth/react";
 import { useState } from "react"
 import Modal from "./Modal";
 
-function FollowingsMain({ followingData }: {
-    followingData: {
+function FollowingsMain({ followingData, username }: {
+    followingData?: {
         _count: {
             followings: number;
             followers: number;
         };
-    }
+    },
+    username: string
 }) {
-    const { data: session } = useSession()
     const [showModal, setShowModal] = useState<"followings" | "followers" | ''>(null);
-    const [followings, setFollowings] = useState<[]>([])
-    const [followers, setFollowers] = useState<[]>([])
+    const [followings, setFollowings] = useState<[]>([]);
+    const [followers, setFollowers] = useState<[]>([]);
 
-    useFetchFollowings(session?.user?.email, followings, setFollowings, showModal)
-    useFetchFollowers(session?.user?.email, followers, setFollowers, showModal)
+    useFetchFollowings(username, setFollowings, showModal);
+    useFetchFollowers(username, setFollowers, showModal);
 
     return (
         <div className='flex w-full justify-around gap-8'>

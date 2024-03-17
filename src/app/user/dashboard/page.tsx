@@ -1,6 +1,6 @@
 import FollowingsMain from '@/components/modules/Modals/followingsModal/FollowingsMain';
 import DashboardProfileDetails from '@/components/modules/dashboard/DashboardProfileDetails';
-import { getFollowerUsers, getFollowingData } from '@/lib/db/queries';
+import { getFollowingData } from '@/lib/db/queries/getQueries';
 import { getServerSession } from 'next-auth';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -47,7 +47,7 @@ export default async function page() {
                         >
                             <Button >Edit</Button>
                         </Link>
-                        <FollowingsMain followingData={followingData} />
+                        <FollowingsMain username={session.user.email} followingData={followingData} />
                     </div>
                 }
             />

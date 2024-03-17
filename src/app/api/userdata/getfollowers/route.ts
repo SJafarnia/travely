@@ -1,8 +1,4 @@
-import {
-    getFollowerUsers,
-    getUserFollowers,
-    getUserIdByEmailOrUsername,
-} from '@/lib/db/queries/getQueries';
+import { getFollowerUsers } from '@/lib/db/queries/getQueries';
 import { getServerSession } from 'next-auth';
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -18,10 +14,8 @@ export const POST = async (req: NextRequest) => {
         });
     }
 
-    // const followers = await getUserFollowers(session.user.email);
-    const followers = await getFollowerUsers(body.username);
-
     if (body.username) {
+        const followers = await getFollowerUsers(body.username);
         return NextResponse.json({ followers });
     }
 

@@ -17,12 +17,12 @@ export const POST = async (req: NextRequest) => {
         });
     }
 
-    const followings = await getUserFollowings(session.user.email);
-
     if (body.username) {
+        const followings = await getUserFollowings(session.user.email);
         const targetUserId = await getUserIdByEmailOrUsername(body.username);
+
         const filteredFollowings = followings.followings.filter(
-            (x: any) => (x = targetUserId)
+            (following: any) => following.followed_user_id == targetUserId.id
         );
 
         if (filteredFollowings.length > 0 && filteredFollowings.length < 2) {
