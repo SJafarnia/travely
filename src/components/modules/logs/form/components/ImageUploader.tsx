@@ -11,7 +11,6 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import 'swiper/css/effect-fade';
 
-
 function ImageUploader() {
     const { setFieldValue } = useFormikContext();
 
@@ -59,32 +58,30 @@ function ImageUploader() {
                     className='mySwiper2'
                     slidesPerView={1}
                 >
-                    {
-                        images.map((img: File, indx) => (
-                            <SwiperSlide key={indx} className='rounded-md'>
-                                <div
-                                    key={img.name}
-                                    className='relative mx-auto my-5 w-full animate-fadeOut text-right'
+                    {images.map((img: File, indx) => (
+                        <SwiperSlide key={indx} className='rounded-md'>
+                            <div
+                                key={img.name}
+                                className='relative mx-auto my-5 w-full animate-fadeOut text-right'
+                            >
+                                <span
+                                    onClick={() => removeHandler(img)}
+                                    className='absolute right-16 top-2 z-50 w-max cursor-pointer rounded-md bg-white p-3 text-red-700 shadow-lg transition-transform duration-300 ease-in-out hover:scale-110 hover:shadow-2xl'
                                 >
-                                    <span
-                                        onClick={() => removeHandler(img)}
-                                        className='absolute right-16 top-2 z-50 w-max cursor-pointer rounded-md bg-white p-3 text-red-700 shadow-lg transition-transform duration-300 ease-in-out hover:scale-110 hover:shadow-2xl'
-                                    >
-                                        <ImCross />
-                                    </span>
-                                    <Image
-                                        loading='lazy'
-                                        src={URL.createObjectURL(img)}
-                                        width={1000}
-                                        height={1000}
-                                        className=' max-h-[283px] max-w-full animate-fadeOut rounded-md object-contain'
-                                        alt='blur'
-                                        blurDataURL=''
-                                    />
-                                </div>
-                            </SwiperSlide>
-                        ))
-                    }
+                                    <ImCross />
+                                </span>
+                                <Image
+                                    loading='lazy'
+                                    src={URL.createObjectURL(img)}
+                                    width={1000}
+                                    height={1000}
+                                    className=' max-h-[283px] max-w-full animate-fadeOut rounded-md object-contain'
+                                    alt='blur'
+                                    blurDataURL=''
+                                />
+                            </div>
+                        </SwiperSlide>
+                    ))}
                 </Swiper>
             </div>
             <div className='my-4 flex flex-grow justify-center md:items-center'>
@@ -116,7 +113,7 @@ function ImageUploader() {
                     onChange={fileSetter}
                 />
             </div>
-        </div >
+        </div>
     );
 }
 

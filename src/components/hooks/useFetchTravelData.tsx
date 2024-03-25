@@ -10,8 +10,8 @@ function useFetchTravelData(travelId: string) {
 
     useEffect(() => {
         const fetcher = async () => {
-            const res: { parts: [] } = await fetch("/api/travels/traveldata/", {
-                method: "POST",
+            const res: { parts: [] } = await fetch('/api/travels/traveldata/', {
+                method: 'POST',
                 body: JSON.stringify({ travelId }),
                 headers: {
                     'Content-Type': 'application/json',
@@ -19,12 +19,12 @@ function useFetchTravelData(travelId: string) {
             }).then((res) => res.json());
 
             if (res?.parts?.length > 0) setTravelParts(res.parts);
-        }
+        };
 
-        fetcher()
+        fetcher();
     }, [travelId]);
 
-    return travelParts
+    return travelParts;
 }
 
 export default useFetchTravelData;

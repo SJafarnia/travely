@@ -12,7 +12,7 @@ import useFetchTravelPartData from '@/components/hooks/useFetchTravelPartData';
 function EditPart({ travelPartId }: { travelPartId: string }) {
     const router = useRouter();
     useFetchTravelPartData(travelPartId);
-console.log(travelPartId)
+    console.log(travelPartId);
     const data: addPartValueType = useTravelPartData(
         (state: any) => state.travelPartData
     );
@@ -33,12 +33,9 @@ console.log(travelPartId)
                 onSubmit={async (values, { setSubmitting }) => {
                     setSubmitting(true);
 
-                    const submit = await submitEditPart(
-                        values,
-                        travelPartId
-                    );
+                    const submit = await submitEditPart(values, travelPartId);
 
-                    console.log({ submit })
+                    console.log({ submit });
                     if (submit) {
                         setSubmitting(false);
                         Swal.fire({
@@ -48,7 +45,7 @@ console.log(travelPartId)
                             showConfirmButton: false,
                             timer: 1500,
                         }).then(() => {
-                            router.back()
+                            router.back();
                         });
                     }
                 }}

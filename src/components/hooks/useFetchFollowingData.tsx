@@ -1,7 +1,10 @@
-import { useSession } from "next-auth/react";
-import { useEffect } from "react";
+import { useSession } from 'next-auth/react';
+import { useEffect } from 'react';
 
-function useFetchFollowingData(username: string, setFollowingData: ({ }) => void) {
+function useFetchFollowingData(
+    username: string,
+    setFollowingData: ({}) => void
+) {
     const { data: session } = useSession();
 
     useEffect(() => {
@@ -14,12 +17,11 @@ function useFetchFollowingData(username: string, setFollowingData: ({ }) => void
                         'Content-Type': 'application/json',
                     },
                 }).then((res) => res.json());
-                setFollowingData({ ...res })
+                setFollowingData({ ...res });
             }
-        }
-        fetchData()
-    }, [session, username])
-
+        };
+        fetchData();
+    }, [session, username]);
 }
 
-export default useFetchFollowingData
+export default useFetchFollowingData;

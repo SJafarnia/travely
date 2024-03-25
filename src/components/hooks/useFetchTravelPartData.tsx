@@ -31,7 +31,9 @@ function useFetchTravelPartData(travelPartId: string) {
                     },
                 });
                 // TODO : remove the following 2 states from the store above if possible
-                const numerofTips = Object.keys(res?.travelPartData?.recommendations)
+                const numerofTips = Object.keys(
+                    res?.travelPartData?.recommendations
+                );
 
                 useTipsStore.setState({
                     tips: res?.travelPartData?.recommendations,
@@ -44,7 +46,6 @@ function useFetchTravelPartData(travelPartId: string) {
         };
         if (session?.user?.email) fetchData();
     }, [travelPartId]);
-
 }
 
 export default useFetchTravelPartData;

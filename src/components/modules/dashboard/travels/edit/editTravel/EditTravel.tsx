@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
 import RemoveButton from '../RemoveButton';
@@ -59,7 +59,7 @@ async function EditTravels({ travelId }: { travelId: string }) {
                     ))}
             </ul>
             <div className='relative'>
-                {parts?.length > 0 &&
+                {parts?.length > 0 && (
                     <p className='mx-5 ml-auto mt-12 @md:mx-12 @md:mt-16'>
                         <Link
                             href={`/log/add/${travelId}`}
@@ -81,7 +81,7 @@ async function EditTravels({ travelId }: { travelId: string }) {
                             </svg>
                         </Link>
                     </p>
-                }
+                )}
             </div>
         </div>
     );

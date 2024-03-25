@@ -37,20 +37,21 @@ async function ActionBar() {
                                 />
                             </svg>
                         </div>
-                        <Link href={"/log"} className='peer self-center px-5 py-3 transition-all duration-100 ease-in-out hover:scale-105 peer-hover:scale-105'>
-                            <span className=''>
-                                Share a journey
-                            </span>
+                        <Link
+                            href={'/log'}
+                            className='peer self-center px-5 py-3 transition-all duration-100 ease-in-out hover:scale-105 peer-hover:scale-105'
+                        >
+                            <span className=''>Share a journey</span>
                         </Link>
                     </li>
                 </>
             ) : (
                 <li className='mx-auto self-center text-sm font-semibold'>
-                        <Link href={"/login"}>
-                            <p className=' cursor-pointer rounded-full bg-creamWhite px-5 py-4 text-forestGreen shadow-md transition-all duration-300 ease-in-out hover:scale-125 hover:border-goldenRod hover:bg-goldenRod hover:text-creamWhite hover:shadow-none'>
-                                Become a traveler
-                            </p>
-                        </Link>
+                    <Link href={'/login'}>
+                        <p className=' cursor-pointer rounded-full bg-creamWhite px-5 py-4 text-forestGreen shadow-md transition-all duration-300 ease-in-out hover:scale-125 hover:border-goldenRod hover:bg-goldenRod hover:text-creamWhite hover:shadow-none'>
+                            Become a traveler
+                        </p>
+                    </Link>
                 </li>
             )}
         </ul>

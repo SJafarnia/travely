@@ -14,9 +14,7 @@ async function TravelsMain({ user }: { user: string }) {
     return (
         <div className='mx-auto my-20 h-auto w-full text-white md:max-w-5xl'>
             <div className='profile info my-16 flex justify-between rounded-md bg-Night/95 p-4 [&>div]:p-5'>
-                <ProfileDetails
-                    username={user}
-                />
+                <ProfileDetails username={user} />
                 {/* <Socials /> */}
             </div>
             <div className='grid grid-cols-1 gap-8 md:grid-cols-3'>

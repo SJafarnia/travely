@@ -1,8 +1,10 @@
-'use client'
+'use client';
 import { useEffect } from 'react';
 
 function useCloseModal(
-    modalSetter: React.Dispatch<React.SetStateAction<"followings" | "followers" | ''>>
+    modalSetter: React.Dispatch<
+        React.SetStateAction<'followings' | 'followers' | ''>
+    >
 ) {
     // closes the modal with any click outside of it
     return useEffect(() => {

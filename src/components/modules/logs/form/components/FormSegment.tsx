@@ -1,5 +1,5 @@
-import { cn } from "@/lib/utils/utils";
-import { VariantProps, cva } from "class-variance-authority"
+import { cn } from '@/lib/utils/utils';
+import { VariantProps, cva } from 'class-variance-authority';
 
 type SegmentProps = VariantProps<typeof SegmentVariants> & {
     text: string;
@@ -10,18 +10,17 @@ type SegmentProps = VariantProps<typeof SegmentVariants> & {
     formField?: React.ReactNode;
 };
 
-const SegmentVariants = cva(
-    "cursor-pointer my-4", {
+const SegmentVariants = cva('cursor-pointer my-4', {
     variants: {
         variant: {
-            default: "",
-            title: "text-white font-bold text-2xl mb-6",
-        }
+            default: '',
+            title: 'text-white font-bold text-2xl mb-6',
+        },
     },
     defaultVariants: {
-        variant: 'default'
-    }
-})
+        variant: 'default',
+    },
+});
 
 export default function FormSegment({
     text,

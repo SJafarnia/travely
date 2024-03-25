@@ -28,7 +28,7 @@ function AddPartForm({
     const { handleChange, handleBlur } = useFormikContext();
 
     return (
-        <div className='first flex w-10/12 flex-col gap-4 text-xl text-center text-silver [&>p]:w-full'>
+        <div className='first flex w-10/12 flex-col gap-4 text-center text-xl text-silver [&>p]:w-full'>
             <FormSegment
                 text='Choose a Title For This Part'
                 variant='title'

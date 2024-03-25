@@ -4,10 +4,10 @@ import { getUserByEmailOrUsernameForProfile } from '@/lib/db/queries/getQueries'
 
 async function ProfileDetails({
     styles,
-    username
+    username,
 }: {
     styles?: string | null;
-    username?: string,
+    username?: string;
 }) {
     const userData = await getUserByEmailOrUsernameForProfile(username);
 
@@ -29,7 +29,9 @@ async function ProfileDetails({
             </div>
             <div className='flex w-full flex-grow flex-col justify-around gap-1'>
                 {userData?.username || userData.email ? (
-                    <span className=''>{userData?.username || userData.email}</span>
+                    <span className=''>
+                        {userData?.username || userData.email}
+                    </span>
                 ) : (
                     <span className='w-1/4 animate-pulse rounded-md bg-white p-3'></span>
                 )}

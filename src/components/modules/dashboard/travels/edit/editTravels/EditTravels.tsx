@@ -15,11 +15,11 @@ async function EditTravels() {
                     posts.map((post) => (
                         <li
                             key={post.id}
-                            className='flex items-center justify-between gap-4 h-[150px]'
+                            className='flex h-[150px] items-center justify-between gap-4'
                         >
                             <Link
                                 href={`/user/dashboard/edit/${post.id}`}
-                                className='flex grow cursor-pointer items-center justify-between gap-4 h-[150px]'
+                                className='flex h-[150px] grow cursor-pointer items-center justify-between gap-4'
                             >
                                 <div className='flex gap-2'>{post.title}</div>
                                 <div className='@md:mx-4'>
@@ -28,7 +28,7 @@ async function EditTravels() {
                                         alt='travelPhoto'
                                         width={128}
                                         height={128}
-                                        className='w-full rounded-md max-h-[150px]'
+                                        className='max-h-[150px] w-full rounded-md'
                                     />
                                 </div>
                             </Link>

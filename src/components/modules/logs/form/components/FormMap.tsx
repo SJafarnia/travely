@@ -24,7 +24,7 @@ function FormMap() {
             <MapContainer
                 center={[51.505, -0.09] || marker}
                 zoom={13}
-                className='mx-auto h-[210px] sm:h-[310px] lg:h-[450px] rounded-md'
+                className='mx-auto h-[210px] rounded-md sm:h-[310px] lg:h-[450px]'
             >
                 <TileLayer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' />
                 {<MapSearch />}

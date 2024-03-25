@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { MdOutlineTipsAndUpdates } from 'react-icons/md';
 import { TbWorldPin } from 'react-icons/tb';
 import { AiOutlineAudio } from 'react-icons/ai';
