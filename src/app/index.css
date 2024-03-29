@@ -94,7 +94,8 @@ input {
 }
 
 .swiper-pagination-bullet-active {
-    background-color: #228b22 !important;
+    /* background-color: #228b22 !important; */
+    background-color: #C0C0C0!important;
 }
 
 /* hover  */

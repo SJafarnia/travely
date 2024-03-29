@@ -1,7 +1,5 @@
 import Link from 'next/link';
 import LogOut from './LogOut';
-import { getServerSession } from 'next-auth';
-import { getUserByEmailOrUsername } from '@/lib/db/queries';
 import ProfileButton from './user/ProfileButton';
 
 async function MainSettings() {

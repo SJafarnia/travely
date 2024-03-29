@@ -1,7 +1,7 @@
 import DescriptionSection from '@/components/modules/travels/parts/description/DescriptionSection';
 import GalleySection from '@/components/modules/travels/parts/GalleySection';
 import StatusBar from '@/components/modules/travels/parts/StatusBar';
-import { getTravelDataById } from '@/lib/db/queries';
+import { getTravelDataById } from '@/lib/db/queries/getQueries';
 import { deslugify } from '@/utils/textModifiers';
 import { notFound } from 'next/navigation';
 

@@ -58,7 +58,7 @@ function TravelPartForm({
                 icon={<AiOutlineAudio className='mx-2 inline h-5 w-5' />}
                 formField={
                     <textarea
-                        value={values.description}
+                        value={values?.description}
                         onBlur={handleBlur}
                         onChange={handleChange}
                         name='description'

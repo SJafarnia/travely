@@ -2,7 +2,7 @@ import ModalCloseButton from '@/components/modules/Modals/travelPartModal/ModalC
 import ModalSlider from '@/components/modules/Modals/travelPartModal/ModalSlider';
 import ViewLog from '@/components/modules/Modals/travelPartModal/ViewLog';
 import Details from '@/components/modules/travels/parts/description/Details';
-import { getTravelDataById } from '@/lib/db/queries';
+import { getTravelDataById } from '@/lib/db/queries/getQueries';
 import { notFound } from 'next/navigation';
 import { deslugify } from '@/utils/textModifiers';
 

@@ -17,14 +17,14 @@ function Modal({
             followings: number;
             followers: number;
         };
-        };
-        followings: [];
-        followers: [];
-        status: 'followings' | 'followers';
-        showModal: 'followings' | 'followers' | '';
-        modalSetter: React.Dispatch<
-            React.SetStateAction<'' | 'followings' | 'followers'>
-        >;
+    };
+    followings: [];
+    followers: [];
+    status: 'followings' | 'followers';
+    showModal: 'followings' | 'followers' | '';
+    modalSetter: React.Dispatch<
+        React.SetStateAction<'' | 'followings' | 'followers'>
+    >;
 }) {
     const isActive = showModal != null;
 
@@ -136,16 +136,16 @@ function Modal({
                                                                             {follower
                                                                                 .follower
                                                                                 ?.username && (
-                                                                                    <div className='flex items-center'>
-                                                                                        <span className='min-w-0 max-w-full overflow-x-visible overflow-y-visible text-sm'>
-                                                                                            {
-                                                                                                follower
-                                                                                                    .follower
-                                                                                                    ?.username
-                                                                                            }
+                                                                                <div className='flex items-center'>
+                                                                                    <span className='min-w-0 max-w-full overflow-x-visible overflow-y-visible text-sm'>
+                                                                                        {
+                                                                                            follower
+                                                                                                .follower
+                                                                                                ?.username
+                                                                                        }
                                                                                     </span>
                                                                                 </div>
-                                                                                )}
+                                                                            )}
                                                                         </div>
                                                                         <ModalFollowButton
                                                                             username={
@@ -213,17 +213,18 @@ function Modal({
                                                                             {followed_user
                                                                                 .followed_user
                                                                                 ?.username && (
-                                                                                    <div className='flex items-center'>
-                                                                                        <span className='min-w-0 max-w-full overflow-x-visible overflow-y-visible text-sm'>
-                                                                                            follower.follower?.username
-                                                                                        </span>
-                                                                                    </div>
-                                                                                )}
+                                                                                <div className='flex items-center'>
+                                                                                    <span className='min-w-0 max-w-full overflow-x-visible overflow-y-visible text-sm'>
+                                                                                        follower.follower?.username
+                                                                                    </span>
+                                                                                </div>
+                                                                            )}
                                                                         </div>
                                                                         <ModalFollowButton
                                                                             username={
                                                                                 followed_user
-                                                                                    ?.followed_user?.email
+                                                                                    ?.followed_user
+                                                                                    ?.email
                                                                             }
                                                                         />
                                                                     </div>

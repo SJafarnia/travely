@@ -1,5 +1,5 @@
 'use server';
-import { deleteTravel, deleteTravelPart } from '@/lib/db/queries';
+import { deleteTravel, deleteTravelPart } from '@/lib/db/queries/deleteQueries';
 import { FieldToReomve } from '@/lib/types/types';
 
 const removeHandler = async (travelId: string, field: FieldToReomve) => {

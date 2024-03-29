@@ -1,4 +1,4 @@
-import { getUserPostsByEmailOrUsername } from '@/lib/db/queries';
+import { getUserPostsByEmailOrUsername } from '@/lib/db/queries/getQueries';
 import { getServerSession } from 'next-auth';
 import Image from 'next/image';
 import Link from 'next/link';

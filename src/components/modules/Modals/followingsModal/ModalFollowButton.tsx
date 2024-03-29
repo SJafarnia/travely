@@ -9,7 +9,7 @@ function ModalFollowButton({ username }: { username: string }) {
         id: null,
     });
 
-    console.log({ followingData })
+    console.log({ followingData });
     useFetchFollowingData(username, setFollowingData);
 
     const followHandler = async () => {

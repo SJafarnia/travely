@@ -35,7 +35,7 @@ const FormField = ({ name, title }: { name: string; title: string }) => {
                 </label>
             </div>
             {errors[name] && touched[name] && (
-                <p className='relative m-2 mx-auto w-9/12 cursor-alias text-sm text-red-600'>
+                <p className='relative m-2 mx-auto px-4 w-1/2 cursor-alias text-sm text-red-600'>
                     {
                         //@ts-ignore
                         errors[name]

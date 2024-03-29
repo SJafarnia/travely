@@ -1,5 +1,5 @@
 'use server';
-import { updateUser } from '@/lib/db/queries';
+import { updateUser } from '@/lib/db/queries/updateQueries';
 import { uploadPhotos } from '@/lib/utils/cloudinaryUploader';
 
 export const submitUpdateUser = async (

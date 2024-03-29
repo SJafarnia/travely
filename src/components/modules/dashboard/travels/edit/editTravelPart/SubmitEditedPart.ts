@@ -1,7 +1,6 @@
 'use server';
-import { getServerSession } from 'next-auth';
 import { addPartValueType } from '@/types/types';
-import { updatePart } from '@/lib/db/queries';
+import { updatePart } from '@/lib/db/queries/updateQueries';
 
 export const submitEditPart = async (formValues: any, travelPartId: string) => {
     // data validation
