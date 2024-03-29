@@ -6,23 +6,23 @@ const DynamicMap = dynamic(() => import('./map/Map'), {
     ssr: false,
 });
 
-function GalleySection({
+function GallerySection({
     images,
     mapData,
     popUp,
 }: {
     images:
-        | {
-              link: string;
-              publicId: string;
-          }[]
-        | undefined;
+    | {
+        link: string;
+        publicId: string;
+    }[]
+    | undefined;
     mapData: JsonValue;
     popUp: string;
 }) {
     return (
         <section id='gallery' className='my-20'>
-            <div className='mx-auto flex flex-col justify-around lg:flex-row'>
+            <div className='mx-auto flex flex-col justify-evenly lg:flex-row'>
                 <div className='gallerydiv mx-auto lg:mx-0'>
                     <GallerySlider images={images} />
                 </div>
@@ -34,4 +34,4 @@ function GalleySection({
     );
 }
 
-export default GalleySection;
+export default GallerySection;

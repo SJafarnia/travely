@@ -4,16 +4,17 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 import { useState } from 'react';
 import 'swiper/css';
+import Fancybox from '@/lib/utils/fancyBox';
 
 function GallerySlider({
     images,
 }: {
     images:
-        | {
-              link: string;
-              publicId: string;
-          }[]
-        | undefined;
+    | {
+        link: string;
+        publicId: string;
+    }[]
+    | undefined;
 }) {
     const [thumbsSwiper, setThumbsSwiper]: any = useState(null);
 
@@ -29,19 +30,32 @@ function GallerySlider({
                 className='mySwiper2 max-h-[283px]'
                 slidesPerView={1}
             >
+
                 {images &&
                     images.map((image) => (
                         <SwiperSlide
                             key={image.publicId}
                             className='rounded-md'
                         >
-                            <Image
-                                src={image.link}
-                                height={1200}
-                                width={1200}
-                                className='h-full max-h-[283px] w-full rounded-md object-fill'
-                                alt='main'
-                            ></Image>
+                            <Fancybox
+                                options={{
+                                    Carousel: {
+                                        Panzoom: {
+                                            decelFriction: 0.5,
+                                        },
+                                    },
+                                }}
+                            >
+                                <a data-fancybox="gallery" href={image.link}>
+                                    <Image
+                                        src={image.link}
+                                        height={1200}
+                                        width={1200}
+                                        className='h-full max-h-[283px] w-full rounded-md object-fill'
+                                        alt='main'
+                                    />
+                                </a>
+                            </Fancybox>
                         </SwiperSlide>
                     ))}
             </Swiper>

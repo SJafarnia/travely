@@ -1,5 +1,5 @@
 import DescriptionSection from '@/components/modules/travels/parts/description/DescriptionSection';
-import GalleySection from '@/components/modules/travels/parts/GalleySection';
+import GallerySection from '@/components/modules/travels/parts/GallerySection';
 import StatusBar from '@/components/modules/travels/parts/StatusBar';
 import { getTravelDataById } from '@/lib/db/queries/getQueries';
 import { deslugify } from '@/utils/textModifiers';
@@ -22,7 +22,7 @@ async function TravelPartTemplate({
             <StatusBar
                 date={`${postData?.date.getUTCDate()} - ${postData?.date.getUTCMonth()} - ${postData?.date.getUTCFullYear()}`}
             />
-            <GalleySection
+            <GallerySection
                 images={postData?.imageGallery}
                 mapData={postData.mapData}
                 popUp={postData?.title}
