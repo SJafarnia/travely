@@ -1,6 +1,5 @@
 'use client';
 import { useLayoutEffect, useState } from 'react';
-import { useTravelImages } from '@/lib/zustand/store';
 import { useFormikContext } from 'formik';
 import Image from 'next/image';
 import { ImCross } from 'react-icons/im';
