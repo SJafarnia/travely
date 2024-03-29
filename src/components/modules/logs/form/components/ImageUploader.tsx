@@ -1,5 +1,5 @@
 'use client';
-import { useLayoutEffect } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import { useTravelImages } from '@/lib/zustand/store';
 import { useFormikContext } from 'formik';
 import Image from 'next/image';
@@ -14,10 +14,8 @@ import 'swiper/css/effect-fade';
 function ImageUploader() {
     const { setFieldValue } = useFormikContext();
 
-    // @ts-ignore
-    const images: File[] = useTravelImages((state) => state.images);
+    const [images, setImages] = useState([])
 
-    // adds each image to the state (array)
     const fileSetter = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const file: File | null = event.target.files?.[0] || null;
         if (
@@ -25,7 +23,7 @@ function ImageUploader() {
             file?.type == 'image/jpeg' ||
             file?.type == 'image/jpg'
         ) {
-            useTravelImages.setState({ images: [...images, file] });
+            setImages([...images, file]);
         }
         return;
     };
@@ -34,15 +32,13 @@ function ImageUploader() {
     const removeHandler = (img: File) => {
         const newArray = images.filter((item: File) => item !== img);
 
-        useTravelImages.setState({ images: [...newArray] });
+        setImages([...newArray])
     };
 
     useLayoutEffect(() => {
         // add images to formik state
         setFieldValue('images', [...images]);
     }, [images]);
-
-    // <div className='flex w-full flex-grow flex-col gap-4 self-center'>
 
     return (
         <div className='my-5 flex w-full flex-col gap-4 self-center'>
@@ -87,7 +83,7 @@ function ImageUploader() {
             <div className='my-4 flex flex-grow justify-center md:items-center'>
                 <label
                     htmlFor='ff'
-                    className='cursor-pointer self-end p-1 hover:animate-bounce'
+                    className='cursor-pointer self-end p-1 hover:scale-110 hover:text-forestGreen delay-75 ease-in-out transition-all'
                 >
                     <svg
                         xmlns='http://www.w3.org/2000/svg'
