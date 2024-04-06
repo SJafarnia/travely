@@ -1,12 +1,12 @@
 'use client';
 import { travelDataType } from '@/lib/types/types';
-import Image from 'next/image';
 import Link from 'next/link';
 import {
     VerticalTimeline,
     VerticalTimelineElement,
 } from 'react-vertical-timeline-component';
 import { CldImage } from 'next-cloudinary';
+import LikeButton from './LikeButton';
 
 const TravelIcon = ({ imgLink }: { imgLink: string }) => (
     <CldImage
@@ -15,7 +15,7 @@ const TravelIcon = ({ imgLink }: { imgLink: string }) => (
         width={300}
         alt='profilePic'
         className='h-full w-full rounded-full object-cover'
-    ></CldImage>
+    />
 );
 
 function Timeline({
@@ -26,6 +26,7 @@ function Timeline({
     travelData: travelDataType;
 }) {
     if (!travelData) return;
+    
     return (
         <VerticalTimeline animate={false}>
             {travelData.parts.map((part, index) => (
@@ -51,23 +52,31 @@ function Timeline({
                         <TravelIcon imgLink={part.imageGallery[0].publicId} />
                     }
                 >
+                    <div className='p-6 text-white shadow-md '>
+                        <div className='flex flex-col gap-2'>
+                            <Link
+                                href={`/user/${travelData.author.email}/travels/${travelId}/parts/${index + 1}`}
+                                scroll={false}
+                            >
+                                <h3 className='vertical-timeline-element-title text-lg font-semibold'>
+                                    {part.title}
+                                </h3>
+                            </Link>
+                            <div className='flex gap-4'>
+                                <h4 className='vertical-timeline-element-subtitle !ml-2 text-base italic'>
+                                    - Miami, FL
+                                </h4>
+                                <LikeButton travelId={travelId} likes={travelData.likes.length} />
+                            </div>
+                        </div>
+                        <p className='!text-sm !font-normal'>
+                            {part.description}
+                        </p>
+                    </div>
                     <Link
                         href={`/user/${travelData.author.email}/travels/${travelId}/parts/${index + 1}`}
                         scroll={false}
                     >
-                        <div className='p-6 text-white shadow-md '>
-                            <div className='flex flex-col gap-2'>
-                                <h3 className='vertical-timeline-element-title text-lg font-semibold'>
-                                    {part.title}
-                                </h3>
-                                <h4 className='vertical-timeline-element-subtitle !ml-2 text-base italic'>
-                                    - Miami, FL
-                                </h4>
-                            </div>
-                            <p className='!text-sm !font-normal'>
-                                {part.description}
-                            </p>
-                        </div>
                         <CldImage
                             width='1000'
                             height='600'

@@ -97,6 +97,11 @@ export const getTravelDataById = async (travelId: string) => {
                         email: true,
                     },
                 },
+                likes: {
+                    select: {
+                        id: true,
+                    },
+                },
                 title: true,
                 location: true,
                 parts: {
@@ -397,6 +402,25 @@ export const getUserIdByEmailOrUsername = async (emailOrUsername: string) => {
                         username: emailOrUsername,
                     },
                 ],
+            },
+            select: {
+                id: true,
+            },
+        });
+
+        return res;
+    } catch (err) {
+        console.log(err);
+        return null;
+    }
+};
+
+export const getLike = async (travelId: string, userEmail: string) => {
+    try {
+        const res = await prisma.like.findFirst({
+            where: {
+                travelId,
+                userEmail,
             },
             select: {
                 id: true,

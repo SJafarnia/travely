@@ -45,6 +45,9 @@ export interface GeoSearchControlOptions {
 export type travelDataType = {
     title: string;
     location: string;
+    likes: {
+        id: string;
+    }[];
     author: {
         email: string;
     };

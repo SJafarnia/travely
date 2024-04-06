@@ -44,3 +44,31 @@ export const unfollowUser = async (id: string) => {
         return null;
     }
 };
+
+export const deleteLike = async (travelId: string, userEmail: string) => {
+    try {
+        const like = await prisma.like.findFirst({
+            where: {
+                Travel: {
+                    id: travelId,
+                },
+                user: {
+                    email: userEmail,
+                },
+            },
+            select: {
+                id: true,
+            },
+        });
+
+        const res = await prisma.like.delete({
+            where: {
+                id: like.id,
+            },
+        });
+        return res;
+    } catch (err) {
+        console.log(err);
+        return null;
+    }
+};

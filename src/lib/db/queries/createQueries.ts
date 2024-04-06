@@ -134,3 +134,26 @@ export const followUser = async (follower_id: string, user_id: string) => {
         return null;
     }
 };
+
+export const createLike = async (travelId: string, userEmail: string) => {
+    try {
+        const res = await prisma.like.create({
+            data: {
+                Travel: {
+                    connect: {
+                        id: travelId,
+                    },
+                },
+                user: {
+                    connect: {
+                        email: userEmail,
+                    },
+                },
+            },
+        });
+        return res;
+    } catch (err) {
+        console.log(err);
+        return null;
+    }
+};

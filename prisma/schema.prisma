@@ -13,12 +13,13 @@ datasource db {
 model User {
   id          String      @id @unique @default(uuid())
   email       String      @unique
-  username    String?     @unique 
+  username    String?     @unique
   accessLevel accessLevel @default(BASIC)
   profileImg  String?     @default("")
   posts       Travel[]
   followers   Follower[]  @relation("followed_user")
   followings  Follower[]  @relation("follower")
+  Liked       Like[]
 
   @@unique([id, email])
 }
@@ -39,9 +40,20 @@ model Travel {
   location  String
   author    User         @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId  String
+  likes     Like[]
   published Boolean      @default(false)
   public    Boolean      @default(true)
   parts     TravelPart[]
+}
+
+model Like {
+  id        String @id @unique @default(uuid())
+  user      User   @relation(fields: [userEmail], references: [email], onDelete: Cascade)
+  Travel    Travel @relation(fields: [travelId], references: [id])
+  userEmail String
+  travelId  String
+
+  @@unique([userEmail, travelId])
 }
 
 model TravelPart {

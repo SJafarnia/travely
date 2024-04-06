@@ -19,13 +19,14 @@ async function TravelPartTemplate({
 
     return (
         <div className='w-10/412 mx-auto text-jet'>
-            <StatusBar
+            {/* <StatusBar
                 date={`${postData?.date.getUTCDate()} - ${postData?.date.getUTCMonth()} - ${postData?.date.getUTCFullYear()}`}
-            />
+            /> */}
             <GallerySection
                 images={postData?.imageGallery}
                 mapData={postData.mapData}
                 popUp={postData?.title}
+                date={`${postData?.date.getUTCDate()} - ${postData?.date.getUTCMonth()} - ${postData?.date.getUTCFullYear()}`}
             />
             <DescriptionSection
                 description={postData?.description}
