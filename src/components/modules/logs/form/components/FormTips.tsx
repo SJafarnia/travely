@@ -1,44 +1,37 @@
 'use client';
-import { useTipsStore } from '@/lib/zustand/store';
 import { useFormikContext } from 'formik';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 function FormTips() {
     const { setFieldValue } = useFormikContext();
-    // @ts-ignore
-    const tips = useTipsStore((state) => state.tips);
-    // @ts-ignore
-    const numTips: number = useTipsStore((state) => state.numTips);
+    const [tips, setTips] = useState({
+        tips: {},
+        numTips: 1,
+    })
 
     // adds each tip to the state (object)
     const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         const {
             target: { name, value },
         } = event;
-        // @ts-ignore
-        useTipsStore.setState({ tips: { ...tips, [name]: value } });
-        useTipsStore.setState({ numTips: numTips + 1 });
+        setTips({ ...tips, [name]: value, numTips: (tips.numTips + 1) })
     };
 
     const removeHandler = (index: number) => {
-        // remove tip from state
-        let updatedTips: any = { ...tips };
+        let updatedTips: {} = { ...tips };
         delete updatedTips[`tip${index}`];
-        useTipsStore.setState({ tips: updatedTips });
-
-        //remove tip input from DOM
-        useTipsStore.setState({ numTips: numTips - 1 });
+        setTips({ numTips: tips.numTips - 1, tips: updatedTips })
     };
 
     useEffect(() => {
         // add tips to formik state
-        setFieldValue('tips', tips);
+        setFieldValue('tips', tips.tips);
     }, [tips]);
 
     return (
         <div className='flex w-full'>
             <div className='mb-12 flex w-4/5 flex-col'>
-                {Array(numTips)
+                {Array(tips.numTips)
                     .fill(null)
                     .map((val, index) => {
                         return (
@@ -82,7 +75,8 @@ function FormTips() {
                     className=''
                     type='button'
                     onClick={() =>
-                        useTipsStore.setState({ numTips: numTips + 1 })
+                        // useTipsStore.setState({ numTips: numTips + 1 })
+                        setTips({ ...tips, numTips: tips.numTips + 1 })
                     }
                 >
                     <svg
