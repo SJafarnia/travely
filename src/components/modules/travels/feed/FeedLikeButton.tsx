@@ -1,28 +1,26 @@
 "use client"
-import { useEffect, useLayoutEffect, useState } from 'react'
-import { likeTravel, unlikeTravel } from './_actions/like'
-import { deslugify } from '@/lib/utils/textModifiers'
+import { useEffect, useState } from 'react'
+import { likeTravel, unlikeTravel } from '../travel/_actions/like'
 
-function LikeButton({ travelId, likes }: { travelId: string, likes: number }) {
-    const [liked, setLiked] = useState<boolean | null>(null)
-    let [likesCount, setLikesCount] = useState(likes)
-
+function FeedLikeButton({ travelId, setLikesCount }: { travelId: string, setLikesCount: React.Dispatch<React.SetStateAction<number>> }) {
+    const [liked, setLiked] = useState<boolean>(false)
+    console.log(travelId)
     const likeHandler = () => {
         if (liked == false) {
-            const isLiked = likeTravel(deslugify(travelId));
+            const isLiked = likeTravel(travelId);
             if (isLiked) {
                 setLiked(true);
-                setLikesCount((prev) => prev + 1);
+                setLikesCount((prev: number) => prev + 1);
             }
         }
     }
 
     const unlikeHandler = () => {
         if (liked == true) {
-            const isUnliked = unlikeTravel(deslugify(travelId))
+            const isUnliked = unlikeTravel(travelId)
             if (isUnliked) {
                 setLiked(false);
-                setLikesCount((prev) => prev - 1);
+                setLikesCount((prev: number) => prev - 1);
             }
         }
     }
@@ -32,19 +30,18 @@ function LikeButton({ travelId, likes }: { travelId: string, likes: number }) {
             const res: { liked: boolean } = await fetch("/api/userdata/liked", {
                 method: "POST",
                 cache: "no-cache",
-                body: JSON.stringify({ travelId: deslugify(travelId) })
+                body: JSON.stringify({ travelId })
             }).then(res => res.json())
 
-            setLiked(res.liked);
+            if (res.liked) setLiked(res.liked);
         }
 
         fetchData()
     }, [])
 
     return (
-        <div className='flex gap-1 z-50'>
-            <div className=''>{likesCount > 0 && likesCount}</div>
-            <div className='flex cursor-pointer flex-wrap content-center justify-center'>
+        <div className='flex gap-1 z-50 ml-[-0.5rem]'>
+            <div className='flex cursor-pointer flex-wrap content-center justify-center p-2'>
                 {liked == false && (
                     <svg
                         onDoubleClick={likeHandler}
@@ -53,7 +50,7 @@ function LikeButton({ travelId, likes }: { travelId: string, likes: number }) {
                         viewBox='0 0 24 24'
                         strokeWidth={1.5}
                         stroke='currentColor'
-                        className='h-5 w-5'
+                        className='h-6 w-6'
                     >
                         <path
                             strokeLinecap='round'
@@ -79,4 +76,4 @@ function LikeButton({ travelId, likes }: { travelId: string, likes: number }) {
     )
 }
 
-export default LikeButton
+export default FeedLikeButton

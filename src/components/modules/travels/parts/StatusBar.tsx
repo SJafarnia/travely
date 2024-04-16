@@ -1,6 +1,4 @@
 function StatusBar({ date }: { date: string }) {
-    // TODO: add likes to DB and show them here
-    const liked: boolean = true;
 
     return (
         <section className='mb-1 flex p-4 gap-4 mx-auto w-full'>

@@ -433,3 +433,45 @@ export const getLike = async (travelId: string, userEmail: string) => {
         return null;
     }
 };
+
+export const getMostLikedPosts = async () => {
+    try {
+        const res = await prisma.travel.findMany({
+            select: {
+                id: true,
+                title: true,
+                parts: {
+                    select: {
+                        imageGallery: {
+                            select: {
+                                link: true,
+                            },
+                        },
+                    },
+                },
+                author: {
+                    select: {
+                        id: true,
+                        email: true,
+                        profileImg: true,
+                        username: true,
+                    },
+                },
+                _count: {
+                    select: {
+                        likes: true,
+                    },
+                },
+            },
+            orderBy: {
+                likes: {
+                    _count: 'desc',
+                },
+            },
+        });
+        return res;
+    } catch (err) {
+        console.log(err);
+        return null;
+    }
+};
